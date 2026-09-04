@@ -1,0 +1,2473 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jeremy's Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Big+Shoulders+Display:wght@300;400&display=swap">
+<style>
+/* ============================================================
+   JEREMY'S DESK — an interactive desktop portfolio
+   Data entry specialist. Everything below is hand-drawn CSS/SVG.
+   ============================================================ */
+
+:root{
+  /* wallpaper (blue theme is the default) */
+  --wp-top:#20559B;
+  --wp-bot:#C0DCED;
+  --accent:#4A6FA0;
+  --accent-soft:rgba(74,111,160,.75);
+  --accent-glow:rgba(74,111,160,.25);
+  --bp-line:rgba(74,111,160,.13);
+  --coord-ink:rgba(51,77,110,.6);
+
+  /* surfaces */
+  --glass:rgba(255,255,255,.55);
+  --glass-hi:rgba(255,255,255,.9);
+  --glass-edge:rgba(0,0,0,.08);
+  --paper:#F3F0EA;
+  --paper-2:#FBFAF7;
+  --win:#F4F6FB;
+  --win-bar:#EBEFF7;
+  --ink:#14181F;
+  --ink-2:rgba(30,40,60,.9);
+  --ink-3:rgba(40,48,64,.62);
+  --ink-4:rgba(40,48,64,.42);
+  --hair:rgba(20,24,31,.1);
+
+  --shadow-win:0 40px 120px rgba(8,18,38,.45), 0 4px 14px rgba(8,18,38,.2);
+  --shadow-glass:0 10px 30px rgba(30,50,80,.14);
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"Space Grotesk",Inter,system-ui,-apple-system,sans-serif;
+}
+[data-theme="purple"]{--wp-top:#292E65;--wp-bot:#E6C0CC;--accent:#6E5C93;--accent-soft:rgba(110,92,147,.75);--accent-glow:rgba(110,92,147,.25);--bp-line:rgba(110,92,147,.15);--coord-ink:rgba(74,60,102,.62)}
+[data-theme="green"]{--wp-top:#2F6136;--wp-bot:#DCECCF;--accent:#5B8B45;--accent-soft:rgba(91,139,69,.75);--accent-glow:rgba(91,139,69,.25);--bp-line:rgba(70,110,55,.15);--coord-ink:rgba(52,84,44,.62)}
+[data-theme="black"]{--wp-top:#0B0B0D;--wp-bot:#3D4048;--accent:#7B8798;--accent-soft:rgba(123,135,152,.75);--accent-glow:rgba(123,135,152,.22);--bp-line:rgba(160,175,195,.12);--coord-ink:rgba(200,210,225,.48)}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;background:#0A0E14;color:var(--ink);
+  font-family:var(--sans);font-size:14px;
+  overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:2px solid #fff;outline-offset:2px;border-radius:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ============================================================
+   0. WALLPAPER
+   ============================================================ */
+#wall{
+  position:fixed;inset:0;z-index:0;
+  background:linear-gradient(180deg,var(--wp-top) 0%,var(--wp-bot) 100%);
+  transition:background 700ms cubic-bezier(.4,0,.2,1);
+}
+#wall::after{ /* atmospheric bloom */
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(120% 70% at 50% 8%, rgba(255,255,255,.16), transparent 60%),
+    radial-gradient(90% 55% at 12% 92%, rgba(255,255,255,.22), transparent 65%);
+}
+#grain{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  opacity:.5;mix-blend-mode:overlay;background-repeat:repeat;
+}
+
+/* ============================================================
+   1. LOCK SCREEN
+   ============================================================ */
+#lock{
+  position:fixed;inset:0;z-index:9000;
+  display:flex;flex-direction:column;align-items:center;
+  background:linear-gradient(180deg,var(--wp-top) 0%,var(--wp-bot) 100%);
+  color:#fff;cursor:pointer;
+  transition:opacity 900ms cubic-bezier(.4,0,.2,1), transform 900ms cubic-bezier(.4,0,.2,1), filter 900ms;
+}
+#lock::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 70% at 50% 8%,rgba(255,255,255,.16),transparent 60%);pointer-events:none}
+#lock.gone{opacity:0;transform:scale(1.06);filter:blur(14px);pointer-events:none}
+.lk-clock{position:relative;z-index:2;text-align:center;margin-top:44px}
+.lk-date{font-size:15px;font-weight:600;letter-spacing:.15px;color:rgba(255,255,255,.92)}
+.lk-time{
+  font-family:"Big Shoulders Display",var(--sans);
+  font-weight:300;font-size:clamp(120px,15vw,210px);line-height:.86;
+  letter-spacing:-.045em;color:rgba(255,255,255,.42);
+  font-variant-numeric:tabular-nums;margin-top:-6px;
+}
+.lk-links{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:9px;margin-top:6px}
+.lk-row{display:flex;gap:10px;align-items:center}
+.lk-pill{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:8px 14px;border-radius:999px;
+  background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  font-size:11px;font-weight:600;letter-spacing:.02em;color:rgba(255,255,255,.95);
+  text-decoration:none;transition:background 200ms,transform 200ms;
+}
+.lk-pill.ico{padding:9px;width:36px;height:36px;justify-content:center}
+.lk-pill:hover{background:rgba(255,255,255,.24);transform:translateY(-1px)}
+.lk-id{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;margin-top:auto}
+.lk-mark{width:54px;height:54px;margin-bottom:14px;opacity:.95}
+.lk-name{font-size:22px;font-weight:600;letter-spacing:-.01em}
+.lk-role{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-top:5px}
+.lk-loading{height:3px;width:140px;margin:22px auto 0;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden;position:relative;z-index:2}
+.lk-loading i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#60a5fa,#3b82f6);transition:width 120ms linear}
+.lk-cta{
+  position:relative;z-index:2;margin:22px auto 0;display:none;align-items:center;gap:9px;
+  padding:11px 20px;border-radius:999px;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.9);
+}
+.lk-cta.on{display:inline-flex;animation:fadeUp 600ms both}
+.lk-cta:hover{background:rgba(255,255,255,.22)}
+.lk-hint{position:relative;z-index:2;margin:auto auto 26px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ============================================================
+   2. MENUBAR
+   ============================================================ */
+#menubar{
+  position:fixed;top:0;left:0;right:0;height:38px;z-index:5000;
+  display:flex;align-items:center;gap:12px;padding:0 16px;
+  background:rgba(255,255,255,.5);
+  backdrop-filter:blur(16px) saturate(1.6);-webkit-backdrop-filter:blur(16px) saturate(1.6);
+  border-bottom:1px solid rgba(255,255,255,.35);
+  font-size:11px;letter-spacing:.04em;color:rgba(40,40,40,.85);
+  opacity:0;transform:translateY(-100%);transition:opacity 500ms 200ms,transform 500ms 200ms cubic-bezier(.3,1.2,.5,1);
+}
+body.up #menubar{opacity:1;transform:none}
+[data-theme="black"] #menubar{background:rgba(28,30,36,.62);color:rgba(240,244,252,.9);border-bottom-color:rgba(255,255,255,.1)}
+.mb-mark{width:20px;height:20px;flex:none;opacity:.85}
+.mb{position:relative}
+.mb-trigger{padding:3px 10px;border-radius:6px;font-size:13px;letter-spacing:.01em;transition:background 150ms}
+.mb-trigger.bold{font-weight:700}
+.mb-trigger:hover,.mb.open .mb-trigger{background:rgba(255,255,255,.55)}
+[data-theme="black"] .mb-trigger:hover,[data-theme="black"] .mb.open .mb-trigger{background:rgba(255,255,255,.14)}
+.mb-drop{
+  position:absolute;top:calc(100% + 5px);left:0;min-width:210px;display:none;
+  padding:6px;border-radius:12px;
+  background:rgba(252,253,255,.86);backdrop-filter:blur(24px) saturate(1.8);-webkit-backdrop-filter:blur(24px) saturate(1.8);
+  border:1px solid rgba(255,255,255,.7);
+  box-shadow:0 20px 50px rgba(10,20,40,.3);
+  color:#1b2029;
+}
+.mb.open .mb-drop{display:block;animation:fadeUp 160ms both}
+.mb-drop button,.mb-drop a{
+  display:flex;width:100%;align-items:center;justify-content:space-between;gap:16px;
+  padding:7px 10px;border-radius:7px;font-size:12.5px;text-align:left;text-decoration:none;
+}
+.mb-drop button:hover,.mb-drop a:hover{background:var(--accent);color:#fff}
+.mb-sep{height:1px;margin:5px 8px;background:rgba(20,24,31,.1)}
+.mb-key{opacity:.45;font-size:11px}
+.mb-right{margin-left:auto;display:flex;align-items:center;gap:14px}
+.mb-right .soc{width:14px;height:14px;opacity:.8;transition:opacity 150ms}
+.mb-right .soc:hover{opacity:1}
+.mb-right time,.mb-right .mb-day{font-size:11.5px;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+
+/* theme panel inside menubar */
+.cust-panel{min-width:262px;padding:12px}
+.cust-h{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-4);margin:0 0 8px}
+.cust-h + .cust-h{margin-top:14px}
+.cust-row{display:flex;flex-wrap:wrap;gap:6px}
+.cust-row button{
+  width:auto;justify-content:center;padding:0;
+  width:26px;height:26px;border-radius:8px;font-size:14px;line-height:1;
+  background:rgba(20,24,31,.05);
+}
+.cust-row button:hover{background:var(--accent);color:#fff}
+.cust-row button.on{outline:2px solid var(--accent);outline-offset:1px;background:rgba(74,111,160,.14)}
+.cust-name{
+  width:100%;padding:8px 10px;border-radius:8px;border:1px solid rgba(20,24,31,.14);
+  background:#fff;font:500 12.5px/1 var(--sans);color:#1b2029;
+}
+.cust-note{font-size:10.5px;color:var(--ink-4);margin-top:9px;line-height:1.5}
+
+/* ============================================================
+   3. STAGE — blueprint + icon nodes
+   ============================================================ */
+#stage{position:fixed;inset:38px 0 0;z-index:2;overflow:hidden}
+.bp{position:absolute;inset:0;pointer-events:none}
+.bp i{position:absolute;background:var(--bp-line)}
+.bp i.h{left:0;right:0;height:1px}
+.bp i.v{top:0;bottom:0;width:1px}
+.xh{position:absolute;width:11px;height:11px;pointer-events:none}
+.xh::before,.xh::after{content:"";position:absolute;background:var(--bp-line)}
+.xh::before{left:0;right:0;top:5px;height:1px}
+.xh::after{top:0;bottom:0;left:5px;width:1px}
+.cluster{position:absolute;display:grid;gap:5px;pointer-events:none}
+.cluster span{width:2px;height:2px;border-radius:50%;background:var(--accent-soft);opacity:.5}
+.coord{
+  position:absolute;font-family:var(--mono);font-size:10px;line-height:1.6;
+  letter-spacing:.08em;color:var(--coord-ink);pointer-events:none;
+}
+.tick{position:absolute;font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;color:var(--coord-ink);opacity:.7;pointer-events:none}
+
+/* — hero — */
+#hero{position:absolute;left:238px;top:136px;display:flex;gap:20px;align-items:flex-start;color:#fff;max-width:640px;z-index:3}
+.hero-face{width:96px;height:96px;border-radius:50%;flex:none;box-shadow:0 8px 26px rgba(8,18,38,.34)}
+.hero-col{padding-top:9px;display:flex;flex-direction:column;gap:7px}
+.avail{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+}
+.avail::before{content:"";width:6px;height:6px;border-radius:50%;background:#7BE495;box-shadow:0 0 0 3px rgba(123,228,149,.28);animation:pulse 2.4s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(123,228,149,.28)}50%{box-shadow:0 0 0 6px rgba(123,228,149,0)}}
+.hero-lede{margin:0;font-size:10.5px;font-weight:500;line-height:1.45;letter-spacing:.01em;max-width:470px;text-shadow:0 1px 3px rgba(8,18,38,.28)}
+.hero-lede a{font-weight:700;text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+.hero-more{
+  margin-top:6px;display:inline-flex;align-items:center;gap:5px;align-self:flex-start;
+  font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  border-bottom:1px solid rgba(255,255,255,.6);padding-bottom:2px;
+}
+.hero-more span{transition:transform 200ms}
+.hero-more:hover span{transform:translateX(4px)}
+
+/* — icon nodes — */
+.node{position:absolute;width:116px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;user-select:none;touch-action:none;z-index:4}
+.node.drag{z-index:60;cursor:grabbing}
+.node .ring{position:absolute;inset:-6px -2px;border-radius:12px;border:1px solid transparent;transition:all 160ms}
+.node.sel .ring{border-color:rgba(255,255,255,.75);background:rgba(255,255,255,.14);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.tile{position:relative;width:103px;height:103px;display:grid;place-items:center;transition:transform 260ms cubic-bezier(.3,1.4,.5,1),filter 260ms}
+.node:hover .tile{transform:translateY(-5px) scale(1.04)}
+.node:active .tile{transform:translateY(-2px) scale(.99)}
+.tile svg{filter:drop-shadow(0 10px 18px rgba(8,18,38,.34))}
+.nlabel{
+  font-size:13px;font-weight:500;letter-spacing:.01em;color:#fff;text-align:center;
+  padding:2px 7px;border-radius:3px;line-height:1.3;
+  text-shadow:0 1px 3px rgba(8,18,38,.5);
+}
+.node.sel .nlabel{background:var(--accent);text-shadow:none}
+.nsub{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:rgba(255,255,255,.62);margin-top:-3px;text-shadow:0 1px 2px rgba(8,18,38,.4)}
+/* hover caption card */
+.ncap{
+  position:absolute;bottom:calc(100% + 10px);left:50%;transform:translate(-50%,6px);
+  display:grid;gap:2px;padding:9px 12px;border-radius:10px;white-space:nowrap;
+  background:rgba(14,20,32,.72);border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  opacity:0;pointer-events:none;transition:opacity 180ms,transform 180ms;z-index:70;
+}
+.node:hover .ncap{opacity:1;transform:translate(-50%,0)}
+.ncap .cn{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.95)}
+.ncap .cd{font-family:var(--mono);font-size:10px;letter-spacing:.03em;color:rgba(255,255,255,.62)}
+.ncap .cx{position:absolute;top:8px;right:10px;font-family:var(--mono);font-size:9px;font-style:normal;color:rgba(255,255,255,.36)}
+.ncap .cd{padding-right:22px}
+/* file (scattered) nodes */
+.node.file{width:96px}
+.node.file .tile{width:72px;height:92px}
+.node.file .nlabel{font-family:var(--mono);font-size:10px;letter-spacing:.02em;font-weight:400}
+.lockpin{position:absolute;right:8px;bottom:12px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:rgba(14,20,32,.82);border:1px solid rgba(255,255,255,.2)}
+
+/* ============================================================
+   4. WIDGET RAIL
+   ============================================================ */
+#rail{
+  position:fixed;top:52px;right:14px;width:300px;z-index:1200;
+  display:flex;flex-direction:column;gap:12px;
+  max-height:calc(100vh - 214px);overflow-y:auto;overflow-x:hidden;
+  scrollbar-width:none;padding-bottom:4px;
+  opacity:0;transform:translateX(20px);transition:opacity 600ms 400ms,transform 600ms 400ms cubic-bezier(.2,.9,.3,1);
+}
+#rail::-webkit-scrollbar{display:none}
+body.up #rail{opacity:1;transform:none}
+.card{
+  border-radius:14px;background:var(--glass);border:1px solid var(--glass-edge);
+  backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);
+  box-shadow:var(--shadow-glass);color:var(--ink-2);padding:12px 13px;
+}
+[data-theme="black"] .card{background:rgba(30,33,40,.6);border-color:rgba(255,255,255,.1);color:rgba(235,240,250,.92)}
+[data-theme="black"] .card .w-t,[data-theme="black"] .duo-note,[data-theme="black"] .aw-cap{color:rgba(215,225,240,.6)}
+.w-t{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:9px;
+}
+.w-t .src{font-family:var(--mono);font-size:8.5px;letter-spacing:.06em;text-transform:lowercase;opacity:.7}
+
+/* theme picker */
+.themes{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.themes .w-t{margin:0;flex:1}
+.swatches{display:flex;gap:6px}
+.sw{width:26px;height:26px;border-radius:50%;border:1px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.2);transition:transform 200ms}
+.sw:hover{transform:scale(1.12)}
+.sw.on{box-shadow:0 0 0 2px rgba(255,255,255,.9),0 2px 8px rgba(0,0,0,.2)}
+.sw[data-theme="blue"]{background:linear-gradient(135deg,#DBEAF7,#5B8DC9)}
+.sw[data-theme="purple"]{background:linear-gradient(135deg,#E6C0CC,#292E65)}
+.sw[data-theme="green"]{background:linear-gradient(135deg,#DCECCF,#6EA24A)}
+.sw[data-theme="black"]{background:linear-gradient(135deg,#3A3A3A,#080808)}
+
+/* weather pair */
+.wx-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.wx{
+  border-radius:14px;background:var(--glass);border:1px solid var(--glass-edge);
+  backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);
+  box-shadow:var(--shadow-glass);padding:10px;color:var(--ink-2);
+  display:flex;flex-direction:column;justify-content:space-between;min-height:130px;
+}
+[data-theme="black"] .wx{background:rgba(30,33,40,.6);border-color:rgba(255,255,255,.1);color:rgba(235,240,250,.92)}
+.wx-loc{display:flex;align-items:center;gap:4px;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.wx-temp{font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
+.wx-foot{display:flex;align-items:center;gap:6px;font-size:11px}
+
+/* now playing */
+.np{display:flex;gap:11px;align-items:center}
+.np-art{width:62px;height:62px;border-radius:9px;flex:none;position:relative;overflow:hidden;box-shadow:0 6px 16px rgba(10,20,40,.24)}
+.np-meta{min-width:0;flex:1}
+.np-title{font-size:12.5px;font-weight:600;letter-spacing:-.005em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.np-artist{font-size:10.5px;color:var(--ink-3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.eq{display:flex;align-items:flex-end;gap:2px;height:14px;margin-top:7px}
+.eq i{width:2.5px;border-radius:2px;background:var(--accent);animation:bar 900ms ease-in-out infinite alternate}
+.eq i:nth-child(1){height:40%;animation-delay:0ms}
+.eq i:nth-child(2){height:80%;animation-delay:120ms}
+.eq i:nth-child(3){height:55%;animation-delay:240ms}
+.eq i:nth-child(4){height:100%;animation-delay:80ms}
+.eq i:nth-child(5){height:35%;animation-delay:300ms}
+.eq i:nth-child(6){height:70%;animation-delay:180ms}
+@keyframes bar{to{height:18%}}
+body.paused .eq i{animation-play-state:paused}
+.np-ctrl{display:flex;align-items:center;gap:4px;margin-left:auto}
+.np-btn{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;transition:background 160ms}
+.np-btn:hover{background:rgba(20,24,31,.08)}
+.np-btn.play{background:var(--accent);color:#fff;width:30px;height:30px}
+.np-btn.play:hover{filter:brightness(1.12)}
+.np-track{
+  display:flex;align-items:center;gap:8px;padding:5px 6px;border-radius:7px;width:100%;
+  font-size:11px;text-align:left;transition:background 150ms;
+}
+.np-track:hover{background:rgba(255,255,255,.5)}
+.np-track.on{background:rgba(255,255,255,.65);font-weight:600}
+[data-theme="black"] .np-track:hover,[data-theme="black"] .np-track.on{background:rgba(255,255,255,.1)}
+.np-track b{font-family:var(--mono);font-size:9px;font-weight:400;opacity:.45;width:12px}
+.np-track em{margin-left:auto;font-style:normal;font-family:var(--mono);font-size:9px;opacity:.45}
+.np-list{margin-top:8px;display:grid;gap:1px;max-height:96px;overflow-y:auto;scrollbar-width:thin}
+
+/* typing / accuracy widget */
+.duo-head{display:flex;align-items:center;gap:9px;padding-top:2px}
+.duo-flame{font-size:20px;line-height:1}
+.duo-streak b{display:block;font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1.05;font-variant-numeric:tabular-nums}
+.duo-streak i{display:block;font-style:normal;font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin-top:2px}
+.duo-row{display:grid;grid-template-columns:1fr auto;gap:2px 8px;padding:6px 0 7px;border-top:1px solid var(--hair)}
+.duo-row:first-of-type{border-top:0}
+.duo-lang{font-size:11.5px;font-weight:500}
+.duo-lang em{font-style:normal;font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;opacity:.5;margin-right:5px;text-transform:uppercase}
+.duo-xp{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;color:var(--ink-3);align-self:center}
+.duo-bar{grid-column:1/-1;height:2px;border-radius:2px;background:rgba(20,24,31,.1);overflow:hidden;margin-top:3px}
+.duo-bar span{display:block;height:100%;border-radius:2px;background:var(--accent)}
+.duo-note{font-size:9.5px;color:var(--ink-4);grid-column:1/-1;margin-top:3px;line-height:1.4}
+.duo-foot{display:flex;justify-content:space-between;font-size:9.5px;color:var(--ink-3);border-top:1px solid var(--hair);padding-top:8px;margin-top:2px}
+.duo-foot a{text-decoration:none}
+.duo-foot a:hover{text-decoration:underline}
+
+/* awards */
+.aw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.aw-grid a{display:block;transition:transform 220ms}
+.aw-grid a:hover{transform:translateY(-3px) rotate(-3deg)}
+.aw-cap{font-size:9px;letter-spacing:.06em;color:var(--ink-3);margin-top:9px;text-align:center}
+
+/* ============================================================
+   5. HONORS RAIL (left edge)
+   ============================================================ */
+#honors{
+  position:fixed;left:0;top:50%;transform:translateY(-50%) translateX(-100%);z-index:1100;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  transition:transform 700ms 600ms cubic-bezier(.2,.9,.3,1);
+}
+body.up #honors{transform:translateY(-50%) translateX(0)}
+.hon-tab{
+  width:46px;padding:16px 0 20px;border-radius:0 14px 14px 0;
+  background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.3);border-left:0;
+  backdrop-filter:blur(14px) saturate(1.6);-webkit-backdrop-filter:blur(14px) saturate(1.6);
+  display:flex;flex-direction:column;align-items:center;gap:14px;color:#fff;
+}
+.hon-tab b{font-size:16px;font-weight:700;letter-spacing:-.02em}
+.hon-tab span{writing-mode:vertical-rl;font-size:10px;letter-spacing:.14em;opacity:.85}
+.seal{width:46px;height:46px;border-radius:50%;display:block;transition:transform 240ms}
+.seal:hover{transform:scale(1.1) rotate(8deg)}
+
+/* ============================================================
+   6. DOCK
+   ============================================================ */
+#dockwrap{
+  position:fixed;left:0;right:0;bottom:0;z-index:1300;
+  display:flex;flex-direction:column;align-items:center;gap:6px;padding-bottom:14px;
+  pointer-events:none;
+  opacity:0;transform:translateY(30px);transition:opacity 600ms 500ms,transform 600ms 500ms cubic-bezier(.2,1.1,.3,1);
+}
+body.up #dockwrap{opacity:1;transform:none}
+.dock-label{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.9);text-shadow:0 1px 3px rgba(8,18,38,.4)}
+#dock{
+  pointer-events:auto;display:flex;align-items:flex-end;gap:8px;padding:9px 14px;border-radius:16px;
+  background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.45) 50%,transparent 60%),
+             linear-gradient(rgba(240,244,252,.55),rgba(200,210,225,.45));
+  border:1px solid rgba(255,255,255,.55);
+  backdrop-filter:blur(22px) saturate(1.6);-webkit-backdrop-filter:blur(22px) saturate(1.6);
+  box-shadow:0 14px 40px rgba(20,30,50,.28), inset 0 1.5px 0 rgba(255,255,255,.85), inset 0 -6px 14px rgba(0,0,0,.1);
+}
+.di{position:relative;display:flex;flex-direction:column;align-items:center;gap:5px}
+.di-icon{
+  width:48px;height:48px;border-radius:12px;display:grid;place-items:center;
+  background:radial-gradient(120% 80% at 25% 15%,rgba(255,255,255,.55),transparent 55%),
+             linear-gradient(160deg,rgba(150,180,220,.35),rgba(60,80,110,.35));
+  border:1px solid rgba(255,255,255,.35);
+  backdrop-filter:blur(10px) saturate(1.6);-webkit-backdrop-filter:blur(10px) saturate(1.6);
+  box-shadow:0 4px 12px rgba(20,30,50,.28), inset 0 1px 0 rgba(255,255,255,.55), inset 0 -4px 10px rgba(0,0,0,.15);
+  transition:transform 240ms cubic-bezier(.3,1.5,.5,1);
+}
+.di:hover .di-icon{transform:translateY(-11px) scale(1.16)}
+.di:hover + .di .di-icon,.di:has(+ .di:hover) .di-icon{transform:translateY(-4px) scale(1.06)}
+.di-dot{width:3px;height:3px;border-radius:50%;background:var(--accent-soft)}
+.di-lbl{
+  position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(6px);
+  padding:7px 12px;border-radius:999px;white-space:nowrap;
+  font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:lowercase;color:#fff;
+  background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);
+  backdrop-filter:blur(16px) saturate(1.6);-webkit-backdrop-filter:blur(16px) saturate(1.6);
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  opacity:0;pointer-events:none;transition:opacity 180ms,transform 180ms;
+}
+.di:hover .di-lbl{opacity:1;transform:translateX(-50%) translateY(0)}
+
+#copyright{
+  position:fixed;left:16px;bottom:12px;z-index:1200;
+  font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);
+  opacity:0;transition:opacity 600ms 900ms;
+}
+body.up #copyright{opacity:1}
+
+/* ============================================================
+   7. WINDOWS
+   ============================================================ */
+.modal{
+  position:fixed;inset:0;z-index:6000;display:none;align-items:center;justify-content:center;padding:28px;
+  background:rgba(10,18,34,.42);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+}
+.modal.on{display:flex;animation:scrimIn 220ms both}
+@keyframes scrimIn{from{opacity:0}to{opacity:1}}
+.win{
+  display:flex;flex-direction:column;overflow:hidden;border-radius:14px;
+  background:var(--win);box-shadow:var(--shadow-win);
+  width:min(980px,100%);max-height:min(820px,100%);
+  animation:winIn 320ms cubic-bezier(.2,1.1,.3,1) both;
+}
+@keyframes winIn{from{opacity:0;transform:translateY(18px) scale(.975)}to{opacity:1;transform:none}}
+.bar{
+  position:relative;display:flex;align-items:center;gap:8px;flex:none;
+  height:48px;padding:0 16px;background:var(--win-bar);border-bottom:1px solid rgba(20,24,31,.07);
+  cursor:grab;user-select:none;
+}
+.bar:active{cursor:grabbing}
+.dot{width:12px;height:12px;border-radius:50%;flex:none}
+.dot.red{background:#FF5F57;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.12)}
+.dot.red:hover{filter:brightness(.92)}
+.dot.grey{background:#D6DAE2}
+.bar .t{
+  position:absolute;left:0;right:0;text-align:center;pointer-events:none;
+  font-size:13px;font-weight:600;letter-spacing:.005em;color:rgba(30,36,48,.78);
+}
+.bar .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-4);margin-left:8px}
+.body{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+.body::-webkit-scrollbar{width:11px}
+.body::-webkit-scrollbar-thumb{background:rgba(20,24,31,.22);border-radius:9px;border:3px solid transparent;background-clip:content-box}
+.body::-webkit-scrollbar-thumb:hover{background:rgba(20,24,31,.36);background-clip:content-box}
+
+/* ============================================================
+   8. PAPER / READER TYPOGRAPHY (project windows)
+   ============================================================ */
+.paper{background:linear-gradient(170deg,var(--paper-2),var(--paper) 60%,#EFEBE3)}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-4)}
+.reader{padding:0 0 64px}
+.hero-band{padding:34px 40px 26px;border-bottom:1px solid var(--hair)}
+.hero-band h1{margin:8px 0 0;font-size:clamp(38px,5vw,60px);font-weight:700;letter-spacing:-.035em;line-height:.98;color:var(--ink);text-wrap:balance}
+.hero-band .sub{margin:14px 0 0;font-size:14px;line-height:1.55;color:var(--ink-3);max-width:46ch}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:40px;align-items:end}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+.tag{padding:5px 11px;border-radius:999px;background:rgba(20,24,31,.06);font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--ink-3)}
+.sec{padding:34px 40px 0;max-width:790px}
+.sec.wide{max-width:none}
+.sec h2{margin:9px 0 16px;font-size:clamp(26px,3.4vw,38px);font-weight:700;letter-spacing:-.028em;line-height:1.06;color:var(--ink);text-wrap:balance}
+.sec p{margin:0 0 14px;font-size:14.5px;line-height:1.72;color:rgba(28,34,46,.82);max-width:66ch}
+.sec p.lede{font-size:17px;line-height:1.6;color:var(--ink)}
+.sec p.lede .dim{color:var(--ink-3)}
+.sec h3{margin:22px 0 8px;font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+.rule{height:1px;background:var(--hair);margin:34px 40px 0}
+.meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 26px;margin:24px 0 6px;padding-top:20px;border-top:1px solid var(--hair)}
+.meta > div{display:grid;gap:4px}
+.meta span{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-4)}
+.meta strong{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.4}
+.callout{
+  margin:22px 0 4px;padding:18px 22px;border-radius:12px;background:var(--ink);color:#fff;
+  display:grid;gap:7px;
+}
+.callout b{font-family:var(--mono);font-size:9.5px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);order:-1}
+.callout p{margin:0;font-size:14px;line-height:1.6;color:rgba(255,255,255,.94);max-width:70ch}
+.pillcta{
+  display:inline-flex;align-items:center;gap:8px;margin-top:8px;
+  padding:11px 20px;border-radius:999px;background:var(--ink);color:#fff;
+  font-size:13px;font-weight:700;text-decoration:none;transition:transform 200ms,filter 200ms;
+}
+.pillcta:hover{transform:translateY(-2px);filter:brightness(1.2)}
+.qs{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 18px}
+.q{padding:8px 14px;border-radius:999px;border:1px dashed rgba(20,24,31,.2);font-size:12.5px;color:var(--ink-3);background:rgba(255,255,255,.5)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:18px 0 4px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:16px;margin:18px 0 4px}
+.ins{padding:18px;border-radius:12px;background:rgba(255,255,255,.72);border:1px solid var(--hair);display:grid;gap:8px;align-content:start}
+.ins .ico{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:var(--accent);color:#fff;font-size:14px}
+.ins b{font-size:14px;line-height:1.35;letter-spacing:-.01em;color:var(--ink)}
+.ins .txt{font-size:12.5px;line-height:1.6;color:var(--ink-3)}
+.ins .vis{margin-top:4px;padding-top:10px;border-top:1px solid var(--hair);font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--ink-4);display:grid;gap:3px}
+.ins .vis b{font-family:var(--sans);font-size:18px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.frame{border-radius:12px;overflow:hidden;border:1px solid var(--hair);background:#fff}
+.frame-h{padding:9px 13px;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-4);background:rgba(20,24,31,.03);border-bottom:1px solid var(--hair)}
+.frame-b{padding:14px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px;align-items:start;margin:18px 0 4px}
+.steps{display:grid;gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:12px;overflow:hidden;margin:18px 0 4px}
+.step{display:grid;grid-template-columns:38px minmax(0,190px) minmax(0,1fr);gap:14px;align-items:baseline;padding:14px 18px;background:var(--paper-2)}
+.step b{font-family:var(--mono);font-size:11px;font-weight:400;color:var(--accent)}
+.step strong{font-size:13.5px;font-weight:700;color:var(--ink)}
+.step span{font-size:12.5px;line-height:1.55;color:var(--ink-3)}
+.pull{margin:22px 0;padding-left:20px;border-left:3px solid var(--accent);font-size:19px;font-weight:600;letter-spacing:-.015em;line-height:1.35;color:var(--ink);max-width:38ch}
+.backtop{
+  position:absolute;right:22px;bottom:22px;z-index:5;display:inline-flex;align-items:center;gap:8px;
+  padding:10px 17px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 10px 30px rgba(20,30,50,.2);color:var(--ink);
+  opacity:0;pointer-events:none;transition:opacity 240ms,transform 240ms;transform:translateY(8px);
+}
+.backtop.on{opacity:1;pointer-events:auto;transform:none}
+.backsm{
+  position:absolute;left:22px;top:62px;z-index:5;display:inline-flex;align-items:center;gap:7px;
+  padding:8px 15px 8px 11px;border-radius:999px;font-size:12px;font-weight:600;
+  background:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.95);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 8px 24px rgba(20,30,50,.18);color:var(--ink);
+}
+.backsm:hover{background:#fff}
+
+/* project banner (drawn, not photographic) */
+.banner{height:290px;position:relative;overflow:hidden;background:linear-gradient(150deg,var(--wp-top),var(--accent) 55%,var(--wp-bot))}
+.banner .bl{position:absolute;inset:0}
+
+/* ============================================================
+   9. HUB (projects folder)
+   ============================================================ */
+.hub{display:grid;grid-template-columns:262px minmax(0,1fr);min-height:0;flex:1}
+.hub-side{background:rgba(20,24,31,.035);border-right:1px solid var(--hair);padding:18px;display:grid;gap:9px;align-content:start;overflow-y:auto}
+.hub-tab{
+  display:grid;gap:3px;padding:14px 16px;border-radius:11px;text-align:left;
+  background:#fff;border:1px solid transparent;box-shadow:0 1px 2px rgba(20,30,50,.06);
+  transition:transform 180ms,box-shadow 180ms,border-color 180ms;
+}
+.hub-tab:hover{transform:translateX(3px);box-shadow:0 6px 18px rgba(20,30,50,.1)}
+.hub-tab.on{border-color:var(--ink);box-shadow:0 6px 18px rgba(20,30,50,.12)}
+.hub-tab .n{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-4)}
+.hub-tab .name{font-size:16px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.hub-tab .s{font-size:11.5px;color:var(--ink-3)}
+.hub-main{padding:38px 44px;overflow-y:auto}
+.hub-main h2{margin:12px 0 18px;font-size:clamp(30px,4vw,44px);font-weight:700;letter-spacing:-.035em;line-height:1.02;color:var(--ink)}
+.hub-main p{margin:0;font-size:15px;line-height:1.7;color:var(--ink-3);max-width:52ch}
+.sample-chip{
+  display:inline-flex;align-items:center;gap:7px;margin-top:26px;padding:8px 14px;border-radius:8px;
+  background:rgba(74,111,160,.1);border:1px solid rgba(74,111,160,.25);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--accent);
+}
+
+/* ============================================================
+   10. SMALL WINDOWS (about, services, notebook, shelf, tools)
+   ============================================================ */
+.about{padding:34px 40px 30px;text-align:center;max-width:520px;margin:0 auto}
+.about .face{width:150px;height:150px;border-radius:50%;margin:0 auto 20px;display:block;box-shadow:0 12px 34px rgba(20,30,50,.2)}
+.about h2{margin:0;font-size:29px;font-weight:700;letter-spacing:-.03em;color:var(--ink)}
+.about .role{margin-top:5px;font-size:13.5px;color:var(--ink-3)}
+.about .prose{margin-top:24px;padding-top:24px;border-top:1px solid var(--hair);text-align:left;display:grid;gap:14px}
+.about .prose p{margin:0;font-size:13.5px;line-height:1.68;color:rgba(28,34,46,.85)}
+.about .prose a,.about .prose strong{font-weight:700;color:var(--ink)}
+.about .prose a{text-decoration:underline;text-underline-offset:2px}
+.about .fine{margin-top:26px;font-size:10.5px;color:var(--ink-4)}
+
+.svc{padding:32px 38px 40px;max-width:680px;margin:0 auto}
+.svc h2{margin:0 0 12px;font-size:34px;font-weight:700;letter-spacing:-.03em;color:var(--ink)}
+.svc > p{margin:0;font-size:14px;line-height:1.65;color:var(--ink-3);max-width:52ch}
+.svc-cta{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  margin:24px 0 8px;padding:18px 22px;border-radius:12px;background:var(--ink);color:#fff;
+}
+.svc-cta p{margin:0;font-size:14px;font-weight:500}
+.svc-cta a{
+  padding:10px 18px;border-radius:8px;background:var(--paper);color:var(--ink);
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-decoration:none;font-weight:500;
+}
+.svc-cta a:hover{background:#fff}
+.svc ol{list-style:none;margin:20px 0 0;padding:0;display:grid}
+.svc li{padding:18px 0;border-top:1px solid var(--hair)}
+.svc li .n{font-family:var(--mono);font-size:11px;color:var(--ink-4)}
+.svc li h3{margin:5px 0 4px;font-size:21px;font-weight:700;letter-spacing:-.025em;color:var(--ink)}
+.svc li p{margin:0;font-size:13px;line-height:1.6;color:var(--ink-3);max-width:56ch}
+
+.nb{display:grid;grid-template-columns:214px minmax(0,1fr);flex:1;min-height:0}
+.nb-side{background:rgba(20,24,31,.035);border-right:1px solid var(--hair);padding:18px 14px;display:grid;gap:2px;align-content:start;overflow-y:auto}
+.nb-side .h{font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:var(--ink-4);padding:0 8px 12px}
+.nb-item{display:block;width:100%;text-align:left;padding:7px 9px;border-radius:7px;font-family:var(--mono);font-size:11.5px;color:var(--ink-3)}
+.nb-item:hover{background:rgba(20,24,31,.05)}
+.nb-item.on{color:var(--ink);font-weight:700;background:rgba(20,24,31,.06)}
+.nb-page{padding:26px 34px 40px;overflow-y:auto}
+.nb-page .h{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-4);padding-bottom:11px;border-bottom:1px solid var(--hair)}
+.nb-page h2{margin:16px 0 14px;font-size:24px;font-weight:700;letter-spacing:-.025em;color:var(--ink)}
+.nb-page p{margin:0 0 13px;font-size:13.5px;line-height:1.72;color:rgba(28,34,46,.84);max-width:62ch}
+.nb-page ul{margin:0 0 14px;padding-left:19px;display:grid;gap:7px}
+.nb-page li{font-size:13.5px;line-height:1.6;color:rgba(28,34,46,.84);max-width:60ch}
+.nb-page li::marker{color:var(--accent)}
+.nb-page blockquote{margin:18px 0;padding:14px 18px;border-left:3px solid var(--accent);background:rgba(74,111,160,.06);font-size:13.5px;line-height:1.6;color:var(--ink)}
+
+/* shelf */
+.shelf{padding:26px 30px 36px;display:grid;gap:26px}
+.shelf-row h3{margin:0 0 4px;font-size:16px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.shelf-row .sh-sub{margin:0 0 14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)}
+.shelf-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(126px,1fr));gap:14px}
+.bk{display:grid;gap:8px}
+.bk .cover{height:150px;border-radius:3px 7px 7px 3px;position:relative;overflow:hidden;box-shadow:0 8px 20px rgba(20,30,50,.22);display:grid;align-content:space-between;padding:13px 12px;transition:transform 260ms}
+.bk:hover .cover{transform:translateY(-5px) rotate(-1.5deg)}
+.bk .cover::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:rgba(0,0,0,.16)}
+.bk .cover b{font-size:12px;font-weight:700;line-height:1.25;letter-spacing:-.01em;color:#fff;position:relative}
+.bk .cover i{font-family:var(--mono);font-style:normal;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);position:relative}
+.bk .why{font-size:11px;line-height:1.5;color:var(--ink-3)}
+
+/* trash */
+.trash{padding:28px 32px 36px}
+.trash .empty{display:grid;gap:10px;justify-items:center;text-align:center;padding:40px 0}
+.trash .empty p{margin:0;font-size:13px;color:var(--ink-3);max-width:40ch;line-height:1.6}
+.trash-list{display:grid;gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:10px;overflow:hidden}
+.trash-item{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 16px;background:#fff}
+.trash-item .fn{font-family:var(--mono);font-size:12px;color:var(--ink)}
+.trash-item .rs{font-family:var(--mono);font-size:10px;color:var(--ink-4);text-align:right}
+
+/* preview (resume) */
+.pv{display:grid;grid-template-columns:minmax(0,1fr) 266px;flex:1;min-height:0}
+.pv-doc{background:#5B646F;padding:26px;overflow-y:auto;display:grid;justify-items:center;align-content:start;gap:18px}
+.pv-side{background:var(--win);border-left:1px solid var(--hair);padding:22px;overflow-y:auto}
+.pv-side h3{margin:0 0 3px;font-size:16px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.pv-side .sub{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)}
+.pv-meta{margin-top:20px;display:grid;gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:9px;overflow:hidden}
+.pv-meta div{display:flex;justify-content:space-between;gap:12px;padding:9px 12px;background:#fff;font-size:11.5px}
+.pv-meta span{color:var(--ink-4);font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase}
+.pv-meta b{font-weight:600;color:var(--ink)}
+.sheet{width:100%;max-width:520px;aspect-ratio:8.5/11;background:#fff;box-shadow:0 20px 50px rgba(0,0,0,.3);padding:44px 46px;overflow:hidden}
+.sheet h4{margin:0;font-size:22px;font-weight:700;letter-spacing:-.03em;color:var(--ink)}
+.sheet .r{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-top:5px}
+.sheet .hr{height:1px;background:var(--hair);margin:16px 0}
+.sheet .sh{font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-4);margin:14px 0 7px}
+.sheet .job{display:flex;justify-content:space-between;gap:10px;font-size:10.5px;margin-bottom:3px}
+.sheet .job b{font-weight:700;color:var(--ink)}
+.sheet .job i{font-style:normal;font-family:var(--mono);font-size:8.5px;color:var(--ink-4)}
+.sheet .job + p{margin:0 0 9px;font-size:9.5px;line-height:1.5;color:var(--ink-3)}
+.sheet .chips{display:flex;flex-wrap:wrap;gap:5px}
+.sheet .chips span{padding:3px 8px;border-radius:999px;background:rgba(20,24,31,.05);font-family:var(--mono);font-size:8px;letter-spacing:.05em;color:var(--ink-3)}
+
+/* ============================================================
+   11. TOOLS — 10-key drill + data cleaner
+   ============================================================ */
+.tool{padding:26px 30px 32px;display:grid;gap:18px}
+.tool-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.tool-head h2{margin:0;font-size:24px;font-weight:700;letter-spacing:-.028em;color:var(--ink)}
+.tool-head p{margin:4px 0 0;font-size:12.5px;color:var(--ink-3);max-width:44ch;line-height:1.55}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:11px;overflow:hidden}
+.stat{background:#fff;padding:13px 15px;display:grid;gap:2px}
+.stat span{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-4)}
+.stat b{font-size:26px;font-weight:700;letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.1}
+.stat b em{font-style:normal;font-size:12px;font-weight:500;color:var(--ink-4);margin-left:3px}
+.drill{
+  display:grid;gap:14px;padding:22px;border-radius:12px;
+  background:var(--ink);color:#fff;
+}
+.drill-target{
+  font-family:var(--mono);font-size:30px;letter-spacing:.14em;text-align:center;
+  font-variant-numeric:tabular-nums;user-select:none;
+}
+.drill-target .done{color:rgba(255,255,255,.28)}
+.drill-target .cur{background:var(--accent);border-radius:3px;padding:1px 3px;margin:0 -1px}
+.drill-target .bad{background:#E0574B;border-radius:3px;padding:1px 3px;margin:0 -1px}
+.drill input{
+  width:100%;padding:13px 16px;border-radius:9px;border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.06);color:#fff;
+  font:400 15px/1 var(--mono);letter-spacing:.1em;text-align:center;
+}
+.drill input:focus{outline:none;border-color:var(--accent);background:rgba(255,255,255,.1)}
+.drill input::placeholder{color:rgba(255,255,255,.3);letter-spacing:.04em}
+.drill-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:rgba(255,255,255,.45)}
+.drill-foot button{padding:6px 13px;border-radius:7px;background:rgba(255,255,255,.1);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.drill-foot button:hover{background:rgba(255,255,255,.2)}
+.modes{display:flex;gap:6px}
+.modes button{padding:6px 12px;border-radius:7px;background:rgba(20,24,31,.05);font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--ink-3)}
+.modes button.on{background:var(--ink);color:#fff}
+
+.cleaner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+.cleaner textarea{
+  width:100%;min-height:230px;resize:vertical;padding:14px;border-radius:11px;
+  border:1px solid var(--hair);background:#fff;
+  font:400 12px/1.65 var(--mono);color:var(--ink);
+}
+.cleaner textarea:focus{outline:none;border-color:var(--accent)}
+.cleaner .out{background:var(--paper-2);white-space:pre-wrap;overflow:auto;min-height:230px;max-height:340px;padding:14px;border-radius:11px;border:1px solid var(--hair);font:400 12px/1.65 var(--mono);color:var(--ink)}
+.cleaner .ttl{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-4);margin-bottom:7px;display:flex;justify-content:space-between}
+.ops{display:flex;flex-wrap:wrap;gap:7px}
+.op{
+  display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;
+  border:1px solid var(--hair);background:#fff;font-size:12px;color:var(--ink-3);transition:all 160ms;
+}
+.op:hover{border-color:var(--accent)}
+.op.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.op i{width:6px;height:6px;border-radius:50%;background:rgba(20,24,31,.18);font-style:normal}
+.op.on i{background:#7BE495}
+
+/* ============================================================
+   12. MASCOT / GUIDE, CONTEXT MENU, STICKERS
+   ============================================================ */
+#guide{position:fixed;right:24px;bottom:110px;z-index:4000;display:none;align-items:flex-end;gap:12px}
+#guide.on{display:flex;animation:fadeUp 400ms both}
+.bubble{
+  width:262px;padding:16px 18px;border-radius:14px;
+  background:rgba(252,253,255,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.8);box-shadow:0 20px 50px rgba(10,20,40,.32);color:#1b2029;
+}
+.bubble .step{display:flex;gap:4px;padding:0;background:none;grid-template-columns:none;margin-bottom:10px}
+.bubble .step i{width:14px;height:3px;border-radius:2px;background:rgba(20,24,31,.14)}
+.bubble .step i.on{background:var(--accent)}
+.bubble h4{margin:0 0 5px;font-size:14.5px;font-weight:700;letter-spacing:-.015em}
+.bubble p{margin:0 0 13px;font-size:12.5px;line-height:1.55;color:var(--ink-3)}
+.bubble .row{display:flex;gap:8px;justify-content:flex-end}
+.bubble button{padding:7px 15px;border-radius:8px;background:var(--ink);color:#fff;font-size:12px;font-weight:600}
+.bubble button.ghost{background:rgba(20,24,31,.06);color:var(--ink-3)}
+.bubble button:hover{filter:brightness(1.15)}
+.mascot{width:62px;height:62px;flex:none;animation:bob 4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+#macbtn{position:fixed;right:24px;bottom:110px;z-index:1250;width:62px;height:62px;transition:transform 240ms}
+#macbtn:hover{transform:scale(1.1) rotate(-4deg)}
+
+#ctx{
+  position:fixed;z-index:7000;display:none;min-width:186px;padding:6px;border-radius:11px;
+  background:rgba(252,253,255,.9);backdrop-filter:blur(24px) saturate(1.8);-webkit-backdrop-filter:blur(24px) saturate(1.8);
+  border:1px solid rgba(255,255,255,.7);box-shadow:0 20px 50px rgba(10,20,40,.3);color:#1b2029;
+}
+#ctx.on{display:block;animation:fadeUp 120ms both}
+#ctx button{display:block;width:100%;text-align:left;padding:7px 11px;border-radius:7px;font-size:12.5px}
+#ctx button:hover{background:var(--accent);color:#fff}
+#ctx .mb-sep{margin:5px 6px}
+
+#stickers{position:fixed;inset:0;z-index:1000;pointer-events:none}
+.sticker{position:absolute;font-size:34px;cursor:grab;pointer-events:auto;user-select:none;transform:translate(-50%,-50%);filter:drop-shadow(0 6px 12px rgba(8,18,38,.34));animation:pop 340ms cubic-bezier(.2,1.6,.4,1) both;touch-action:none}
+@keyframes pop{from{transform:translate(-50%,-50%) scale(0)}to{transform:translate(-50%,-50%) scale(1)}}
+body.placing{cursor:crosshair}
+#emojipick{
+  position:fixed;left:50%;bottom:120px;transform:translateX(-50%);z-index:4100;display:none;
+  width:min(430px,92vw);padding:16px;border-radius:16px;
+  background:rgba(252,253,255,.9);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border:1px solid rgba(255,255,255,.8);box-shadow:0 24px 60px rgba(10,20,40,.34);color:#1b2029;
+}
+#emojipick.on{display:block;animation:fadeUp 220ms both}
+#emojipick h4{margin:0 0 12px;font-size:13px;font-weight:700}
+#emojipick .grid{display:grid;grid-template-columns:repeat(9,1fr);gap:4px}
+#emojipick .grid button{height:34px;border-radius:8px;font-size:19px;transition:background 140ms,transform 140ms}
+#emojipick .grid button:hover{background:rgba(20,24,31,.07);transform:scale(1.18)}
+#emojipick .hint{margin-top:12px;font-size:10.5px;color:var(--ink-4);line-height:1.5}
+.closex{position:absolute;right:12px;top:11px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:16px;color:var(--ink-4)}
+.closex:hover{background:rgba(20,24,31,.08)}
+
+/* cursor tag */
+#curtag{
+  position:fixed;z-index:8000;pointer-events:none;display:none;
+  padding:3px 9px;border-radius:999px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;
+  background:var(--accent);color:#fff;box-shadow:0 4px 12px rgba(8,18,38,.3);
+  transform:translate(14px,16px);white-space:nowrap;
+}
+#curtag.on{display:block}
+
+/* toast */
+#toast{
+  position:fixed;left:50%;bottom:120px;transform:translate(-50%,14px);z-index:8500;
+  padding:11px 20px;border-radius:999px;font-size:12.5px;font-weight:500;
+  background:rgba(14,20,32,.86);color:#fff;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  opacity:0;pointer-events:none;transition:opacity 260ms,transform 260ms;
+}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ============================================================
+   13. RESPONSIVE
+   ============================================================ */
+@media (max-width:1400px){
+  #hero{left:200px}
+}
+@media (max-width:1240px){
+  #rail{width:250px}
+  .wx{min-height:114px}
+  .wx-temp{font-size:28px}
+}
+@media (max-width:1080px){
+  #rail{display:none}
+  #honors{display:none}
+}
+@media (max-width:900px){
+  #stage{inset:38px 0 0}
+  #hero{left:50%;top:104px;transform:translateX(-50%);flex-direction:column;align-items:center;text-align:center;width:min(430px,88vw)}
+  .hero-col{align-items:center;padding-top:0}
+  .hero-lede{max-width:none}
+  .hero-more{align-self:center}
+  .node{position:static !important;width:auto}
+  #nodes{
+    position:absolute;left:0;right:0;top:330px;bottom:120px;overflow-y:auto;
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:20px 8px;
+    padding:0 18px 24px;align-content:start;
+  }
+  .node.file{display:none}
+  .bp,.coord,.tick{display:none}
+  .ncap{display:none}
+  .tile{width:82px;height:82px}
+  #dock{gap:5px;padding:8px 10px;max-width:calc(100vw - 24px);overflow-x:auto}
+  .di-icon{width:42px;height:42px}
+  #macbtn,#guide{right:12px;bottom:120px}
+  .hero-band,.sec{padding-left:22px;padding-right:22px}
+  .rule{margin-left:22px;margin-right:22px}
+  .hero-grid,.split,.pv,.hub,.nb,.cleaner{grid-template-columns:minmax(0,1fr)}
+  .hub-side{border-right:0;border-bottom:1px solid var(--hair);grid-template-columns:repeat(auto-fit,minmax(180px,1fr));display:grid}
+  .modal{padding:12px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .meta{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .step{grid-template-columns:30px minmax(0,1fr);gap:8px}
+  .step span{grid-column:2}
+  .drill-target{font-size:22px;letter-spacing:.08em}
+}
+@media (max-width:560px){
+  .lk-time{font-size:96px}
+  #emojipick .grid{grid-template-columns:repeat(7,1fr)}
+  .banner{height:170px}
+  .about,.svc{padding-left:20px;padding-right:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+<h1 class="sr">Jeremy Ahamioje — Data Entry Specialist Portfolio</h1>
+
+<!-- ========== ICON SPRITE ========== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <defs>
+  <linearGradient id="gFolder" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BEDCF5"/><stop offset="1" stop-color="#6FA6DC"/></linearGradient>
+  <linearGradient id="gFolderTab" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8FBEE8"/><stop offset="1" stop-color="#5D93CB"/></linearGradient>
+  <linearGradient id="gPaper" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFDF7"/><stop offset="1" stop-color="#EDE6D6"/></linearGradient>
+  <linearGradient id="gSteel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3E4653"/><stop offset="1" stop-color="#1B2028"/></linearGradient>
+  <linearGradient id="gSeal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DDE6F0"/></linearGradient>
+
+  <!-- UI glyphs -->
+  <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="10.5" width="16" height="11" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-in" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2.5h3.3l-7.2 8.2 8.5 11.3h-6.7l-5.2-6.9-6 6.9H1.6l7.7-8.8L1.2 2.5H8l4.7 6.3zm-1.2 17.6h1.8L7.1 4.3H5.1z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 7l9 6 9-6"/></symbol>
+  <symbol id="i-loc" viewBox="0 0 24 24" fill="currentColor"><path d="M3 11l18-8-8 18-2.2-7.8z"/></symbol>
+  <symbol id="i-prev" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2.4v14H6zm12.5 0v14L9 12z"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24" fill="currentColor"><path d="M15.6 5H18v14h-2.4zM5.5 5l9.5 7-9.5 7z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5l13 7.5-13 7.5z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5h3.4v15H7zm6.6 0H17v15h-3.4z"/></symbol>
+
+  <!-- brand mark: stacked records -->
+  <symbol id="mark" viewBox="0 0 48 48">
+   <rect x="6" y="9" width="36" height="7" rx="3.5" fill="currentColor" opacity=".95"/>
+   <rect x="6" y="20.5" width="26" height="7" rx="3.5" fill="currentColor" opacity=".62"/>
+   <rect x="6" y="32" width="33" height="7" rx="3.5" fill="currentColor" opacity=".84"/>
+   <circle cx="38.5" cy="24" r="4" fill="currentColor" opacity=".62"/>
+  </symbol>
+
+  <!-- desktop tiles -->
+  <symbol id="t-folder" viewBox="0 0 104 104">
+   <path d="M8 30a7 7 0 0 1 7-7h22l7 8h44a7 7 0 0 1 7 7v46a7 7 0 0 1-7 7H15a7 7 0 0 1-7-7z" fill="url(#gFolderTab)"/>
+   <path d="M8 40a7 7 0 0 1 7-7h74a7 7 0 0 1 7 7v41a7 7 0 0 1-7 7H15a7 7 0 0 1-7-7z" fill="url(#gFolder)"/>
+   <rect x="22" y="49" width="60" height="4" rx="2" fill="#2E5C8A" opacity=".3"/>
+   <rect x="22" y="59" width="44" height="4" rx="2" fill="#2E5C8A" opacity=".22"/>
+   <rect x="22" y="69" width="52" height="4" rx="2" fill="#2E5C8A" opacity=".16"/>
+  </symbol>
+  <symbol id="t-sticky" viewBox="0 0 104 104">
+   <rect x="20" y="20" width="64" height="64" rx="3" fill="#E6DFC9" transform="rotate(-5 52 52)"/>
+   <rect x="18" y="22" width="64" height="64" rx="3" fill="#F4EEDC" transform="rotate(3 52 52)"/>
+   <rect x="34" y="14" width="26" height="12" rx="1.5" fill="#D9CEA8" opacity=".85" transform="rotate(-6 47 20)"/>
+   <g stroke="#8E8468" stroke-width="2.4" stroke-linecap="round" opacity=".5" transform="rotate(3 52 52)">
+    <path d="M31 44h34"/><path d="M31 55h26"/><path d="M31 66h18"/>
+   </g>
+  </symbol>
+  <symbol id="t-shelf" viewBox="0 0 104 104">
+   <rect x="16" y="70" width="72" height="9" rx="2" fill="#6A5238"/>
+   <rect x="22" y="30" width="12" height="40" rx="1.5" fill="#3E5F8A"/>
+   <rect x="36" y="24" width="11" height="46" rx="1.5" fill="#8A5B4A"/>
+   <rect x="49" y="34" width="13" height="36" rx="1.5" fill="#4E6B4A"/>
+   <rect x="64" y="27" width="10" height="43" rx="1.5" fill="#2F3A4A"/>
+   <rect x="24" y="38" width="8" height="2.4" rx="1.2" fill="#fff" opacity=".55"/>
+   <rect x="38" y="32" width="7" height="2.4" rx="1.2" fill="#fff" opacity=".55"/>
+   <rect x="51" y="42" width="9" height="2.4" rx="1.2" fill="#fff" opacity=".55"/>
+  </symbol>
+  <symbol id="t-resume" viewBox="0 0 104 104">
+   <rect x="24" y="12" width="56" height="76" rx="3" fill="#D8D2C4"/>
+   <rect x="21" y="14" width="56" height="76" rx="3" fill="url(#gPaper)"/>
+   <rect x="30" y="26" width="24" height="5" rx="2.5" fill="#2A3140"/>
+   <rect x="30" y="36" width="16" height="3" rx="1.5" fill="#4A6FA0"/>
+   <g fill="#9AA0AC">
+    <rect x="30" y="48" width="38" height="2.6" rx="1.3"/><rect x="30" y="55" width="32" height="2.6" rx="1.3"/>
+    <rect x="30" y="62" width="36" height="2.6" rx="1.3"/><rect x="30" y="69" width="24" height="2.6" rx="1.3"/>
+   </g>
+  </symbol>
+  <symbol id="t-notebook" viewBox="0 0 104 104">
+   <rect x="24" y="16" width="58" height="72" rx="4" fill="#2A3140"/>
+   <rect x="28" y="18" width="54" height="68" rx="3" fill="#F6F3EC"/>
+   <g stroke="#C3BCAE" stroke-width="1.6"><path d="M38 32h34"/><path d="M38 42h34"/><path d="M38 52h34"/><path d="M38 62h26"/></g>
+   <path d="M38 32h34" stroke="#4A6FA0" stroke-width="2.4"/>
+   <g fill="#8E96A4"><circle cx="26" cy="30" r="3.4"/><circle cx="26" cy="46" r="3.4"/><circle cx="26" cy="62" r="3.4"/><circle cx="26" cy="78" r="3.4"/></g>
+  </symbol>
+  <symbol id="t-numpad" viewBox="0 0 104 104">
+   <rect x="20" y="14" width="64" height="76" rx="8" fill="url(#gSteel)"/>
+   <rect x="27" y="21" width="50" height="14" rx="3" fill="#7BE495" opacity=".18"/>
+   <text x="71" y="32" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="#7BE495">88.8</text>
+   <g fill="#5A6474">
+    <rect x="27" y="40" width="14" height="12" rx="3"/><rect x="45" y="40" width="14" height="12" rx="3"/><rect x="63" y="40" width="14" height="12" rx="3"/>
+    <rect x="27" y="56" width="14" height="12" rx="3"/><rect x="45" y="56" width="14" height="12" rx="3" fill="#4A6FA0"/><rect x="63" y="56" width="14" height="12" rx="3"/>
+    <rect x="27" y="72" width="14" height="12" rx="3"/><rect x="45" y="72" width="32" height="12" rx="3"/>
+   </g>
+  </symbol>
+  <symbol id="t-cleaner" viewBox="0 0 104 104">
+   <g fill="#E0574B" opacity=".85"><rect x="16" y="20" width="26" height="5" rx="2.5"/><rect x="16" y="30" width="18" height="5" rx="2.5"/><rect x="16" y="40" width="30" height="5" rx="2.5"/><rect x="16" y="50" width="14" height="5" rx="2.5"/><rect x="16" y="60" width="24" height="5" rx="2.5"/><rect x="16" y="70" width="20" height="5" rx="2.5"/></g>
+   <path d="M52 14h6v76h-6z" fill="#fff" opacity=".18"/>
+   <path d="M50 52l12-7v14z" fill="#fff" opacity=".8"/>
+   <g fill="#7BE495"><rect x="66" y="26" width="24" height="5" rx="2.5"/><rect x="66" y="38" width="24" height="5" rx="2.5"/><rect x="66" y="50" width="24" height="5" rx="2.5"/><rect x="66" y="62" width="24" height="5" rx="2.5"/></g>
+  </symbol>
+  <symbol id="t-cert" viewBox="0 0 104 104">
+   <rect x="18" y="18" width="68" height="52" rx="4" fill="url(#gPaper)"/>
+   <rect x="18" y="18" width="68" height="52" rx="4" fill="none" stroke="#4A6FA0" stroke-width="2" stroke-dasharray="4 3" opacity=".5"/>
+   <g fill="#9AA0AC"><rect x="28" y="28" width="34" height="3" rx="1.5"/><rect x="28" y="36" width="24" height="3" rx="1.5"/><rect x="28" y="44" width="30" height="3" rx="1.5"/></g>
+   <circle cx="70" cy="62" r="15" fill="#4A6FA0"/>
+   <circle cx="70" cy="62" r="10.5" fill="none" stroke="#fff" stroke-width="1.6" opacity=".7"/>
+   <path d="M64 76l4 12 3-5 3 5 3-12z" fill="#E0574B"/>
+   <path d="M65.5 62l3.5 3.5 6-6.5" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- file tiles -->
+  <symbol id="f-csv" viewBox="0 0 72 92">
+   <path d="M4 6a4 4 0 0 1 4-4h34l26 25v59a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z" fill="url(#gPaper)"/>
+   <path d="M42 2l26 25H46a4 4 0 0 1-4-4z" fill="#CFC6B2"/>
+   <g fill="#5C8A63"><rect x="14" y="40" width="44" height="3" rx="1.5"/><rect x="14" y="48" width="44" height="3" rx="1.5" opacity=".6"/><rect x="14" y="56" width="44" height="3" rx="1.5" opacity=".6"/><rect x="14" y="64" width="30" height="3" rx="1.5" opacity=".6"/></g>
+   <rect x="4" y="70" width="40" height="18" rx="4" fill="#3F7D4E"/>
+   <text x="24" y="83" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#fff">CSV</text>
+  </symbol>
+  <symbol id="f-xlsx" viewBox="0 0 72 92">
+   <path d="M4 6a4 4 0 0 1 4-4h34l26 25v59a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z" fill="url(#gPaper)"/>
+   <path d="M42 2l26 25H46a4 4 0 0 1-4-4z" fill="#CFC6B2"/>
+   <g stroke="#9FB0A4" stroke-width="1.4"><path d="M14 38h44M14 48h44M14 58h44M28 34v32M44 34v32"/></g>
+   <rect x="14" y="34" width="14" height="8" fill="#1D6F42" opacity=".7"/>
+   <rect x="4" y="70" width="44" height="18" rx="4" fill="#1D6F42"/>
+   <text x="26" y="83" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#fff">XLSX</text>
+  </symbol>
+  <symbol id="f-pdf" viewBox="0 0 72 92">
+   <path d="M4 6a4 4 0 0 1 4-4h34l26 25v59a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z" fill="url(#gPaper)"/>
+   <path d="M42 2l26 25H46a4 4 0 0 1-4-4z" fill="#CFC6B2"/>
+   <g fill="#B4A99A"><rect x="14" y="38" width="44" height="2.6" rx="1.3"/><rect x="14" y="45" width="44" height="2.6" rx="1.3"/><rect x="14" y="52" width="36" height="2.6" rx="1.3"/><rect x="14" y="59" width="40" height="2.6" rx="1.3"/></g>
+   <rect x="4" y="70" width="38" height="18" rx="4" fill="#C0392B"/>
+   <text x="23" y="83" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#fff">PDF</text>
+  </symbol>
+
+  <!-- dock marks -->
+  <symbol id="d-excel" viewBox="0 0 32 32"><rect x="3" y="4" width="26" height="24" rx="4" fill="#1D6F42"/><path d="M11 11l10 10M21 11L11 21" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></symbol>
+  <symbol id="d-sheets" viewBox="0 0 32 32"><rect x="6" y="3" width="20" height="26" rx="3" fill="#0F9D58"/><g fill="#fff"><rect x="10" y="12" width="12" height="1.8"/><rect x="10" y="17" width="12" height="1.8"/><rect x="10" y="22" width="12" height="1.8"/><rect x="15.2" y="12" width="1.8" height="12"/></g></symbol>
+  <symbol id="d-airtable" viewBox="0 0 32 32"><path d="M16 4L4 9l12 4.6L28 9z" fill="#FCB400"/><path d="M4 12.5v8L14.5 25v-8.4z" fill="#18BFFF"/><path d="M28 12.5v8L17.5 25v-8.4z" fill="#F82B60"/></symbol>
+  <symbol id="d-notion" viewBox="0 0 32 32"><rect x="4" y="3" width="24" height="26" rx="3" fill="#fff"/><path d="M10 23V10l9.5 12V10" stroke="#111" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="d-zapier" viewBox="0 0 32 32"><g fill="#FF4F00"><rect x="13.6" y="3" width="4.8" height="26" rx="2.4"/><rect x="13.6" y="3" width="4.8" height="26" rx="2.4" transform="rotate(90 16 16)"/><rect x="13.6" y="3" width="4.8" height="26" rx="2.4" transform="rotate(45 16 16)"/><rect x="13.6" y="3" width="4.8" height="26" rx="2.4" transform="rotate(-45 16 16)"/></g></symbol>
+  <symbol id="d-python" viewBox="0 0 32 32"><path d="M16 3c-5 0-4.6 2.1-4.6 2.1v2.2h4.7v.9H9.4S5 7.7 5 13.2s3.8 5.3 3.8 5.3h2v-2.6s-.1-3.8 3.7-3.8h5.1s3.6.06 3.6-3.5V6.6S23.7 3 16 3zm-2.6 1.9a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8z" fill="#3572A5"/><path d="M16 29c5 0 4.6-2.1 4.6-2.1v-2.2h-4.7v-.9h6.7s4.4.5 4.4-5-3.8-5.3-3.8-5.3h-2v2.6s.1 3.8-3.7 3.8h-5.1S8.8 20 8.8 23.5v1.9S8.3 29 16 29zm2.6-1.9a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8z" fill="#FFD43B"/></symbol>
+  <symbol id="d-sql" viewBox="0 0 32 32"><ellipse cx="16" cy="8" rx="11" ry="4.2" fill="#5C8FCC"/><path d="M5 8v16c0 2.3 4.9 4.2 11 4.2s11-1.9 11-4.2V8" fill="#3E6EA8"/><ellipse cx="16" cy="8" rx="11" ry="4.2" fill="#7EACDD"/><path d="M5 16c0 2.3 4.9 4.2 11 4.2s11-1.9 11-4.2" stroke="#2A4E7A" stroke-width="1.4" fill="none"/></symbol>
+  <symbol id="d-powerbi" viewBox="0 0 32 32"><g><rect x="5" y="17" width="6" height="11" rx="1.6" fill="#F2C811"/><rect x="13" y="10" width="6" height="18" rx="1.6" fill="#E8A33D"/><rect x="21" y="4" width="6" height="24" rx="1.6" fill="#F2C811"/></g></symbol>
+
+  <!-- award seal -->
+  <symbol id="seal" viewBox="0 0 60 60">
+   <circle cx="30" cy="30" r="29" fill="#2A3140"/>
+   <circle cx="30" cy="30" r="25.5" fill="url(#gSeal)"/>
+   <circle cx="30" cy="30" r="21" fill="none" stroke="#2A3140" stroke-width=".7" stroke-dasharray="1.4 2.6" opacity=".55"/>
+   <path d="M20.5 26.5l6.5 6.5 12.5-13" fill="none" stroke="#2A3140" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+   <rect x="17" y="37" width="26" height="1.4" rx=".7" fill="#2A3140" opacity=".45"/>
+   <rect x="21" y="41" width="18" height="1.4" rx=".7" fill="#2A3140" opacity=".28"/>
+  </symbol>
+
+  <!-- mascot: a beige desktop terminal -->
+  <symbol id="mascot" viewBox="0 0 64 64">
+   <rect x="8" y="4" width="48" height="56" rx="6" fill="#E3D9C2"/>
+   <rect x="8" y="4" width="48" height="56" rx="6" fill="none" stroke="#B9AC8F" stroke-width="1.5"/>
+   <rect x="14" y="11" width="36" height="28" rx="3" fill="#1B2542"/>
+   <rect x="17" y="15" width="13" height="2.4" rx="1.2" fill="#7BE495"/>
+   <rect x="17" y="20" width="22" height="2.4" rx="1.2" fill="#7BE495" opacity=".6"/>
+   <rect x="17" y="25" width="18" height="2.4" rx="1.2" fill="#7BE495" opacity=".4"/>
+   <rect x="17" y="30" width="6" height="2.4" rx="1.2" fill="#7BE495"/>
+   <rect x="18" y="46" width="28" height="4" rx="2" fill="#C9BC9E"/>
+   <circle cx="16" cy="55" r="2" fill="#E0A83D"/>
+  </symbol>
+ </defs>
+</svg>
+
+<!-- ========== WALLPAPER ========== -->
+<div id="wall"></div>
+<div id="grain" aria-hidden="true"></div>
+
+<!-- ========== LOCK SCREEN ========== -->
+<div id="lock">
+  <div class="lk-clock">
+    <div class="lk-date" id="lkDate">&nbsp;</div>
+    <div class="lk-time" id="lkTime">--:--</div>
+  </div>
+  <div class="lk-links" id="lkLinks" style="opacity:0">
+    <div class="lk-row">
+      <a class="lk-pill ico" href="#" data-noop title="LinkedIn"><svg width="14" height="14"><use href="#i-in"/></svg></a>
+      <a class="lk-pill ico" href="#" data-noop title="X"><svg width="13" height="13"><use href="#i-x"/></svg></a>
+      <a class="lk-pill ico" href="#" data-noop title="Email"><svg width="15" height="15"><use href="#i-mail"/></svg></a>
+    </div>
+    <div class="lk-row"><button class="lk-pill" data-open="cleaner"><svg width="13" height="13"><use href="#i-loc"/></svg> data cleaner</button></div>
+    <div class="lk-row"><button class="lk-pill" data-open="drill"><svg width="13" height="13"><use href="#i-loc"/></svg> 10-key drill</button></div>
+  </div>
+  <div class="lk-id">
+    <svg class="lk-mark" viewBox="0 0 48 48" style="color:#fff"><use href="#mark"/></svg>
+    <div class="lk-name">Jeremy Ahamioje</div>
+    <div class="lk-role">Data Entry Specialist</div>
+  </div>
+  <div class="lk-loading" id="lkBar"><i></i></div>
+  <button class="lk-cta" id="lkCta"><svg width="12" height="12"><use href="#i-lock"/></svg> Click to unlock</button>
+  <div class="lk-hint" id="lkHint">Preparing desktop…</div>
+</div>
+
+<!-- ========== MENUBAR ========== -->
+<div id="menubar">
+  <svg class="mb-mark" viewBox="0 0 48 48"><use href="#mark"/></svg>
+  <div class="mb" data-menu>
+    <button class="mb-trigger bold" data-mbtrigger>Jeremy Ahamioje</button>
+    <div class="mb-drop">
+      <button data-open="about">About Jeremy</button>
+      <div class="mb-sep"></div>
+      <button data-open="services">Services</button>
+      <button data-open="resume">Résumé</button>
+      <div class="mb-sep"></div>
+      <button data-mail>Say hi<span class="mb-key">↗</span></button>
+    </div>
+  </div>
+  <div class="mb" data-menu>
+    <button class="mb-trigger" data-mbtrigger>Edit</button>
+    <div class="mb-drop">
+      <button data-emoji>Emoji stickers<span class="mb-key">＋</span></button>
+      <button data-clearstickers>Clear stickers</button>
+      <div class="mb-sep"></div>
+      <button data-reset>Reset icon positions</button>
+    </div>
+  </div>
+  <div class="mb" data-menu>
+    <button class="mb-trigger" data-mbtrigger>Help</button>
+    <div class="mb-drop">
+      <button data-guide>Getting started</button>
+      <button data-open="notebook">How I work</button>
+      <div class="mb-sep"></div>
+      <button data-mail>Contact Jeremy<span class="mb-key">↗</span></button>
+    </div>
+  </div>
+  <div class="mb" data-menu>
+    <button class="mb-trigger" data-mbtrigger>Customization</button>
+    <div class="mb-drop cust-panel">
+      <div class="cust-h">Your cursor</div>
+      <input class="cust-name" id="curName" maxlength="18" placeholder="add a name…">
+      <div class="cust-h">Badge</div>
+      <div class="cust-row" id="curEmoji"></div>
+      <div class="cust-note">Your name follows the cursor while you look around. It stays on this device — nothing is sent anywhere.</div>
+    </div>
+  </div>
+  <div class="mb-right">
+    <a class="soc" href="#" data-noop title="LinkedIn"><svg width="14" height="14"><use href="#i-in"/></svg></a>
+    <a class="soc" href="#" data-noop title="X"><svg width="13" height="13"><use href="#i-x"/></svg></a>
+    <a class="soc" href="#" data-noop title="Email"><svg width="15" height="15"><use href="#i-mail"/></svg></a>
+    <span class="mb-day" id="mbDate">—</span>
+    <time id="mbTime">—</time>
+  </div>
+</div>
+
+<!-- ========== STAGE ========== -->
+<div id="stage">
+  <div class="bp" id="bp"></div>
+  <div class="tick" style="left:26px;top:20px">SHEET 01 / 04</div>
+  <div class="coord" style="left:26px;top:40px">06&deg;27&prime; N&nbsp;&nbsp;03&deg;23&prime; E<br>batch 2026-Q1 &middot; verified</div>
+  <div class="tick" style="left:26px;bottom:112px">12,000 REC / MO &nbsp;·&nbsp; 99.7% VERIFIED</div>
+
+  <!-- hero -->
+  <div id="hero">
+    <svg class="hero-face" viewBox="0 0 96 96" aria-label="Jeremy Ahamioje">
+      <defs>
+        <clipPath id="faceClip"><circle cx="48" cy="48" r="48"/></clipPath>
+        <linearGradient id="faceBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7FB3E8"/><stop offset="1" stop-color="#2A5FA0"/></linearGradient>
+      </defs>
+      <g clip-path="url(#faceClip)">
+        <rect width="96" height="96" fill="url(#faceBg)"/>
+        <g stroke="rgba(255,255,255,.28)" stroke-width="1"><path d="M0 24h96M0 48h96M0 72h96M24 0v96M48 0v96M72 0v96"/></g>
+        <circle cx="48" cy="38" r="15" fill="#48372C"/>
+        <path d="M33 40a15 15 0 0 1 30 0v-4a15 15 0 0 0-30 0z" fill="#2E241C"/>
+        <path d="M24 96c0-14 10.7-23 24-23s24 9 24 23z" fill="#EDF2F8"/>
+        <path d="M40 73h16v9a8 8 0 0 1-16 0z" fill="#48372C"/>
+        <circle cx="42.5" cy="38" r="1.9" fill="#1B1410"/><circle cx="53.5" cy="38" r="1.9" fill="#1B1410"/>
+        <path d="M43 46q5 3.5 10 0" stroke="#1B1410" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      </g>
+    </svg>
+    <div class="hero-col">
+      <span class="avail">Data Entry Specialist</span>
+      <p class="hero-lede">I turn messy exports, scanned forms, and half-finished spreadsheets into clean, verified records a team can actually build on.</p>
+      <p class="hero-lede">Around <strong>12,000 records a month</strong> at <strong>99.7% verified accuracy</strong>. Open the <a href="#" data-open="projects">projects</a> folder, or try the <a href="#" data-open="cleaner">data cleaner</a> on the desktop.</p>
+      <button class="hero-more" data-open="about">More about me <span>→</span></button>
+    </div>
+  </div>
+
+  <!-- desktop icons -->
+  <div id="nodes"></div>
+</div>
+
+<!-- ========== WIDGET RAIL ========== -->
+<div id="rail">
+  <div class="card themes">
+    <div class="w-t">Choose a theme</div>
+    <div class="swatches" id="swatches">
+      <button class="sw on" data-theme="blue" title="Blue"></button>
+      <button class="sw" data-theme="purple" title="Purple"></button>
+      <button class="sw" data-theme="green" title="Green"></button>
+      <button class="sw" data-theme="black" title="Black"></button>
+    </div>
+  </div>
+
+  <div class="wx-pair">
+    <div class="wx">
+      <div class="wx-loc">Lagos <svg width="9" height="9"><use href="#i-loc"/></svg></div>
+      <div class="wx-temp">88°</div>
+      <div class="wx-foot"><span>⛅</span><span>Humid</span></div>
+    </div>
+    <div class="wx">
+      <div class="wx-loc">New York <svg width="9" height="9"><use href="#i-loc"/></svg></div>
+      <div class="wx-temp">54°</div>
+      <div class="wx-foot"><span>🌧️</span><span>Rain</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="w-t"><span>Now playing</span><span class="src">focus queue</span></div>
+    <div class="np">
+      <div class="np-art" id="npArt"></div>
+      <div class="np-meta">
+        <div class="np-title" id="npTitle">Reams</div>
+        <div class="np-artist" id="npArtist">Nils Frahm · Spaces</div>
+        <div class="eq"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="np-ctrl">
+        <button class="np-btn" data-np="prev" title="Previous"><svg width="13" height="13"><use href="#i-prev"/></svg></button>
+        <button class="np-btn play" data-np="toggle" title="Pause"><svg width="13" height="13" id="npIcon"><use href="#i-pause"/></svg></button>
+        <button class="np-btn" data-np="next" title="Next"><svg width="13" height="13"><use href="#i-next"/></svg></button>
+      </div>
+    </div>
+    <div class="np-list" id="npList"></div>
+  </div>
+
+  <div class="card">
+    <div class="w-t"><span>Keyboard</span><span class="src">rolling 90 days</span></div>
+    <div class="duo-head">
+      <span class="duo-flame">🔥</span>
+      <span class="duo-streak"><b>412</b><i>day streak</i></span>
+    </div>
+    <div style="margin-top:10px">
+      <div class="duo-row">
+        <span class="duo-lang"><em>acc</em>Verified accuracy</span>
+        <span class="duo-xp">99.7%</span>
+        <span class="duo-bar"><span style="width:99.7%"></span></span>
+        <span class="duo-note">Double-keyed against source on every batch over 500 rows.</span>
+      </div>
+      <div class="duo-row">
+        <span class="duo-lang"><em>10k</em>Numeric · 10-key</span>
+        <span class="duo-xp">14,800 kph</span>
+        <span class="duo-bar"><span style="width:92%"></span></span>
+      </div>
+      <div class="duo-row">
+        <span class="duo-lang"><em>alp</em>Alphanumeric</span>
+        <span class="duo-xp">118 wpm</span>
+        <span class="duo-bar"><span style="width:78%"></span></span>
+      </div>
+      <div class="duo-row">
+        <span class="duo-lang"><em>trn</em>Transcription</span>
+        <span class="duo-xp">96 wpm</span>
+        <span class="duo-bar"><span style="width:64%"></span></span>
+      </div>
+    </div>
+    <div class="duo-foot"><span>3 modes tracked</span><button data-open="drill">try the drill →</button></div>
+  </div>
+
+  <div class="card">
+    <div class="w-t"><span>Credentials</span><span class="src">2026</span></div>
+    <div class="aw-grid" id="awGrid"></div>
+    <div class="aw-cap" id="awCap">Microsoft Excel Expert · MO-201</div>
+  </div>
+</div>
+
+<!-- ========== HONORS RAIL ========== -->
+<div id="honors">
+  <div class="hon-tab"><b>J.</b><span>Credentials</span></div>
+  <div id="honSeals"></div>
+</div>
+
+<!-- ========== DOCK ========== -->
+<div id="dockwrap">
+  <div class="dock-label">Toolkit</div>
+  <div id="dock"></div>
+</div>
+<div id="copyright">© 2026 Jeremy Ahamioje</div>
+
+<!-- ========== MASCOT / GUIDE ========== -->
+<button id="macbtn" title="Getting started"><svg width="62" height="62" viewBox="0 0 64 64"><use href="#mascot"/></svg></button>
+<div id="guide">
+  <div class="bubble">
+    <div class="step" id="gSteps"></div>
+    <h4 id="gTitle">Hi, I'm Tally</h4>
+    <p id="gBody">Welcome to the desk. Let me show you around — it takes about twenty seconds.</p>
+    <div class="row"><button class="ghost" id="gSkip">Skip</button><button id="gNext">Continue</button></div>
+  </div>
+  <svg class="mascot" viewBox="0 0 64 64"><use href="#mascot"/></svg>
+</div>
+
+<!-- ========== CONTEXT MENU / STICKERS / CURSOR ========== -->
+<div id="ctx">
+  <button data-clean>Clean up icons</button>
+  <button data-sortname>Sort by name</button>
+  <div class="mb-sep"></div>
+  <button data-emoji>Add a sticker</button>
+  <button data-clearstickers>Clear stickers</button>
+  <div class="mb-sep"></div>
+  <button data-reset>Reset positions</button>
+</div>
+<div id="stickers"></div>
+<div id="curtag"><span id="curTagText">you</span></div>
+<div id="toast"></div>
+
+<div id="emojipick">
+  <button class="closex" data-closeemoji>×</button>
+  <h4>Pick a sticker</h4>
+  <div class="grid" id="emojiGrid"></div>
+  <div class="hint">Tap a sticker, then click anywhere on the desktop to place it. Drag to move · double-click to remove.</div>
+</div>
+
+<!-- ============================================================
+     WINDOWS
+     ============================================================ -->
+
+<!-- PROJECTS HUB -->
+<div class="modal" id="m-projects">
+  <div class="win paper" style="max-height:min(660px,100%)">
+    <div class="bar"><button class="dot red" data-close></button><span class="dot grey"></span><span class="dot grey"></span><div class="t">Projects</div></div>
+    <div class="hub">
+      <nav class="hub-side" id="hubSide"></nav>
+      <section class="hub-main">
+        <div class="kicker">Folder · 4 projects</div>
+        <h2>Select a project.</h2>
+        <p>Four write-ups covering a ledger rebuild, a handwritten-forms backlog, a vendor master merge, and the QA loop that holds all of them to 99.7%. Choose one from the side to open the full case.</p>
+        <div class="sample-chip"><svg width="12" height="12"><use href="#i-lock"/></svg> Placeholder content — sample projects, not client work</div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT READER (one window, content swapped) -->
+<div class="modal" id="m-case">
+  <div class="win paper">
+    <div class="bar"><button class="dot red" data-close></button><span class="dot grey"></span><span class="dot grey"></span><div class="t" id="caseBarTitle">Case</div></div>
+    <div class="body" id="caseBody" style="position:relative"></div>
+    <button class="backtop" id="caseTop"><svg width="12" height="12"><use href="#i-up"/></svg> Back to top</button>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="modal" id="m-about">
+  <div class="win" style="width:min(620px,100%);max-height:min(760px,100%)">
+    <div class="bar"><button class="dot red" data-close></button><span class="dot grey"></span><span class="dot grey"></span></div>
+    <div class="body">
+      <div class="about">
+        <svg class="face" viewBox="0 0 96 96"><g clip-path="url(#faceClip)">
+          <rect width="96" height="96" fill="url(#faceBg)"/>
+          <g stroke="rgba(255,255,255,.28)" stroke-width="1"><path d="M0 24h96M0 48h96M0 72h96M24 0v96M48 0v96M72 0v96"/></g>
+          <circle cx="48" cy="38" r="15" fill="#48372C"/>
+          <path d="M33 40a15 15 0 0 1 30 0v-4a15 15 0 0 0-30 0z" fill="#2E241C"/>
+          <path d="M40 71h16v10a8 8 0 0 1-16 0z" fill="#48372C"/>
+          <path d="M24 96c0-14 10.7-23 24-23s24 9 24 23z" fill="#33506F"/>
+          <path d="M41 74l7 8 7-8 4 2-11 12-11-12z" fill="#E8EEF6"/>
+          <circle cx="42.5" cy="38" r="1.9" fill="#1B1410"/><circle cx="53.5" cy="38" r="1.9" fill="#1B1410"/>
+          <path d="M43 46q5 3.5 10 0" stroke="#1B1410" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        </g></svg>
+        <h2>Jeremy Ahamioje</h2>
+        <div class="role">Data Entry Specialist · 2026</div>
+        <div class="prose">
+          <p>I work in the part of a business nobody photographs: the intake queue, the reconciliation sheet, the folder of scans someone has been meaning to deal with since March.</p>
+          <p>My job is to make that pile boring. Consistent field formats, a documented rule for every judgement call, and a QA pass that catches the errors before a manager does. I care more about the <strong>audit trail</strong> than the keystroke count — though the keystrokes are fast too.</p>
+          <p>Most of my work is high-volume back-office: invoices, member rosters, claims batches, survey coding, vendor records. Tools change; the discipline doesn't. Everything I hand back is traceable to its source document.</p>
+          <p>When I'm not entering data I'm usually building small tools to avoid entering data — the <a href="#" data-open="cleaner">data cleaner</a> on this desktop started as a script for one messy address column.</p>
+          <p>Curious how I actually run a batch? Open the <strong>notebook</strong> on the desktop.</p>
+        </div>
+        <div class="fine">© 2020–2026 Jeremy Ahamioje. All rights reserved.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="modal" id="m-services">
+  <div class="win" style="width:min(720px,100%)">
+    <div class="bar"><button class="dot red" data-close></button><span class="dot grey"></span><span class="dot grey"></span><span class="lbl">Services</span></div>
+    <div class="body">
+      <div class="svc">
+        <h2>Services</h2>
+        <p>I take on the record work that's too detailed to automate and too large to squeeze between other jobs — intake, cleanup, migration, and the QA that proves it's right.</p>
+        <div class="svc-cta"><p>Have a backlog you keep putting off?</p><a href="#" data-mail>inquire →</a></div>
+        <ol>
+          <li><div class="n">(01)</div><h3>Bulk Data Entry</h3><p>High-volume keying from scans, PDFs, forms, and email — invoices, rosters, claims, timesheets.</p></li>
+          <li><div class="n">(02)</div><h3>Data Cleaning</h3><p>Deduplication, normalization, and format repair on exports that grew sideways over years.</p></li>
+          <li><div class="n">(03)</div><h3>Migration Prep</h3><p>Mapping and staging legacy records so a new CRM or ERP import lands on the first attempt.</p></li>
+          <li><div class="n">(04)</div><h3>Verification &amp; QA</h3><p>Double-key verification, sampling plans, and an error log you can show an auditor.</p></li>
+          <li><div class="n">(05)</div><h3>Document Digitization</h3><p>Scan handling, OCR correction, indexing, and file naming that stays findable in two years.</p></li>
+          <li><div class="n">(06)</div><h3>Spreadsheet Systems</h3><p>Validated intake templates, lookup tables, and light automation so the next batch keys itself.</p></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NOTEBOOK -->
+<div class="modal" id="m-notebook">
+  <div class="win" style="width:min(880px,100%);max-height:min(700px,100%)">
+    <div class="bar"><button class="dot red" data-close></button><span class="dot grey"></span><span class="dot grey"></span><div class="t">Notebook</div></div>
+    <div class="nb">
+      <aside class="nb-side"><div class="h">notes</div><div id="nbList"></div></aside>
+      <main class="nb-page" id="nbPage"></main>
+    </div>
+  </div>
+</div>
+
+<!-- SHELF -->
+<div class="modal" id="m-shelf">
+  <div class="win" style="width:min(840px,100%)">
+    <div class="bar"><button class="dot red" data-close></button><span class="dot grey"></span><span class="dot grey"></span><div class="t">Reference Shelf</div></div>
+    <div class="body"><div class="shelf" id="shelfBody"></div></div>
+  </div>
+</div>
+
+<!-- RESUME -->
+<div class="modal" id="m-resume">
+  <div class="win" style="width:min(940px,100%)">
+    <div class="bar"><button class="dot red" data-close></button><span class="dot grey"></span><span class="dot grey"></span><div class="t">jeremy_ahamioje_resume.pdf</div></div>
+    <div class="pv">
+      <div class="pv-doc">
+        <div class="sheet">
+          <h4>Jeremy Ahamioje</h4>
+          <div class="r">Data Entry Specialist · Lagos, NG · Remote</div>
+          <div class="hr"></div>
+          <div class="sh">Summary</div>
+          <p style="margin:0;font-size:9.5px;line-height:1.55;color:rgba(40,48,64,.62)">Six years of high-volume record work across finance, healthcare intake, and membership operations. Keeps 99.7% verified accuracy at roughly 12,000 records a month. Documents every rule so the next person can run the batch.</p>
+          <div class="sh">Experience</div>
+          <div class="job"><b>Senior Data Entry Specialist — Meridian Back Office</b><i>2023–now</i></div>
+          <p>Owns the invoice and claims intake queue. Rebuilt the QA sampling plan; error rate down from 1.4% to 0.3%.</p>
+          <div class="job"><b>Data Entry Clerk — Harbour Member Services</b><i>2021–2023</i></div>
+          <p>Keyed and verified 3,400 handwritten enrolment forms into a searchable member database.</p>
+          <div class="job"><b>Records Assistant — Vale Clinic Group</b><i>2020–2021</i></div>
+          <p>Patient intake digitization, redaction, and indexing under a documented retention policy.</p>
+          <div class="sh">Tools</div>
+          <div class="chips"><span>Excel</span><span>Google Sheets</span><span>Airtable</span><span>Notion</span><span>Zapier</span><span>Python</span><span>SQL</span><span>Power BI</span></div>
+          <div class="sh">Certifications</div>
+          <div class="chips"><span>MOS Excel Expert</span><span>Google Data Analytics</span><span>Lean Six Sigma Yellow</span><span>HIPAA Awareness</span></div>
+        </div>
+      </div>
+      <aside class="pv-side">
+        <h3>Résumé</h3>
+        <div class="sub">PDF · one page · 2026</div>
+        <div class="pv-meta">
+          <div><span>Format</span><b>PDF / A4</b></div>
+          <div><span>Updated</span><b>Feb 2026</b></div>
+          <div><span>Experience</span><b>6 years</b></div>
+          <div><span>Throughput</span><b>12k/month</b></div>
+          <div><span>Accuracy</span><b>99.7%</b></div>
+          <div><span>Availability</span><b>Open</b></div>
+        </div>
+        <button class="pillcta" data-mail style="margin-top:20px;width:100%;justify-content:center">Request the file →</button>
+        <p style="font-size:11px;line-height:1.55;color:var(--ink-4);margin-top:14px">This is a rendered preview. The real PDF is sent on request so the version you get is always current.</p>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATES -->
+<div class="modal" id="m-certs">
+  <div class="win" style="width:min(760px,100%)">
+    <div class="bar"><button class="dot red" data-close></button><span class="dot grey"></span><span class="dot grey"></span><div class="t">Certificates</div></div>
+    <div class="body"><div class="tool" id="certBody"></div></div>
+  </div>
+</div>
+
+<!-- STICKIES -->
+<div class="modal" id="m-stickies">
+  <div class="win" style="width:min(560px,100%)">
+    <div class="bar"><button class="dot red" data-close></button><span class="dot grey"></span><span class="dot grey"></span><div class="t">Sticky Note</div></div>
+    <div class="body">
+      <div class="tool">
+        <div class="tool-head"><div><h2>Leave a note</h2><p>Type something and pin it to the desktop. Notes live in this browser only — nothing is sent anywhere.</p></div></div>
+        <textarea id="stText" placeholder="Say hi, leave feedback, or write a reminder…" style="width:100%;min-height:130px;resize:vertical;padding:16px;border-radius:11px;border:1px solid var(--hair);background:#F8F3D9;font:400 14px/1.6 var(--sans);color:var(--ink)"></textarea>
+        <div class="ops">
+          <button class="op on" data-stcolor="#F8F3D9"><i></i>butter</button>
+          <button class="op" data-stcolor="#DCEBF8"><i></i>sky</button>
+          <button class="op" data-stcolor="#E8F3DC"><i></i>mint</button>
+          <button class="op" data-stcolor="#F8DEDC"><i></i>rose</button>
+          <button class="pillcta" id="stPin" style="margin:0 0 0 auto;padding:9px 18px;font-size:12px">Pin to desktop →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 10-KEY DRILL -->
+<div class="modal" id="m-drill">
+  <div class="win" style="width:min(700px,100%)">
+    <div class="bar"><button class="dot red" data-close></button><span class="dot grey"></span><span class="dot grey"></span><div class="t">10-Key Drill</div></div>
+    <div class="body">
+      <div class="tool">
+        <div class="tool-head">
+          <div><h2>10-key drill</h2><p>Type the line exactly as shown, then press Enter. Accuracy counts errors against total characters — same way I score a batch.</p></div>
+          <div class="modes" id="drillModes">
+            <button class="on" data-mode="numeric">numeric</button>
+            <button data-mode="currency">currency</button>
+            <button data-mode="alpha">alphanumeric</button>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat"><span>Speed</span><b id="dSpeed">0<em>kph</em></b></div>
+          <div class="stat"><span>Accuracy</span><b id="dAcc">—</b></div>
+          <div class="stat"><span>Lines</span><b id="dLines">0</b></div>
+          <div class="stat"><span>Errors</span><b id="dErr">0</b></div>
+        </div>
+        <div class="drill">
+          <div class="drill-target" id="dTarget">—</div>
+          <input id="dInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="start typing to begin the clock">
+          <div class="drill-foot"><span id="dHint">Enter submits · Esc resets</span><button id="dReset">Reset</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DATA CLEANER -->
+<div class="modal" id="m-cleaner">
+  <div class="win" style="width:min(900px,100%)">
+    <div class="bar"><button class="dot red" data-close></button><span class="dot grey"></span><span class="dot grey"></span><div class="t">Data Cleaner</div></div>
+    <div class="body">
+      <div class="tool">
+        <div class="tool-head"><div><h2>Data cleaner</h2><p>Paste a messy column. Toggle the rules and watch it resolve. This is a working tool, not a mock — it runs entirely in your browser.</p></div></div>
+        <div class="ops" id="cleanOps"></div>
+        <div class="cleaner">
+          <div><div class="ttl"><span>Input</span><span id="inCount">0 rows</span></div><textarea id="cIn" spellcheck="false"></textarea></div>
+          <div><div class="ttl"><span>Output</span><span id="outCount">0 rows</span></div><div class="out" id="cOut"></div></div>
+        </div>
+        <div class="ops" style="justify-content:space-between">
+          <span style="font-family:var(--mono);font-size:10.5px;color:var(--ink-4)" id="cReport">—</span>
+          <button class="pillcta" id="cCopy" style="margin:0;padding:9px 18px;font-size:12px">Copy output</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RECYCLE BIN -->
+<div class="modal" id="m-trash">
+  <div class="win" style="width:min(620px,100%)">
+    <div class="bar"><button class="dot red" data-close></button><span class="dot grey"></span><span class="dot grey"></span><div class="t">Recycle Bin</div></div>
+    <div class="body">
+      <div class="trash">
+        <div class="kicker" style="margin-bottom:14px">4 items · rejected at QA</div>
+        <div class="trash-list">
+          <div class="trash-item"><svg width="20" height="26" viewBox="0 0 72 92"><use href="#f-csv"/></svg><div class="fn">contacts_FINAL_v7_use_this.csv</div><div class="rs">1,204 dupes</div></div>
+          <div class="trash-item"><svg width="20" height="26" viewBox="0 0 72 92"><use href="#f-xlsx"/></svg><div class="fn">merged sheet (copy) (1).xlsx</div><div class="rs">merged cells</div></div>
+          <div class="trash-item"><svg width="20" height="26" viewBox="0 0 72 92"><use href="#f-csv"/></svg><div class="fn">dates_mixed_formats.csv</div><div class="rs">4 date formats</div></div>
+          <div class="trash-item"><svg width="20" height="26" viewBox="0 0 72 92"><use href="#f-pdf"/></svg><div class="fn">scan_upside_down.pdf</div><div class="rs">unreadable</div></div>
+        </div>
+        <p style="font-size:12.5px;line-height:1.65;color:var(--ink-3);margin-top:18px;max-width:52ch">Every file that fails QA gets logged with a reason before it's rejected. The log is the point — it's how you find out that four date formats are coming from one upstream form.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILE PREVIEW -->
+<div class="modal" id="m-file">
+  <div class="win" style="width:min(760px,100%)">
+    <div class="bar"><button class="dot red" data-close></button><span class="dot grey"></span><span class="dot grey"></span><div class="t" id="fileBarTitle">File</div></div>
+    <div class="body"><div class="tool" id="fileBody"></div></div>
+  </div>
+</div>
+<script>
+(function(){
+"use strict";
+const $  = (s,r)=> (r||document).querySelector(s);
+const $$ = (s,r)=> [...(r||document).querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const store = {
+  get(k,d){ try{ const v = localStorage.getItem('jd:'+k); return v===null?d:JSON.parse(v); }catch(e){ return d; } },
+  set(k,v){ try{ localStorage.setItem('jd:'+k, JSON.stringify(v)); }catch(e){} }
+};
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+const APPS = [
+  {id:'projects', label:'projects',  sub:'selected work',      idx:'01', tile:'t-folder',   locked:true},
+  {id:'stickies', label:'stickies',  sub:'leave a note',        idx:'02', tile:'t-sticky'},
+  {id:'shelf',    label:'shelf',     sub:'manuals & standards', idx:'03', tile:'t-shelf'},
+  {id:'resume',   label:'resume',    sub:'pdf · 2026',          idx:'04', tile:'t-resume'},
+  {id:'notebook', label:'notebook',  sub:'how I run a batch',   idx:'05', tile:'t-notebook'},
+  {id:'drill',    label:'10-key',    sub:'speed & accuracy',    idx:'06', tile:'t-numpad'},
+  {id:'cleaner',  label:'cleaner',   sub:'messy → tidy',        idx:'07', tile:'t-cleaner'},
+  {id:'certs',    label:'certificates', sub:'training & badges',idx:'08', tile:'t-cert'}
+];
+const GRID = [[232,258],[396,258],[560,258],[724,258],[232,448],[396,448],[560,448],[724,448]];
+
+const FILES = [
+  {n:'q3_invoices.csv',        s:'4,812 rows',  t:'f-csv',  x:62,  y:300, rows:4812, cols:['invoice_id','supplier','issued_on','net_amount','vat','status'],
+   sample:['INV-40118  Kestrel Supply Co.   2025-07-02   1204.50   90.34   posted','INV-40119  Northgate Paper Ltd  2025-07-02    318.00   23.85   posted','INV-40120  Kestrel Supply Co.   2025-07-03   9871.20  740.34   held'], note:'Reconstructed from three exports. 1,204 duplicates removed, 88 supplier names merged.'},
+  {n:'member_roster.xlsx',     s:'3 sheets',    t:'f-xlsx', x:62,  y:440, rows:3388, cols:['member_no','full_name','joined','tier','email','phone_e164'],
+   sample:['M-00412   Adaeze Nwosu      2021-03-14   gold     a.nwosu@…   +2348031122334','M-00413   Tomás Bergström   2021-03-14   silver   t.berg@…    +46701234567','M-00414   Grace Okonkwo     2021-03-15   gold     g.oko@…     +2348099887766'], note:'Keyed from handwritten enrolment forms. Every row double-keyed by two passes.'},
+  {n:'vendor_master.csv',      s:'deduped',     t:'f-csv',  x:66,  y:580, rows:1140, cols:['vendor_id','legal_name','trading_as','country','tax_id','active'],
+   sample:['V-0031   Kestrel Supply Company Ltd   Kestrel Supply   NG   TIN-99201   true','V-0032   Northgate Paper Limited      Northgate        GB   GB884120   true','V-0033   Vale Clinical Supplies       Vale Clinical    NG   TIN-77410   false'], note:'Six source lists merged to one. 412 records collapsed into 187 real vendors.'},
+  {n:'intake_forms.pdf',       s:'240 scans',   t:'f-pdf',  x:886, y:300, rows:240, cols:['scan_id','form_type','received','legibility','keyed_by','qa_pass'],
+   sample:['S-0221   enrolment   2025-08-04   good      pass-1   yes','S-0222   enrolment   2025-08-04   faint     pass-2   yes','S-0223   change      2025-08-05   damaged   flagged  no'], note:'Legibility graded before keying so the hard ones go to the slower, more careful pass.'},
+  {n:'claims_batch_07.xlsx',   s:'verified',    t:'f-xlsx', x:886, y:440, rows:2160, cols:['claim_no','member_no','service_date','code','amount','adjudicated'],
+   sample:['C-77120   M-00412   2025-06-11   99213   145.00   yes','C-77121   M-00519   2025-06-11   99214   210.00   yes','C-77122   M-00412   2025-06-12   80053    58.40   pending'], note:'Handled under a documented retention policy. No identifying detail leaves the batch folder.'},
+  {n:'address_book.csv',       s:'normalized', t:'f-csv',   x:886, y:580, rows:6204, cols:['record_id','line1','city','state','postcode','country'],
+   sample:['A-1042   14 Adeola Odeku St   Victoria Island   Lagos   101241   NG','A-1043   88 Northgate Road     Manchester        —       M4 5BQ   GB','A-1044   2131 Mission St #4    San Francisco     CA      94110    US'], note:'Free-text address blobs split into fields against a country-aware format table.'},
+  {n:'timesheets_wk34.csv',    s:'1,190 rows', t:'f-csv',   x:232, y:604, rows:1190, cols:['staff_id','week','day','clock_in','clock_out','hours'],
+   sample:['E-2201   34   mon   08:02   16:31   8.48','E-2201   34   tue   07:58   16:04   8.10','E-2202   34   mon   09:14   18:02   8.80'], note:'Clock times normalized to 24h. 31 overnight shifts corrected for date rollover.'},
+  {n:'product_skus.xlsx',      s:'8,640 rows', t:'f-xlsx',  x:400, y:620, rows:8640, cols:['sku','title','category','uom','pack_size','list_price'],
+   sample:['SKU-9930-B   Copier paper A4 80gsm   paper    ream   5    24.90','SKU-9931-B   Copier paper A3 80gsm   paper    ream   5    41.20','SKU-4410-C   Blue ballpoint, med      writing  box    50    12.00'], note:'Units of measure standardised so pack size and price finally compare across suppliers.'},
+  {n:'survey_responses.csv',   s:'coded',      t:'f-csv',   x:566, y:604, rows:2940, cols:['response_id','q1_score','q2_score','free_text','theme_code','coded_by'],
+   sample:['R-0881   4   5   "queue was quick"        SPEED     JA','R-0882   2   3   "couldn\'t find the form"  FINDABILITY  JA','R-0883   5   5   "friendly staff"          STAFF     JA'], note:'Open text coded to a fixed 12-theme frame, with a 10% second-coder check.'},
+  {n:'patient_intake.pdf',     s:'redacted',   t:'f-pdf',   x:730, y:620, rows:412, cols:['intake_id','received','pages','redactions','indexed','retained_until'],
+   sample:['P-0140   2025-05-02   4   6   yes   2032-05-02','P-0141   2025-05-02   3   4   yes   2032-05-02','P-0142   2025-05-03   7   11  yes   2032-05-03'], note:'Redaction applied before indexing. Sample data only — no real patient records here.'},
+  {n:'donations_2025.csv',     s:'reconciled', t:'f-csv',   x:100, y:150, rows:1806, cols:['gift_id','donor_id','received','method','gross','fee'],
+   sample:['G-0441   D-0092   2025-11-02   card     250.00   7.55','G-0442   D-0114   2025-11-02   transfer 1000.00  0.00','G-0443   D-0092   2025-11-04   card      50.00   2.05'], note:'Matched to the bank statement line by line. Two gifts recovered that had never been recorded.'},
+  {n:'inventory_count.xlsx',   s:'audited',    t:'f-xlsx',  x:1002, y:150, rows:5120, cols:['location','sku','counted','system_qty','variance','recount'],
+   sample:['LAG-01   SKU-9930-B   118   120   -2   yes','LAG-01   SKU-4410-C    64    64    0   no','ABJ-02   SKU-9931-B    41    38   +3   yes'], note:'Anything with a variance over 2% goes to a blind recount before the number is accepted.'}
+];
+
+const CASES = [
+  {
+    n:'Case 01', name:'Ledger Rebuild', s:'18 months of invoices',
+    kicker:'Case 01 · 2025 · Meridian Back Office',
+    title:'Eighteen months of invoices, one clean ledger.',
+    sub:'A supplier ledger that had drifted across three systems, four spreadsheet owners, and a period nobody wanted to talk about.',
+    tags:['Bulk Entry','Reconciliation','Excel','Power Query','2025'],
+    meta:[['Role','Sole specialist, end to end'],['Scope','4,812 invoices · 18 months'],['Tools','Excel · Power Query · SQL'],['Outcome','Ledger closed, £1.2M reconciled']],
+    body:[
+      {n:'01 · Overview', h:'The books were right in three places and wrong overall.',
+       lede:'Meridian had switched accounting systems twice in two years. Each migration carried some invoices, dropped others, and duplicated a few for good measure.',
+       dim:'By the time I was brought in, nobody could say with confidence what a given supplier had been paid.',
+       p:['The finance team had built spreadsheets around the gaps — one per person, each internally consistent and mutually contradictory. Closing the year meant picking one, and nobody wanted to be the one who picked wrong.','My job was not to decide who was right. It was to rebuild the ledger from source documents so the question stopped being a matter of opinion.'],
+       meta:true},
+      {n:'02 · The problem', h:'Four spreadsheets, four truths.',
+       p:['The three system exports and four working spreadsheets disagreed on 1,204 rows. Some were genuine duplicates. Some were the same invoice keyed twice with different supplier spellings. Some were real invoices that existed in exactly one place.'],
+       qs:['Same invoice, three suppliers','Same supplier, eleven spellings','Dates in four formats','Credit notes keyed as invoices'],
+       callout:['The rule I started with','Nothing enters the rebuilt ledger without a scan or a system record behind it. If a row exists only in someone\'s spreadsheet, it goes to the questions pile — not the ledger.']},
+      {n:'03 · The method', h:'Rebuild from documents, not from spreadsheets.',
+       steps:[
+         ['01','Pull the source','Every PDF invoice and system record into one folder, named by invoice number and date.'],
+         ['02','Key a control set','200 invoices keyed blind by two passes to measure the error rate before scaling.'],
+         ['03','Build the field rules','One documented format per field — dates ISO 8601, amounts two decimals, supplier names against a master list.'],
+         ['04','Key the batch','Full run at a steady pace, flagging anything ambiguous instead of guessing.'],
+         ['05','Reconcile','Match the rebuilt ledger against bank statements line by line.'],
+         ['06','Log the questions','Everything unresolved into a single sheet with the evidence attached, for finance to decide.']
+       ],
+       p:['The control set matters more than it sounds. Keying 200 invoices twice tells you your real error rate before you have 4,800 rows of unknown quality. Mine came in at 0.6% on the first pass, which set the QA sampling rate for the rest.']},
+      {n:'04 · The numbers', h:'What came out.',
+       stats:[['4,812','invoices keyed'],['1,204','duplicates removed'],['88','supplier names merged'],['0.3%','final error rate']],
+       p:['Two invoices surfaced that had been paid twice — £14,200 recovered. Nine had never been recorded at all. The questions pile ended at 41 rows, all with the scan attached, and finance cleared it in an afternoon because every one came with its evidence.'],
+       callout:['What actually closed it','The ledger did not close because the numbers matched. It closed because every number could be traced back to a document in under thirty seconds.']},
+      {n:'05 · What I\'d do next', h:'The rebuild should have been the last one.',
+       p:['A rebuild is a symptom. The reason the ledger drifted was that invoice intake had no single front door — three systems accepted invoices and none of them was authoritative.','I left a validated intake template and a naming convention behind, but the real fix is upstream: one intake point, one format, checked on arrival. That is a process change, not a data-entry job, and it was outside what I was asked to do.']}
+    ]
+  },
+  {
+    n:'Case 02', name:'Paper Intake', s:'3,400 handwritten forms',
+    kicker:'Case 02 · 2022 · Harbour Member Services',
+    title:'Three thousand four hundred handwritten forms.',
+    sub:'A filing room of enrolment paperwork turned into a member database people could actually search.',
+    tags:['Digitization','Double-Key','OCR Correction','Airtable','2022'],
+    meta:[['Role','Lead keyer + QA design'],['Scope','3,388 forms · 11 fields each'],['Tools','Airtable · Excel · scanner'],['Outcome','99.4% verified on first audit']],
+    body:[
+      {n:'01 · Overview', h:'The database existed. The members were on paper.',
+       lede:'Harbour had a member system and eleven filing cabinets. Enrolments went into the cabinets; the system held whoever someone had got around to typing.',
+       dim:'Roughly a third of the membership was invisible to the software they had paid for.',
+       p:['Handwriting is the part of this work that does not speed up. You can key a clean export at 14,000 strokes an hour. You cannot read someone\'s cursive faster by trying harder.','So the plan was built around that constraint rather than against it.'],
+       meta:true},
+      {n:'02 · The problem', h:'Not all bad handwriting is bad in the same way.',
+       p:['The first thing I did was grade legibility before keying anything — good, faint, damaged. That single step reorganised the whole job.'],
+       ins:[
+         ['✓','Good scans go fast','Roughly 71% of forms were clean enough to key at full speed with a single pass and spot-check QA.','2,400 forms · single pass'],
+         ['~','Faint scans go slow','Faded ink and pencil went to a second, slower pass with the scan enlarged. Speed here is a false economy.','740 forms · double pass'],
+         ['!','Damaged goes to a human','Torn, water-marked, or ambiguous forms were flagged, never guessed, and sent back to staff who knew the members.','248 forms · flagged']
+       ],
+       callout:['The rule','Never guess a name. A wrong name in a member database is worse than a blank one, because nobody ever checks it again.']},
+      {n:'03 · The method', h:'Double-key the fields that cost money to get wrong.',
+       p:['Full double-keying of 3,400 forms across eleven fields would have doubled the budget. Instead I split the fields by consequence.','Names, member numbers, dates of birth, and email addresses were keyed twice by separate passes and compared automatically — any mismatch went to review. Tier, branch, and preference fields were keyed once with a 10% sample audit, because a wrong tier gets noticed and corrected within a month.'],
+       steps:[
+         ['01','Grade','Legibility graded per scan before any keying begins.'],
+         ['02','Route','Good to fast lane, faint to slow lane, damaged to staff.'],
+         ['03','Double-key','Identity fields keyed twice, compared automatically.'],
+         ['04','Audit','10% random sample on the single-keyed fields.'],
+         ['05','Reconcile','Cross-check against the existing system for accidental duplicates.']
+       ]},
+      {n:'04 · The numbers', h:'What came out.',
+       stats:[['3,388','forms keyed'],['99.4%','verified accuracy'],['248','flagged, not guessed'],['6 wks','elapsed']],
+       p:['The 248 flagged forms were the most valuable output. Handing back a stack of "I could not read these, and here is exactly why" is more useful than a database that is quietly 7% wrong.']},
+      {n:'05 · What I\'d do next', h:'Fix the form, not the keying.',
+       p:['Half the illegibility came from one box on the form that was too small for an email address. People wrote small, then wrote over the line, then the scanner cropped it.','A wider box would have removed more errors than any amount of careful keying. That is usually where the real fix lives.']}
+    ]
+  },
+  {
+    n:'Case 03', name:'Vendor Master', s:'six lists, one truth',
+    kicker:'Case 03 · 2024 · Meridian Back Office',
+    title:'Six vendor lists, one source of truth.',
+    sub:'Merging procurement, finance, legal, and three regional spreadsheets into a single vendor master without losing the exceptions that mattered.',
+    tags:['Deduplication','Entity Resolution','SQL','Data Quality','2024'],
+    meta:[['Role','Data cleanup + merge rules'],['Scope','412 records → 187 vendors'],['Tools','SQL · Excel · Python'],['Outcome','Single master, rules documented']],
+    body:[
+      {n:'01 · Overview', h:'Everyone had a vendor list. Nobody had the vendor list.',
+       lede:'Procurement, finance, and legal each maintained their own vendor records, plus three regional offices with spreadsheets of their own.',
+       dim:'The same supplier appeared as many as five times, under names that only a human would recognise as the same company.',
+       p:['This is entity resolution, and it is the part of data work where automation gets you 80% of the way and then confidently ruins the last 20%.','Fuzzy matching will happily merge two genuinely different companies with similar names. So the machine proposed; I decided.'],
+       meta:true},
+      {n:'02 · The problem', h:'"Kestrel Supply Co." and "KESTREL SUPPLY COMPANY LTD".',
+       qs:['Legal name vs. trading name','Ltd, Limited, LTD.','Old name after acquisition','Two real firms, one surname'],
+       p:['Tax ID would have been the clean join key, except that only four of the six lists recorded it, and two of those recorded it inconsistently. So matching had to work across name, address, and tax ID together, with none of them individually reliable.'],
+       callout:['The rule','Automatic merge only where tax ID matches exactly. Everything else is a suggestion for a person to confirm — and the person has to look at the evidence, not the score.']},
+      {n:'03 · The method', h:'Machine proposes, human disposes.',
+       steps:[
+         ['01','Normalize','Strip legal suffixes, casing, and punctuation into a comparison key — kept alongside the original, never replacing it.'],
+         ['02','Block','Group candidates by country and first three characters so the comparison stays cheap.'],
+         ['03','Score','Similarity on name, address, and tax ID, weighted so tax ID dominates.'],
+         ['04','Auto-merge','Only exact tax ID matches merge without review.'],
+         ['05','Review queue','Everything between the thresholds goes to a side-by-side review with all source rows visible.'],
+         ['06','Record the decision','Every merge and every rejection logged with a reason, so it never has to be re-litigated.']
+       ],
+       p:['That last step is the one people skip. A merge log means that when someone asks in eight months why two vendors became one, the answer takes ten seconds instead of an afternoon.']},
+      {n:'04 · The numbers', h:'What came out.',
+       stats:[['412','source records'],['187','real vendors'],['96','auto-merged'],['129','human-reviewed']],
+       p:['Two near-identical names turned out to be genuinely different companies owned by the same family, operating in different countries. A confident algorithm would have merged them and quietly corrupted three years of spend analysis.']},
+      {n:'05 · What I\'d do next', h:'A master list decays the moment you stop maintaining it.',
+       p:['The merge was the easy half. Without an owner and an intake rule, a vendor master drifts back within a year — someone adds "Kestrel Supply (new account)" and it starts again.','I handed back the master, the merge log, and a one-page intake rule. Whether it holds depends entirely on whether anyone owns it.']}
+    ]
+  },
+  {
+    n:'Case 04', name:'The QA Loop', s:'how 99.7% holds',
+    kicker:'Case 04 · 2026 · Method',
+    title:'How I hold 99.7% at twelve thousand records a month.',
+    sub:'Not a project — the quality system underneath all of them. Written down because a method you cannot hand over is a method that leaves when you do.',
+    tags:['Quality Assurance','Sampling','Documentation','Method','2026'],
+    meta:[['Role','Method owner'],['Scope','Every batch, all clients'],['Tools','Excel · error log · sampling plan'],['Outcome','0.3% error rate, sustained']],
+    body:[
+      {n:'01 · Overview', h:'Accuracy is a process, not an aspiration.',
+       lede:'Anyone can be careful for an hour. The question is what happens in the fourth hour of the ninth day of a batch, and the answer is: whatever the system makes easy.',
+       dim:'So the system does the remembering, and I do the keying.',
+       p:['Every claim on this desktop about accuracy comes from the same loop. It has four parts and none of them are clever.'],
+       meta:true},
+      {n:'02 · Measure before you scale', h:'Key a control set first.',
+       p:['Before a full batch, 200 records get keyed twice, blind, and compared. The mismatch rate is the real error rate — not the one I would guess, and usually not the one the client expects.','That number sets everything downstream. A 0.2% control rate means light sampling. A 1.5% control rate means the source documents are the problem and we should talk before I key another row.'],
+       callout:['Why it matters','A control set costs about ninety minutes. Discovering the error rate after 4,000 rows costs the batch.']},
+      {n:'03 · Classify every error', h:'Four kinds of wrong, four different fixes.',
+       ins:[
+         ['⌨','Transcription','A slip — right field, wrong characters. Fixed by pace and rest, not by trying harder.','Fix: sampling rate'],
+         ['📐','Format','Right value, wrong shape. Dates, phone numbers, casing.','Fix: validation rule'],
+         ['❓','Interpretation','The source is ambiguous and I made a call. These are the dangerous ones.','Fix: written rule'],
+         ['📄','Source','The document is wrong or unreadable. Not a keying error at all.','Fix: flag upstream']
+       ],
+       p:['Lumping these together produces a single useless number. Split apart, each one points at a different fix — and three of the four are not fixed by keying more carefully.']},
+      {n:'04 · Sample proportionally', h:'Check more where it costs more.',
+       steps:[
+         ['01','Identity fields','Names, IDs, dates of birth: double-keyed on every batch over 500 rows.'],
+         ['02','Money fields','Amounts and tax: 100% verified against the source total.'],
+         ['03','Descriptive fields','Notes, categories, preferences: 10% random sample.'],
+         ['04','Derived fields','Anything calculated: checked by formula, never keyed.']
+       ],
+       p:['The point is not to check everything. It is to check the fields where being wrong is expensive, and accept a known, measured risk on the fields where it is not.']},
+      {n:'05 · Write the rule down', h:'Every judgement call becomes a line in the rulebook.',
+       p:['The first time a batch contains a date written "03/04/25", I decide what it means — and then that decision goes in the rulebook for the batch, with the reasoning.','By the end of a project the rulebook is usually two pages. It is the most valuable thing I hand over, because it is the part that lets someone else run the next batch and get the same answer I would have.'],
+       callout:['The whole method in one line','Measure the error rate before you scale, classify every error by cause, sample where being wrong is expensive, and write down every call you make.']},
+      {n:'06 · What this costs', h:'Roughly fifteen percent.',
+       stats:[['15%','of batch time on QA'],['0.3%','residual error rate'],['12k','records / month'],['2 pp','typical rulebook']],
+       p:['QA is about fifteen percent of the time on a batch. It is the cheapest fifteen percent available, because the alternative is finding the errors after they have been imported, reported on, and acted upon.','That is the entire pitch. Everything else on this desktop is just evidence for it.']}
+    ]
+  }
+];
+
+const NOTES = [
+  {f:'intake_rules.md', t:'Rules for a new batch', h:[
+    ['p','Before a single row is keyed, six things get decided and written at the top of the batch sheet. Skipping this is how a batch ends up internally inconsistent in a way nobody notices for a month.'],
+    ['ul',['<b>Date format</b> — ISO 8601, always. If the source is ambiguous (03/04/25), the source owner decides, and the decision is recorded here, not in my head.','<b>Name order</b> — as written on the source document. Never reordered, never "corrected".','<b>Empty vs. zero</b> — a blank field is blank. Zero means someone wrote zero. These are different facts and merging them destroys information.','<b>Casing</b> — proper nouns as written; codes uppercased; email lowercased.','<b>Trailing detail</b> — apartment numbers, "c/o", and "(new)" suffixes go in their own field, not appended to the line above.','<b>What I flag instead of guessing</b> — anything I would have to invent to fill.']],
+    ['q','The rulebook is not bureaucracy. It is the thing that makes two people keying the same batch produce the same result.']
+  ]},
+  {f:'error_taxonomy.md', t:'Four kinds of wrong', h:[
+    ['p','A single error rate is a number that tells you nothing actionable. Split by cause, the same errors tell you exactly what to change.'],
+    ['ul',['<b>Transcription</b> — right field, wrong characters. Responds to pace, rest, and sampling rate. Does not respond to being told to concentrate.','<b>Format</b> — right value, wrong shape. Always fixable with a validation rule at intake; if it recurs, the rule is missing, not the attention.','<b>Interpretation</b> — the source was ambiguous and I made a call. The most dangerous category, because it looks like clean data.','<b>Source</b> — the document itself is wrong, illegible, or contradicts another document. Not a keying error. Flag upstream and do not absorb it.']],
+    ['p','Three of these four are not solved by keying more carefully, which is why "be more careful" is such a poor instruction.']
+  ]},
+  {f:'the_setup.md', t:'Keyboard, screen, hands', h:[
+    ['p','Speed at volume comes from removing decisions, not from moving faster. Most of my setup exists to stop me reaching for the mouse.'],
+    ['ul',['Numeric keypad on the right hand, source document dead centre on a second screen at eye height.','Tab order matches the reading order of the source form. If it does not, the form gets a keying template that makes it so.','Autocomplete off in every field that accepts a name. Helpful autocomplete is how a Nwosu becomes a Nwosa.','A twenty-minute break every ninety minutes, taken whether or not it feels needed. Transcription errors cluster in the last twenty minutes before a break that was skipped.']],
+    ['q','14,800 keystrokes an hour is not a heroic pace. It is an ordinary pace that has stopped being interrupted.']
+  ]},
+  {f:'what_i_wont_do.md', t:'Where I stop', h:[
+    ['p','Data entry work sits close to information that matters to real people. A few things I decline, up front, so nobody has to negotiate them later.'],
+    ['ul',['I do not guess at a name, a date of birth, or an amount. Blank and flagged beats confident and wrong.','I do not silently "fix" a source document. If it is wrong, it gets flagged and the owner decides.','I do not keep client records outside the agreed folder, and I do not keep them after the retention date.','I do not scrape or purchase contact lists, and I do not key personal data that the person did not knowingly provide.','I do not accept a batch where the accuracy target and the source quality are incompatible without saying so first.']],
+    ['q','Most of these have cost me a day at some point. None of them has ever cost a client a correction notice.']
+  ]}
+];
+
+const SHELF = [
+  {h:'Manuals', s:'the ones actually on the desk', items:[
+    {t:'Bad Data Handbook',c:'#2F4858',a:"O'Reilly",w:'Nineteen practitioners on what real data actually looks like. The chapter on dates alone.'},
+    {t:'Data Quality Assessment',c:'#8A5B4A',a:'Maydanchik',w:'Where my error taxonomy comes from. Dense, worth it.'},
+    {t:'Principles of Data Wrangling',c:'#3E5F8A',a:"O'Reilly",w:'Good on the difference between cleaning and deciding.'},
+    {t:'The Chicago Manual of Style',c:'#4E6B4A',a:'17th ed.',w:'For every argument about how a name is written.'}
+  ]},
+  {h:'Standards', s:'kept open in a tab', items:[
+    {t:'ISO 8601',c:'#1F2A36',a:'dates & time',w:'YYYY-MM-DD. Non-negotiable.'},
+    {t:'E.164',c:'#1F2A36',a:'phone numbers',w:'Country code, no spaces, no parentheses.'},
+    {t:'ISO 3166',c:'#1F2A36',a:'country codes',w:'Two letters. "UK" is not one of them.'},
+    {t:'NIST 800-88',c:'#1F2A36',a:'media sanitization',w:'How a drive of client records gets retired properly.'}
+  ]},
+  {h:'Training', s:'finished, not collected', items:[
+    {t:'MOS Excel Expert',c:'#1D6F42',a:'MO-201',w:'Power Query and structured references, mostly.'},
+    {t:'Google Data Analytics',c:'#3E6EA8',a:'certificate',w:'The SQL and cleaning modules earned their keep.'},
+    {t:'Lean Six Sigma',c:'#C8922E',a:'yellow belt',w:'Sampling plans and process capability.'},
+    {t:'HIPAA Awareness',c:'#7A4A6B',a:'annual',w:'Required for the clinical intake work.'}
+  ]}
+];
+
+const CERTS = [
+  {t:'Microsoft Office Specialist — Excel Expert',i:'Microsoft',d:'MO-201 · Mar 2024',n:'Power Query, structured references, advanced formulas, data validation.'},
+  {t:'Google Data Analytics Professional Certificate',i:'Google / Coursera',d:'8 courses · Nov 2023',n:'SQL, spreadsheet cleaning, R basics, and a capstone on data integrity.'},
+  {t:'Lean Six Sigma Yellow Belt',i:'IASSC-aligned',d:'Jun 2023',n:'Process mapping, sampling plans, and root-cause classification.'},
+  {t:'HIPAA Privacy & Security Awareness',i:'Annual renewal',d:'Current to Dec 2026',n:'Required for clinical intake and redaction work.'}
+];
+
+const TRACKS = [
+  {t:'Reams', a:'Nils Frahm · Spaces', d:'6:32', c:['#3E5F8A','#94B8DC']},
+  {t:'An Ending (Ascent)', a:'Brian Eno · Apollo', d:'4:24', c:['#5C4A7A','#C3A8D6']},
+  {t:'Rhubarb', a:'Aphex Twin · SAW II', d:'7:41', c:['#2F4858','#7FA8A0']},
+  {t:'Avril 14th', a:'Aphex Twin · Drukqs', d:'2:04', c:['#8A5B4A','#E0B79C']},
+  {t:'Nuvole Bianche', a:'Ludovico Einaudi', d:'5:57', c:['#3F5B4A','#A8CBA0']},
+  {t:'Everything In Its Right Place', a:'Radiohead · Kid A', d:'4:11', c:['#1F2A36','#6E8AA8']}
+];
+
+const EMOJI = ['✅','📊','📋','🗂️','📎','✏️','🔢','🧮','⌨️','🖇️','📌','🗃️','📈','🔍','☕','🌀','✨','🌸','🌊','🔥','⭐','💫','🌙','☁️','🍋','🍒','🐈','🦋','🎧','🪩','💎','🧩','🎯','🧷','📐','🖊️','🗓️','⏱️'];
+
+/* ============================================================
+   BOOT + CLOCK
+   ============================================================ */
+function two(n){ return String(n).padStart(2,'0'); }
+function tick(){
+  const d = new Date();
+  const dateStr = d.toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});
+  $('#lkDate').textContent = dateStr;
+  $('#lkTime').textContent = two(d.getHours())+':'+two(d.getMinutes());
+  $('#mbDate').textContent = d.toLocaleDateString(undefined,{month:'short',day:'numeric'});
+  $('#mbTime').textContent = d.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'});
+}
+tick(); setInterval(tick, 10000);
+
+let unlocked = false;
+function unlock(){
+  if (unlocked) return; unlocked = true;
+  $('#lock').classList.add('gone');
+  document.body.classList.add('up');
+  setTimeout(()=>{ $('#lock').style.display='none'; }, 950);
+  if (!store.get('seenGuide', false)) setTimeout(openGuide, 1600);
+}
+(function boot(){
+  const bar = $('#lkBar').firstElementChild;
+  let p = 0;
+  const iv = setInterval(()=>{
+    p += 4 + Math.random()*9;
+    if (p >= 100){
+      p = 100; clearInterval(iv);
+      $('#lkBar').style.opacity = '0';
+      $('#lkLinks').style.transition = 'opacity 600ms'; $('#lkLinks').style.opacity = '1';
+      $('#lkCta').classList.add('on');
+      $('#lkHint').textContent = 'Click anywhere to unlock';
+    }
+    bar.style.width = p+'%';
+  }, 130);
+})();
+$('#lock').addEventListener('click', e=>{ if (e.target.closest('a,button[data-open]')) return; unlock(); });
+$('#lkCta').addEventListener('click', unlock);
+document.addEventListener('keydown', e=>{ if(!unlocked && (e.key==='Enter'||e.key===' ')){ e.preventDefault(); unlock(); } });
+
+/* ============================================================
+   MENUBAR
+   ============================================================ */
+$$('[data-mbtrigger]').forEach(btn=>{
+  btn.addEventListener('click', e=>{
+    e.stopPropagation();
+    const m = btn.closest('.mb'), was = m.classList.contains('open');
+    $$('.mb').forEach(x=>x.classList.remove('open'));
+    if (!was) m.classList.add('open');
+  });
+});
+document.addEventListener('click', ()=> $$('.mb').forEach(x=>x.classList.remove('open')));
+$$('.mb-drop').forEach(d=> d.addEventListener('click', e=> e.stopPropagation()));
+
+/* ============================================================
+   THEME
+   ============================================================ */
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  $$('.sw').forEach(s=> s.classList.toggle('on', s.dataset.theme===t));
+  store.set('theme', t);
+}
+$$('.sw').forEach(s=> s.addEventListener('click', ()=> setTheme(s.dataset.theme)));
+setTheme(store.get('theme','blue'));
+
+/* ============================================================
+   GRAIN — one 128px tile, generated once, repeated seamlessly
+   ============================================================ */
+(function grain(){
+  try{
+    const N = 128, c = document.createElement('canvas');
+    c.width = c.height = N;
+    const g = c.getContext('2d'), img = g.createImageData(N,N), d = img.data;
+    for (let i=0;i<d.length;i+=4){
+      const v = 128 + (Math.random()*2-1)*46;
+      d[i] = d[i+1] = d[i+2] = v; d[i+3] = 255;
+    }
+    g.putImageData(img,0,0);
+    $('#grain').style.backgroundImage = 'url('+c.toDataURL('image/png')+')';
+  }catch(e){ $('#grain').style.display = 'none'; }
+})();
+
+/* ============================================================
+   BLUEPRINT BACKDROP
+   ============================================================ */
+(function blueprint(){
+  const bp = $('#bp'); let h = '';
+  for (let i=1;i<10;i++) h += '<i class="h" style="top:'+(i*10)+'%"></i>';
+  for (let i=1;i<10;i++) h += '<i class="v" style="left:'+(i*10)+'%"></i>';
+  [[20,30],[40,60],[70,20],[80,70],[30,80],[60,45]].forEach(([x,y])=>{
+    h += '<div class="xh" style="left:calc('+x+'% - 5px);top:calc('+y+'% - 5px)"></div>';
+  });
+  h += '<div class="cluster" style="left:14%;top:66%;grid-template-columns:repeat(4,1fr)">'+'<span></span>'.repeat(12)+'</div>';
+  h += '<div class="cluster" style="left:76%;top:26%;grid-template-columns:repeat(4,1fr)">'+'<span></span>'.repeat(8)+'</div>';
+  bp.innerHTML = h;
+})();
+
+/* ============================================================
+   DESKTOP NODES
+   ============================================================ */
+const nodesEl = $('#nodes');
+function nodeHTML(o){
+  if (o.file){
+    return '<div class="node file" data-file="'+esc(o.n)+'" style="left:'+o.x+'px;top:'+o.y+'px">'+
+      '<div class="ring"></div>'+
+      '<div class="ncap"><span class="cn">'+esc(o.n)+'</span><span class="cd">'+esc(o.s)+' · '+o.rows.toLocaleString()+' rows</span></div>'+
+      '<div class="tile"><svg width="72" height="92" viewBox="0 0 72 92"><use href="#'+o.t+'"/></svg></div>'+
+      '<div class="nlabel">'+esc(o.n)+'</div><div class="nsub">'+esc(o.s)+'</div></div>';
+  }
+  return '<div class="node" data-app="'+o.id+'" style="left:'+o.x+'px;top:'+o.y+'px">'+
+    '<div class="ring"></div>'+
+    '<div class="ncap"><span class="cn">'+esc(o.label)+'</span><span class="cd">'+esc(o.sub)+'</span><i class="cx">'+o.idx+'</i></div>'+
+    '<div class="tile"><svg width="103" height="103" viewBox="0 0 104 104"><use href="#'+o.tile+'"/></svg>'+
+      (o.locked?'<span class="lockpin"><svg width="12" height="12" style="color:#fff"><use href="#i-lock"/></svg></span>':'')+
+    '</div>'+
+    '<div class="nlabel">'+esc(o.label)+'</div><div class="nsub">'+esc(o.sub)+'</div></div>';
+}
+function layout(){
+  const saved = store.get('pos', {});
+  let h = '';
+  APPS.forEach((a,i)=>{
+    const p = saved[a.id] || {x:GRID[i][0], y:GRID[i][1]};
+    h += nodeHTML(Object.assign({}, a, {x:p.x, y:p.y}));
+  });
+  FILES.forEach(f=>{
+    const p = saved[f.n] || {x:f.x, y:f.y};
+    h += nodeHTML(Object.assign({}, f, {file:true, x:p.x, y:p.y}));
+  });
+  nodesEl.innerHTML = h;
+}
+layout();
+
+/* drag + select + open */
+let drag = null;
+nodesEl.addEventListener('pointerdown', e=>{
+  const node = e.target.closest('.node'); if(!node) return;
+  if (window.innerWidth <= 900) return;
+  $$('.node.sel').forEach(n=>n.classList.remove('sel'));
+  node.classList.add('sel');
+  drag = {node, sx:e.clientX, sy:e.clientY, ox:parseFloat(node.style.left)||0, oy:parseFloat(node.style.top)||0, moved:false};
+  node.setPointerCapture(e.pointerId);
+});
+nodesEl.addEventListener('pointermove', e=>{
+  if (!drag) return;
+  const dx = e.clientX-drag.sx, dy = e.clientY-drag.sy;
+  if (!drag.moved && Math.hypot(dx,dy) < 4) return;
+  drag.moved = true; drag.node.classList.add('drag');
+  drag.node.style.left = Math.max(4, drag.ox+dx)+'px';
+  drag.node.style.top  = Math.max(4, drag.oy+dy)+'px';
+});
+nodesEl.addEventListener('pointerup', e=>{
+  if (!drag) return;
+  const {node, moved} = drag; node.classList.remove('drag'); drag = null;
+  if (moved){
+    const pos = store.get('pos',{});
+    pos[node.dataset.app || node.dataset.file] = {x:parseFloat(node.style.left), y:parseFloat(node.style.top)};
+    store.set('pos', pos);
+  } else {
+    if (node.dataset.app) open(node.dataset.app);
+    else openFile(node.dataset.file);
+  }
+});
+document.addEventListener('click', e=>{ if(!e.target.closest('.node')) $$('.node.sel').forEach(n=>n.classList.remove('sel')); });
+
+function resetPositions(){ store.set('pos',{}); layout(); toast('Icons back where they started'); }
+function cleanUp(){
+  const pos = {}; const cols = 4, x0 = 232, y0 = 258, dx = 164, dy = 190;
+  APPS.forEach((a,i)=> pos[a.id] = {x:x0+(i%cols)*dx, y:y0+Math.floor(i/cols)*dy});
+  FILES.forEach((f,i)=> pos[f.n] = {x: (i<6? 62 : 886), y: 260 + (i%6)*136});
+  store.set('pos',pos); layout(); toast('Cleaned up');
+}
+function sortByName(){
+  const all = [...APPS.map(a=>({k:a.id,n:a.label})), ...FILES.map(f=>({k:f.n,n:f.n}))].sort((a,b)=>a.n.localeCompare(b.n));
+  const pos = {}; const cols = 4, x0 = 232, y0 = 258;
+  all.forEach((o,i)=> pos[o.k] = {x:x0+(i%cols)*164, y:y0+Math.floor(i/cols)*168});
+  store.set('pos',pos); layout(); toast('Sorted by name');
+}
+
+/* ============================================================
+   DOCK / SEALS / AWARDS
+   ============================================================ */
+const TOOLS = [
+  ['Excel','d-excel'],['Sheets','d-sheets'],['Airtable','d-airtable'],['Notion','d-notion'],
+  ['Zapier','d-zapier'],['Python','d-python'],['SQL','d-sql'],['Power BI','d-powerbi']
+];
+$('#dock').innerHTML = TOOLS.map(([n,s])=>
+  '<div class="di"><div class="di-lbl">'+esc(n)+'</div><div class="di-icon"><svg width="30" height="30" viewBox="0 0 32 32"><use href="#'+s+'"/></svg></div><div class="di-dot"></div></div>'
+).join('');
+
+const SEAL_LABELS = CERTS.map(c=>c.t);
+$('#honSeals').innerHTML = SEAL_LABELS.map((l,i)=>
+  '<button class="seal" title="'+esc(l)+'" data-cert="'+i+'"><svg width="46" height="46" viewBox="0 0 60 60"><use href="#seal"/></svg></button>'
+).join('');
+$('#awGrid').innerHTML = SEAL_LABELS.map((l,i)=>
+  '<a href="#" data-cert="'+i+'" title="'+esc(l)+'"><svg width="100%" viewBox="0 0 60 60"><use href="#seal"/></svg></a>'
+).join('');
+$$('[data-cert]').forEach(el=>{
+  el.addEventListener('mouseenter', ()=> $('#awCap').textContent = CERTS[+el.dataset.cert].t);
+  el.addEventListener('click', e=>{ e.preventDefault(); open('certs'); });
+});
+
+/* ============================================================
+   NOW PLAYING
+   ============================================================ */
+let cur = 0, playing = true;
+function paintArt(){
+  const [a,b] = TRACKS[cur].c;
+  $('#npArt').style.background = 'linear-gradient(150deg,'+a+','+b+')';
+}
+function renderList(){
+  $('#npList').innerHTML = TRACKS.map((t,i)=>
+    '<button class="np-track'+(i===cur?' on':'')+'" data-track="'+i+'"><b>'+(i+1)+'</b><span>'+esc(t.t)+'</span><em>'+t.d+'</em></button>'
+  ).join('');
+}
+function setTrack(i){
+  cur = (i+TRACKS.length)%TRACKS.length;
+  $('#npTitle').textContent = TRACKS[cur].t;
+  $('#npArtist').textContent = TRACKS[cur].a;
+  paintArt(); renderList();
+}
+setTrack(0);
+$('#npList').addEventListener('click', e=>{ const b=e.target.closest('[data-track]'); if(b) setTrack(+b.dataset.track); });
+$$('[data-np]').forEach(b=> b.addEventListener('click', ()=>{
+  const a = b.dataset.np;
+  if (a==='next') setTrack(cur+1);
+  else if (a==='prev') setTrack(cur-1);
+  else {
+    playing = !playing;
+    document.body.classList.toggle('paused', !playing);
+    $('#npIcon').innerHTML = '<use href="#'+(playing?'i-pause':'i-play')+'"/>';
+    b.title = playing ? 'Pause' : 'Play';
+  }
+}));
+
+/* ============================================================
+   WINDOWS
+   ============================================================ */
+function open(id){
+  if (id==='projects') renderHub();
+  if (id==='notebook') renderNotes();
+  if (id==='shelf')    renderShelf();
+  if (id==='certs')    renderCerts();
+  if (id==='cleaner')  initCleaner();
+  if (id==='drill')    setTimeout(()=>{ $('#dInput').focus(); }, 260);
+  const m = $('#m-'+id); if(!m) return;
+  m.classList.add('on');
+  if (!unlocked) unlock();
+}
+function closeAll(){ $$('.modal.on').forEach(m=> m.classList.remove('on')); }
+document.addEventListener('click', e=>{
+  const o = e.target.closest('[data-open]');
+  if (o){ e.preventDefault(); open(o.dataset.open); return; }
+  if (e.target.closest('[data-close]')){ e.target.closest('.modal').classList.remove('on'); return; }
+  if (e.target.classList.contains('modal')) e.target.classList.remove('on');
+});
+document.addEventListener('keydown', e=>{
+  if (e.key!=='Escape') return;
+  if ($('#emojipick').classList.contains('on')) { closeEmoji(); return; }
+  const top = $$('.modal.on').pop(); if (top) top.classList.remove('on');
+});
+
+/* draggable windows */
+document.addEventListener('pointerdown', e=>{
+  const bar = e.target.closest('.bar'); if(!bar || e.target.closest('[data-close]')) return;
+  const win = bar.closest('.win');
+  const r = win.getBoundingClientRect();
+  const st = {sx:e.clientX, sy:e.clientY, ox:r.left, oy:r.top};
+  win.style.position='fixed'; win.style.margin='0'; win.style.left=r.left+'px'; win.style.top=r.top+'px'; win.style.width=r.width+'px';
+  const move = ev => { win.style.left = (st.ox+ev.clientX-st.sx)+'px'; win.style.top = Math.max(0, st.oy+ev.clientY-st.sy)+'px'; };
+  const up = () => { document.removeEventListener('pointermove',move); document.removeEventListener('pointerup',up); };
+  document.addEventListener('pointermove',move); document.addEventListener('pointerup',up);
+});
+
+/* ============================================================
+   PROJECTS HUB + READER
+   ============================================================ */
+function renderHub(){
+  $('#hubSide').innerHTML = CASES.map((c,i)=>
+    '<button class="hub-tab" data-case="'+i+'"><span class="n">'+esc(c.n)+'</span><span class="name">'+esc(c.name)+'</span><span class="s">'+esc(c.s)+'</span></button>'
+  ).join('');
+}
+$('#hubSide').addEventListener('click', e=>{
+  const b = e.target.closest('[data-case]'); if(!b) return;
+  $('#m-projects').classList.remove('on');
+  openCase(+b.dataset.case);
+});
+
+function secHTML(s, c){
+  let h = '<section class="sec'+(s.stats||s.ins||s.steps?' wide':'')+'"><div class="kicker">'+esc(s.n)+'</div><h2>'+esc(s.h)+'</h2>';
+  if (s.lede) h += '<p class="lede">'+esc(s.lede)+(s.dim?' <span class="dim">'+esc(s.dim)+'</span>':'')+'</p>';
+  (s.p||[]).forEach(p=> h += '<p>'+esc(p)+'</p>');
+  if (s.meta) h += '<div class="meta">'+c.meta.map(([k,v])=>'<div><span>'+esc(k)+'</span><strong>'+esc(v)+'</strong></div>').join('')+'</div>';
+  if (s.qs) h += '<div class="qs">'+s.qs.map(q=>'<span class="q">'+esc(q)+'</span>').join('')+'</div>';
+  if (s.ins) h += '<div class="grid3">'+s.ins.map(([ic,b,t,v])=>
+    '<div class="ins"><div class="ico">'+esc(ic)+'</div><b>'+esc(b)+'</b><span class="txt">'+esc(t)+'</span><div class="vis">'+esc(v)+'</div></div>').join('')+'</div>';
+  if (s.steps) h += '<div class="steps">'+s.steps.map(([n,t,d])=>
+    '<div class="step"><b>'+esc(n)+'</b><strong>'+esc(t)+'</strong><span>'+esc(d)+'</span></div>').join('')+'</div>';
+  if (s.stats) h += '<div class="grid3" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">'+s.stats.map(([v,l])=>
+    '<div class="ins"><div class="vis" style="border:0;padding:0;margin:0"><b>'+esc(v)+'</b>'+esc(l)+'</div></div>').join('')+'</div>';
+  if (s.callout) h += '<div class="callout"><b>'+esc(s.callout[0])+'</b><p>'+esc(s.callout[1])+'</p></div>';
+  h += '</section>';
+  return h;
+}
+function openCase(i){
+  const c = CASES[i];
+  $('#caseBarTitle').textContent = c.n + ' — ' + c.name;
+  const banner =
+    '<div class="banner"><svg class="bl" viewBox="0 0 900 290" preserveAspectRatio="xMidYMid slice">'+
+      '<g stroke="rgba(255,255,255,.16)" stroke-width="1">'+
+        Array.from({length:11},(_,k)=>'<path d="M0 '+(k*29)+'h900"/>').join('')+
+        Array.from({length:19},(_,k)=>'<path d="M'+(k*50)+' 0v290"/>').join('')+
+      '</g>'+
+      '<g font-family="JetBrains Mono, monospace" font-size="11" fill="rgba(255,255,255,.55)" letter-spacing="2">'+
+        '<text x="34" y="42">'+esc(c.kicker.toUpperCase())+'</text>'+
+      '</g>'+
+      Array.from({length:26},(_,k)=>{
+        const w = 40+((k*57)%160), y = 84+Math.floor(k/6)*33, x = 34+(k%6)*140;
+        const o = (k%4===0)?.5:(k%3===0)?.3:.18;
+        return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="9" rx="4.5" fill="rgba(255,255,255,'+o+')"/>';
+      }).join('')+
+      '<g fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"><circle cx="812" cy="222" r="34"/><path d="M796 222l12 12 22-24" stroke-linecap="round" stroke-linejoin="round"/></g>'+
+    '</svg></div>';
+  $('#caseBody').innerHTML =
+    banner +
+    '<button class="backsm" data-open="projects"><svg width="12" height="12"><use href="#i-chev"/></svg> projects</button>'+
+    '<div class="reader"><div class="hero-band"><div class="hero-grid"><div>'+
+      '<div class="kicker">'+esc(c.kicker)+'</div><h1>'+esc(c.title)+'</h1></div>'+
+      '<p class="sub">'+esc(c.sub)+'</p></div>'+
+      '<div class="tags">'+c.tags.map(t=>'<span class="tag">'+esc(t)+'</span>').join('')+'</div></div>'+
+      c.body.map((s,k)=> (k?'<div class="rule"></div>':'') + secHTML(s,c)).join('')+
+    '</div>';
+  $('#caseBody').scrollTop = 0;
+  $('#m-case').classList.add('on');
+}
+$('#caseBody').addEventListener('scroll', function(){
+  $('#caseTop').classList.toggle('on', this.scrollTop > 500);
+});
+$('#caseTop').addEventListener('click', ()=> $('#caseBody').scrollTo({top:0,behavior:'smooth'}));
+
+/* ============================================================
+   FILE PREVIEW
+   ============================================================ */
+function openFile(name){
+  const f = FILES.find(x=>x.n===name); if(!f) return;
+  const kind = f.t.split('-')[1].toUpperCase();
+  $('#fileBarTitle').textContent = f.n;
+  $('#fileBody').innerHTML =
+    '<div class="tool-head"><div><h2 style="font-family:var(--mono);font-size:19px;letter-spacing:-.01em">'+esc(f.n)+'</h2>'+
+    '<p>'+esc(f.note)+'</p></div><svg width="52" height="66" viewBox="0 0 72 92"><use href="#'+f.t+'"/></svg></div>'+
+    '<div class="stats">'+
+      '<div class="stat"><span>Rows</span><b>'+f.rows.toLocaleString()+'</b></div>'+
+      '<div class="stat"><span>Columns</span><b>'+f.cols.length+'</b></div>'+
+      '<div class="stat"><span>Format</span><b style="font-size:18px">'+kind+'</b></div>'+
+      '<div class="stat"><span>Status</span><b style="font-size:18px">'+esc(f.s)+'</b></div>'+
+    '</div>'+
+    '<div class="frame"><div class="frame-h">Columns</div><div class="frame-b"><div class="qs" style="margin:0">'+
+      f.cols.map(c=>'<span class="q" style="font-family:var(--mono);font-size:11px">'+esc(c)+'</span>').join('')+'</div></div></div>'+
+    '<div class="frame"><div class="frame-h">Sample rows · illustrative</div><div class="frame-b">'+
+      '<div style="font:400 11px/1.9 var(--mono);white-space:pre;overflow-x:auto;color:var(--ink-3)">'+f.sample.map(esc).join('\n')+'</div>'+
+    '</div></div>'+
+    '<p style="font-size:11.5px;color:var(--ink-4);margin:0">Placeholder data. Real client files never leave the engagement folder.</p>';
+  $('#m-file').classList.add('on');
+}
+
+/* ============================================================
+   NOTEBOOK / SHELF / CERTS
+   ============================================================ */
+function noteBody(n){
+  return n.h.map(([k,v])=>{
+    if (k==='p') return '<p>'+v+'</p>';
+    if (k==='q') return '<blockquote>'+v+'</blockquote>';
+    return '<ul>'+v.map(li=>'<li>'+li+'</li>').join('')+'</ul>';
+  }).join('');
+}
+function renderNotes(i){
+  i = i||0;
+  $('#nbList').innerHTML = NOTES.map((n,k)=>
+    '<button class="nb-item'+(k===i?' on':'')+'" data-note="'+k+'">'+esc(n.f)+'</button>').join('');
+  $('#nbPage').innerHTML = '<div class="h">Note · '+esc(NOTES[i].f)+'</div><h2>'+esc(NOTES[i].t)+'</h2>'+noteBody(NOTES[i]);
+  $('#nbPage').scrollTop = 0;
+}
+$('#nbList').addEventListener('click', e=>{ const b=e.target.closest('[data-note]'); if(b) renderNotes(+b.dataset.note); });
+
+function renderShelf(){
+  $('#shelfBody').innerHTML = SHELF.map(r=>
+    '<div class="shelf-row"><h3>'+esc(r.h)+'</h3><div class="sh-sub">'+esc(r.s)+'</div><div class="shelf-items">'+
+    r.items.map(b=>'<div class="bk"><div class="cover" style="background:linear-gradient(160deg,'+b.c+',rgba(0,0,0,.55))">'+
+      '<b>'+esc(b.t)+'</b><i>'+esc(b.a)+'</i></div><div class="why">'+esc(b.w)+'</div></div>').join('')+
+    '</div></div>').join('');
+}
+function renderCerts(){
+  $('#certBody').innerHTML =
+    '<div class="tool-head"><div><h2>Certificates</h2><p>Four current credentials. Renewals tracked on the same calendar as client retention dates.</p></div></div>'+
+    '<div class="grid2">'+CERTS.map(c=>
+      '<div class="ins"><div class="ico"><svg width="16" height="16" viewBox="0 0 60 60" style="color:#fff"><use href="#seal"/></svg></div>'+
+      '<b>'+esc(c.t)+'</b><span class="txt">'+esc(c.n)+'</span>'+
+      '<div class="vis">'+esc(c.i)+'<br>'+esc(c.d)+'</div></div>').join('')+'</div>';
+}
+
+/* ============================================================
+   10-KEY DRILL
+   ============================================================ */
+const D = {mode:'numeric', target:'', start:0, chars:0, errs:0, lines:0, elapsed:0};
+function genLine(mode){
+  const r = (n,m)=> Math.floor(Math.random()*(m-n+1))+n;
+  if (mode==='numeric') return Array.from({length:3},()=>String(r(1000,9999))).join(' ');
+  if (mode==='currency') return Array.from({length:3},()=>{
+    const v = r(100,99999)/100;
+    return v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  }).join('  ');
+  const L = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+  return Array.from({length:3},()=> ['INV','SKU','REF'][r(0,2)]+'-'+r(1000,9999)+'-'+L[r(0,L.length-1)]).join('  ');
+}
+function paintTarget(){
+  const t = D.target, v = $('#dInput').value;
+  let h = '';
+  for (let i=0;i<t.length;i++){
+    const ch = t[i]===' ' ? '&nbsp;' : esc(t[i]);
+    if (i < v.length) h += '<span class="'+(v[i]===t[i]?'done':'bad')+'">'+ch+'</span>';
+    else if (i === v.length) h += '<span class="cur">'+ch+'</span>';
+    else h += ch;
+  }
+  $('#dTarget').innerHTML = h;
+}
+function newLine(){ D.target = genLine(D.mode); $('#dInput').value=''; paintTarget(); }
+function drillStats(){
+  const secs = D.elapsed/1000;
+  const kph = secs>0 ? Math.round(D.chars/secs*3600) : 0;
+  const acc = D.chars>0 ? (100 - D.errs/D.chars*100) : null;
+  $('#dSpeed').innerHTML = kph.toLocaleString()+'<em>'+(D.mode==='alpha'?'kph':'kph')+'</em>';
+  $('#dAcc').textContent = acc===null ? '—' : acc.toFixed(1)+'%';
+  $('#dLines').textContent = D.lines;
+  $('#dErr').textContent = D.errs;
+}
+function resetDrill(){ D.start=0; D.chars=0; D.errs=0; D.lines=0; D.elapsed=0; newLine(); drillStats(); $('#dHint').textContent='Enter submits · Esc resets'; }
+$('#dInput').addEventListener('input', ()=>{
+  if (!D.start){ D.start = Date.now(); $('#dHint').textContent = 'timing…'; }
+  paintTarget();
+});
+$('#dInput').addEventListener('keydown', e=>{
+  if (e.key==='Escape'){ e.preventDefault(); e.stopPropagation(); resetDrill(); return; }
+  if (e.key!=='Enter') return;
+  e.preventDefault();
+  const v = $('#dInput').value, t = D.target;
+  if (!v.length) return;
+  let bad = Math.abs(v.length - t.length);
+  for (let i=0;i<Math.min(v.length,t.length);i++) if (v[i]!==t[i]) bad++;
+  D.chars += t.length; D.errs += bad; D.lines++;
+  if (D.start) D.elapsed += Date.now()-D.start;
+  D.start = Date.now();
+  newLine(); drillStats();
+});
+$('#dReset').addEventListener('click', resetDrill);
+$('#drillModes').addEventListener('click', e=>{
+  const b = e.target.closest('[data-mode]'); if(!b) return;
+  $$('#drillModes button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+  D.mode = b.dataset.mode; resetDrill(); $('#dInput').focus();
+});
+resetDrill();
+
+/* ============================================================
+   DATA CLEANER
+   ============================================================ */
+const SAMPLE_IN = [
+  '  adaeze  NWOSU , a.Nwosu@Example.COM , 0803 112 2334 , 14/03/2021',
+  'Tomás   Bergström,T.BERG@example.com,+46 70 123 45 67,14-03-2021',
+  'grace okonkwo , G.OKO@Example.com , 08099887766 , 15/03/2021',
+  '',
+  'ADAEZE NWOSU,a.nwosu@example.com,+234 803 112 2334,2021-03-14',
+  'daniel   ibe ,D.IBE@example.com, 0701 998 4412 ,16/03/2021',
+  '   ',
+  'Tomás Bergström , t.berg@example.com , 0046701234567 , 14/03/2021',
+  'Ngozi   Eze,N.EZE@Example.Com,+234 802 445 1190,17/03/2021'
+].join('\n');
+
+const OPS = [
+  {k:'blanks', l:'drop blank rows',  on:true},
+  {k:'trim',   l:'trim & collapse',  on:true},
+  {k:'case',   l:'fix name casing',  on:true},
+  {k:'email',  l:'lowercase email',  on:true},
+  {k:'phone',  l:'phone → E.164',    on:true},
+  {k:'date',   l:'date → ISO 8601',  on:true},
+  {k:'dedupe', l:'remove duplicates',on:true},
+  {k:'sort',   l:'sort by name',     on:false}
+];
+function titleCase(s){
+  return s.toLowerCase().replace(/(^|[\s'\-])([\p{L}])/gu, (m,a,b)=> a+b.toUpperCase());
+}
+function toE164(s){
+  let d = s.replace(/[^\d+]/g,'');
+  if (d.startsWith('+')) return '+'+d.slice(1).replace(/\D/g,'');
+  if (d.startsWith('00')) return '+'+d.slice(2);
+  if (d.startsWith('0'))  return '+234'+d.slice(1);   // batch rule: local numbers are NG
+  return '+'+d;
+}
+function toISO(s){
+  s = s.trim();
+  let m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/); if (m) return s;
+  m = s.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{2,4})$/);
+  if (m){
+    let [_,d,mo,y] = m;                              // batch rule: source is DD/MM/YYYY
+    if (y.length===2) y = (+y > 50 ? '19' : '20')+y;
+    return y+'-'+String(mo).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+  }
+  return s;
+}
+function runClean(){
+  const on = k => OPS.find(o=>o.k===k).on;
+  let lines = $('#cIn').value.split('\n');
+  const inRows = lines.length;
+  let dropped = 0, fixed = 0, dupes = 0;
+
+  if (on('blanks')){ const b = lines.length; lines = lines.filter(l=>l.trim()!==''); dropped = b-lines.length; }
+  let rows = lines.map(l => l.split(',').map(c => on('trim') ? c.trim().replace(/\s+/g,' ') : c));
+  rows = rows.map(cells => cells.map((c,i)=>{
+    const before = c;
+    if (i===0 && on('case')) c = titleCase(c);
+    if (i===1 && on('email')) c = c.toLowerCase();
+    if (i===2 && on('phone')) c = toE164(c);
+    if (i===3 && on('date'))  c = toISO(c);
+    if (c!==before) fixed++;
+    return c;
+  }));
+  if (on('dedupe')){
+    const seen = new Set(), out = [];
+    rows.forEach(r=>{
+      const key = (r[0]||'').toLowerCase()+'|'+(r[1]||'').toLowerCase();
+      if (seen.has(key)){ dupes++; return; }
+      seen.add(key); out.push(r);
+    });
+    rows = out;
+  }
+  if (on('sort')) rows.sort((a,b)=> (a[0]||'').localeCompare(b[0]||''));
+
+  $('#cOut').textContent = rows.map(r=>r.join(', ')).join('\n');
+  $('#inCount').textContent = inRows + ' rows';
+  $('#outCount').textContent = rows.length + ' rows';
+  $('#cReport').textContent = dropped+' blank · '+dupes+' duplicate · '+fixed+' fields normalized';
+}
+let cleanerReady = false;
+function initCleaner(){
+  if (cleanerReady) return; cleanerReady = true;
+  $('#cIn').value = SAMPLE_IN;
+  $('#cleanOps').innerHTML = OPS.map(o=>
+    '<button class="op'+(o.on?' on':'')+'" data-op="'+o.k+'"><i></i>'+esc(o.l)+'</button>').join('');
+  $('#cleanOps').addEventListener('click', e=>{
+    const b = e.target.closest('[data-op]'); if(!b) return;
+    const o = OPS.find(x=>x.k===b.dataset.op); o.on = !o.on;
+    b.classList.toggle('on', o.on); runClean();
+  });
+  $('#cIn').addEventListener('input', runClean);
+  $('#cCopy').addEventListener('click', async ()=>{
+    try{ await navigator.clipboard.writeText($('#cOut').textContent); toast('Output copied'); }
+    catch(e){ toast('Select the output and copy manually'); }
+  });
+  runClean();
+}
+
+/* ============================================================
+   STICKIES + STICKERS
+   ============================================================ */
+let stColor = '#F8F3D9';
+$$('[data-stcolor]').forEach(b=> b.addEventListener('click', ()=>{
+  $$('[data-stcolor]').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+  stColor = b.dataset.stcolor; $('#stText').style.background = stColor;
+}));
+$('#stPin').addEventListener('click', ()=>{
+  const txt = $('#stText').value.trim();
+  if (!txt){ toast('Write something first'); return; }
+  const x = 120 + Math.random()*(window.innerWidth-500);
+  const y = 160 + Math.random()*(window.innerHeight-420);
+  addSticky(txt, stColor, x, y);
+  $('#stText').value=''; $('#m-stickies').classList.remove('on'); toast('Pinned to the desktop');
+});
+function addSticky(text, color, x, y){
+  const el = document.createElement('div');
+  el.className = 'sticker';
+  el.style.cssText = 'left:'+x+'px;top:'+y+'px;font-size:12px;width:170px;padding:14px 15px;border-radius:3px;'+
+    'background:'+color+';color:#2A3140;font-family:var(--sans);line-height:1.5;transform:translate(-50%,-50%) rotate('+(Math.random()*6-3).toFixed(1)+'deg);'+
+    'box-shadow:0 10px 24px rgba(8,18,38,.28);white-space:pre-wrap;word-break:break-word';
+  el.textContent = text;
+  $('#stickers').appendChild(el);
+  makeDraggable(el);
+}
+function makeDraggable(el){
+  el.addEventListener('pointerdown', e=>{
+    e.preventDefault(); el.setPointerCapture(e.pointerId);
+    const r = el.getBoundingClientRect();
+    const ox = e.clientX - (r.left + r.width/2), oy = e.clientY - (r.top + r.height/2);
+    const move = ev => { el.style.left = (ev.clientX-ox)+'px'; el.style.top = (ev.clientY-oy)+'px'; };
+    const up = () => { el.removeEventListener('pointermove',move); el.removeEventListener('pointerup',up); };
+    el.addEventListener('pointermove',move); el.addEventListener('pointerup',up);
+  });
+  el.addEventListener('dblclick', ()=> el.remove());
+}
+
+let pending = null;
+$('#emojiGrid').innerHTML = EMOJI.map(e=>'<button data-e="'+e+'">'+e+'</button>').join('');
+$('#emojiGrid').addEventListener('click', e=>{
+  const b = e.target.closest('[data-e]'); if(!b) return;
+  pending = b.dataset.e; document.body.classList.add('placing');
+  closeEmoji(); toast('Now click anywhere to place it');
+});
+function openEmoji(){ $('#emojipick').classList.add('on'); }
+function closeEmoji(){ $('#emojipick').classList.remove('on'); }
+$('[data-closeemoji]').addEventListener('click', closeEmoji);
+$$('[data-emoji]').forEach(b=> b.addEventListener('click', openEmoji));
+$$('[data-clearstickers]').forEach(b=> b.addEventListener('click', ()=>{ $('#stickers').innerHTML=''; toast('Stickers cleared'); }));
+document.addEventListener('click', e=>{
+  if (!pending) return;
+  if (e.target.closest('.modal,#menubar,#rail,#dockwrap,#emojipick,#ctx,#guide,#honors')) return;
+  const el = document.createElement('div');
+  el.className = 'sticker'; el.textContent = pending;
+  el.style.left = e.clientX+'px'; el.style.top = e.clientY+'px';
+  $('#stickers').appendChild(el); makeDraggable(el);
+  pending = null; document.body.classList.remove('placing');
+});
+
+/* ============================================================
+   CONTEXT MENU
+   ============================================================ */
+const ctx = $('#ctx');
+document.addEventListener('contextmenu', e=>{
+  if (e.target.closest('.modal,#menubar,input,textarea')) return;
+  e.preventDefault();
+  ctx.classList.add('on');
+  ctx.style.left = Math.min(e.clientX, window.innerWidth-200)+'px';
+  ctx.style.top  = Math.min(e.clientY, window.innerHeight-220)+'px';
+});
+document.addEventListener('click', ()=> ctx.classList.remove('on'));
+$('[data-clean]').addEventListener('click', cleanUp);
+$('[data-sortname]').addEventListener('click', sortByName);
+$$('[data-reset]').forEach(b=> b.addEventListener('click', resetPositions));
+
+/* ============================================================
+   CURSOR TAG
+   ============================================================ */
+let curEmoji = store.get('curEmoji','');
+const tag = $('#curtag');
+$('#curEmoji').innerHTML = ['—','✅','📊','🔢','⌨️','☕','🌀','✨','🌙','🍋','🐈','🎧','📌','🧮','⏱️','🔍']
+  .map(e=>'<button data-ce="'+(e==='—'?'':e)+'"'+(e===(curEmoji||'—')?' class="on"':'')+'>'+e+'</button>').join('');
+$('#curEmoji').addEventListener('click', e=>{
+  const b = e.target.closest('[data-ce]'); if(!b) return;
+  $$('#curEmoji button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+  curEmoji = b.dataset.ce; store.set('curEmoji', curEmoji); paintTag();
+});
+$('#curName').value = store.get('curName','');
+$('#curName').addEventListener('input', ()=>{ store.set('curName', $('#curName').value); paintTag(); });
+function paintTag(){
+  const n = ($('#curName').value||'').trim();
+  const txt = [curEmoji, n].filter(Boolean).join(' ');
+  $('#curTagText').textContent = txt;
+  tag.classList.toggle('on', !!txt);
+}
+paintTag();
+document.addEventListener('pointermove', e=>{
+  if (!tag.classList.contains('on')) return;
+  tag.style.left = e.clientX+'px'; tag.style.top = e.clientY+'px';
+});
+
+/* ============================================================
+   GUIDE
+   ============================================================ */
+const STEPS = [
+  ['Hi, I\'m Tally','Welcome to the desk. This is a working desktop — icons drag, windows move, and two of the apps actually run.'],
+  ['Start with the folder','The locked <b>projects</b> folder holds four write-ups. The one worth reading is Case 04, the QA loop everything else rests on.'],
+  ['Try the tools','The <b>cleaner</b> takes a messy column and resolves it live. The <b>10-key drill</b> scores you the way I score a batch.'],
+  ['Make it yours','Right-click the desktop for stickers and layout. Change the wallpaper from the theme swatches, or name your cursor under Customization.']
+];
+let gi = 0;
+function paintGuide(){
+  $('#gSteps').innerHTML = STEPS.map((_,k)=>'<i class="'+(k<=gi?'on':'')+'"></i>').join('');
+  $('#gTitle').textContent = STEPS[gi][0];
+  $('#gBody').innerHTML = STEPS[gi][1];
+  $('#gNext').textContent = gi===STEPS.length-1 ? 'Got it' : 'Continue';
+}
+function openGuide(){ gi=0; paintGuide(); $('#guide').classList.add('on'); $('#macbtn').style.display='none'; }
+function closeGuide(){ $('#guide').classList.remove('on'); $('#macbtn').style.display=''; store.set('seenGuide', true); }
+$('#gNext').addEventListener('click', ()=>{ if(gi<STEPS.length-1){ gi++; paintGuide(); } else closeGuide(); });
+$('#gSkip').addEventListener('click', closeGuide);
+$('#macbtn').addEventListener('click', openGuide);
+$$('[data-guide]').forEach(b=> b.addEventListener('click', openGuide));
+
+/* ============================================================
+   MISC
+   ============================================================ */
+let toastT;
+function toast(msg){
+  const t = $('#toast'); t.textContent = msg; t.classList.add('on');
+  clearTimeout(toastT); toastT = setTimeout(()=> t.classList.remove('on'), 2200);
+}
+$$('[data-mail]').forEach(b=> b.addEventListener('click', e=>{
+  e.preventDefault(); toast('Placeholder — wire this to your real email address');
+}));
+$$('[data-noop]').forEach(b=> b.addEventListener('click', e=>{
+  e.preventDefault(); toast('Placeholder link — add your real profile URL');
+}));
+})();
+</script>
+</body>
+</html>
