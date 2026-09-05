@@ -1,6 +1,6 @@
 # Jeremy's Desk
 
-An interactive desktop-OS portfolio for a data entry specialist. One self-contained HTML file — no build step, no dependencies, no external images.
+An interactive desktop-OS portfolio for data entry and data operations work. One self-contained HTML file — no build step, no dependencies, no bundler.
 
 **Live:** enable GitHub Pages (Settings → Pages → Deploy from branch → `main` / root) and it serves at
 `https://jeremyahamioje.github.io/data-entry/`
@@ -13,40 +13,46 @@ An interactive desktop-OS portfolio for a data entry specialist. One self-contai
 | --- | --- |
 | `index.html` | The site. A complete standalone HTML document — open it directly or host it anywhere. |
 | `artifact.html` | The same page as body-only markup, for hosts that supply their own `<!doctype>` / `<head>`. |
+| `portrait.jpg` | Source headshot, cropped square. Already inlined as a data URI in the HTML. |
 
-Everything is inline: CSS, JS, and every graphic (drawn as SVG). The only network requests are three Google Fonts — Space Grotesk, JetBrains Mono, and Big Shoulders Display.
+Everything is inline: CSS, JS, the portrait, and every icon (drawn as SVG). External requests are limited to three Google Fonts and the Spotify embed.
 
 ## What it does
 
-- **Boot + lock screen** — clock, loading bar, glass link pills, click to unlock
+- **Boot + lock screen** — clock, loading bar, contact pills, click to unlock
 - **Desktop** — draggable, selectable icon nodes over a blueprint-gridded wallpaper; positions persist in `localStorage`
 - **Four wallpaper themes** — blue, purple, green, black
-- **Widget rail** — theme picker, weather, a now-playing queue, keyboard stats, credentials
+- **Widget rail** — theme picker, live Lagos clock, Upwork hours, a real Spotify player with a four-track queue, and the services list
 - **Dock** — magnifying toolkit icons with hover labels
-- **Windows** — draggable macOS-style windows for projects, about, services, notebook, shelf, résumé, certificates, recycle bin
+- **Windows** — draggable macOS-style windows for projects, about, what-I-do, notebook, shelf, résumé, sticky notes, and file previews
+- **Floating contact dock** — email, WhatsApp, Upwork, LinkedIn and X, bottom right
 - **Right-click desktop** — clean up, sort by name, stickers, reset positions
-- **Customization** — name your cursor and give it a badge
 
 ### Two of the apps actually work
 
 **Data cleaner** — paste a messy column and toggle eight rules: trim and collapse whitespace, fix name casing, lowercase emails, normalize phones to E.164, normalize dates to ISO 8601, drop blanks, dedupe, sort. Runs entirely in the browser; nothing is uploaded.
 
-**10-key drill** — three modes (numeric, currency, alphanumeric) with live per-character diffing. Scores keystrokes-per-hour and accuracy the same way a batch is scored: errors against total characters.
+**10-key drill** — three modes (numeric, currency, alphanumeric) with live per-character diffing, scoring the viewer's own keystrokes-per-hour and accuracy.
 
-## Content status
+## Content and honesty
 
-The four project write-ups, notebook essays, shelf, résumé and certificates are **placeholder content** — sample work, not client engagements. The projects folder carries a visible chip saying so. Before publishing this as your own portfolio:
+Every claim on the page is one that can be backed up:
 
-- Replace the name and role in the lock screen, menubar, hero, and about window
-- Swap the `CASES`, `NOTES`, `SHELF` and `CERTS` arrays near the top of the `<script>` block
-- Wire the real email into the `[data-mail]` handler and real URLs into the `[data-noop]` links
-- Replace the drawn avatar with a real photo if you'd rather
+- **3,000+ hours** of data work, linked to the live Upwork profile
+- **Company DB** (`company-db-clone.vercel.app`) is a real, live build and is labelled as a personal build
+- The other **three projects are independent samples** — each carries a visible note reading *"This is my own sample dataset, built to demonstrate the workflow. It is not a client engagement."*
+
+There are no invented client names, no fabricated volume or accuracy figures, and no certifications listed. The notebook and résumé describe method and service areas rather than claimed results.
+
+**Screenshots are still placeholders.** Each project has a dashed `.shot` frame saying what image belongs there. Drop real screenshots in by replacing the `shot:[title, caption]` entries in the `CASES` array with `<img>` markup.
 
 ## Editing
 
-All content lives in plain data arrays at the top of the script — `APPS`, `FILES`, `CASES`, `NOTES`, `SHELF`, `CERTS`, `TRACKS`. Editing those changes the site; the rendering code below them doesn't need to be touched.
+All content lives in plain data arrays at the top of the `<script>` block — `APPS`, `FILES`, `CASES`, `NOTES`, `SHELF`, `SKILLS`, `TRACKS`. Editing those changes the site; the rendering code below them doesn't need to be touched.
 
 Design tokens (colors, fonts, shadows) are CSS custom properties in the `:root` block, with per-theme overrides on `[data-theme="..."]`.
+
+To swap the music, replace the Spotify track IDs in `TRACKS`. To change the portrait, re-crop the source square and re-inline it as a base64 data URI.
 
 ## Credit
 
