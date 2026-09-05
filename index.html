@@ -2020,7 +2020,14 @@ function open(id){
 function closeAll(){ $$('.modal.on').forEach(m=> m.classList.remove('on')); }
 document.addEventListener('click', e=>{
   const o = e.target.closest('[data-open]');
-  if (o){ e.preventDefault(); open(o.dataset.open); return; }
+  if (o){
+    e.preventDefault();
+    /* navigating from inside a window replaces it rather than stacking behind it */
+    const from = o.closest('.modal');
+    if (from) from.classList.remove('on');
+    open(o.dataset.open);
+    return;
+  }
   if (e.target.closest('[data-close]')){ e.target.closest('.modal').classList.remove('on'); return; }
   if (e.target.classList.contains('modal')) e.target.classList.remove('on');
 });
