@@ -2,8 +2,10 @@
 
 An interactive desktop-OS portfolio for data entry and data operations work. One self-contained HTML file — no build step, no dependencies, no bundler.
 
-**Live:** enable GitHub Pages (Settings → Pages → Deploy from branch → `main` / root) and it serves at
+**Live:** enable GitHub Pages (Settings → Pages → Deploy from branch → `root` / `/ (root)`) and it serves at
 `https://jeremyahamioje.github.io/data-entry/`
+
+The default branch is `root`.
 
 ---
 
