@@ -938,29 +938,64 @@ body.placing{cursor:crosshair}
   #honors{display:none}
 }
 @media (max-width:900px){
-  #stage{inset:38px 0 0}
-  #hero{left:50%;top:104px;transform:translateX(-50%);flex-direction:column;align-items:center;text-align:center;width:min(430px,88vw)}
+  /* the fixed desktop shell becomes an ordinary scrolling document */
+  html,body{height:auto;overflow-x:hidden}
+  body{overflow-y:visible}
+  #wall,#grain{position:fixed;inset:0}
+
+  /* compact menubar: brand menu + clock only. The hidden menus are all
+     reachable as desktop icons, and the socials live in the contact dock. */
+  #menubar{gap:6px;padding:0 10px}
+  #menubar > .mb:not(:first-of-type){display:none}
+  .mb-trigger.bold{white-space:nowrap;font-size:13px;padding:3px 6px}
+  .mb-right{gap:8px;margin-left:auto;flex:none}
+  .mb-right .soc,#mbDate{display:none}
+  .mb-drop{left:auto;right:0}
+
+  /* stage, hero, icons and widgets all flow vertically */
+  #stage{position:static;inset:auto;overflow:visible;padding:52px 0 0}
+  #hero{
+    position:static;left:auto;top:auto;transform:none;
+    width:auto;max-width:none;margin:0;padding:0 20px;
+    flex-direction:column;align-items:center;text-align:center;
+  }
+  .hero-face{width:104px;height:104px}
   .hero-col{align-items:center;padding-top:0}
-  .hero-lede{max-width:none}
+  .hero-lede{max-width:36ch}
   .hero-more{align-self:center}
+
   .node{position:static !important;width:auto}
   #nodes{
-    position:absolute;left:0;right:0;top:330px;bottom:120px;overflow-y:auto;
-    display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:20px 8px;
-    padding:0 18px 24px;align-content:start;
+    position:static;inset:auto;overflow:visible;
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:20px 6px;
+    margin-top:30px;padding:0 14px;align-content:start;
   }
   .node.file{display:none}
   .bp,.coord,.tick{display:none}
   .ncap{display:none}
-  .tile{width:82px;height:82px}
-  #dock{gap:5px;padding:8px 10px;max-width:calc(100vw - 24px);overflow-x:auto}
+  .tile{width:78px;height:78px}
+
+  /* the widget rail is hidden above 1080 - bring it back, stacked, in flow */
+  #rail{
+    display:flex;position:static;top:auto;right:auto;
+    width:min(430px,100%);max-height:none;overflow:visible;
+    margin:30px auto 0;padding:0 16px;
+  }
+  #honors{display:none}
+
+  #dockwrap{position:static;padding:26px 0 0;transform:none}
+  body.up #dockwrap{transform:none}
+  #dock{gap:5px;padding:8px 10px;max-width:calc(100vw - 28px);overflow-x:auto}
   .di-icon{width:42px;height:42px}
-  #macbtn{right:12px;bottom:180px;width:46px;height:46px}
-  #macbtn svg{width:46px;height:46px}
-  #guide{right:12px;bottom:180px}
+  #copyright{position:static;left:auto;bottom:auto;text-align:center;padding:22px 0 28px}
+
+  #macbtn{right:12px;bottom:150px;width:44px;height:44px}
+  #macbtn svg{width:44px;height:44px}
+  #guide{right:12px;left:12px;bottom:150px;justify-content:flex-end}
   #guide .mascot{display:none}
-  .bubble{width:min(280px,calc(100vw - 24px))}
-  #fab{right:12px;bottom:96px}
+  .bubble{width:auto;max-width:none}
+  #fab{right:12px;bottom:14px}
+  #fab .sheet-c{width:min(274px,calc(100vw - 24px))}
   #fabBtn{padding:11px 16px;font-size:12px}
   .hero-band,.sec{padding-left:22px;padding-right:22px}
   .rule{margin-left:22px;margin-right:22px}
