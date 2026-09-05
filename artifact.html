@@ -921,9 +921,9 @@ body.placing{cursor:crosshair}
   .mb-drop{left:auto;right:0}
 
   /* stage, hero, icons and widgets all flow vertically */
-  #stage{position:static;inset:auto;overflow:visible;padding:52px 0 0}
+  #stage{position:relative;inset:auto;overflow:visible;padding:52px 0 0}
   #hero{
-    position:static;left:auto;top:auto;transform:none;
+    position:relative;left:auto;top:auto;transform:none;
     width:auto;max-width:none;margin:0;padding:0 20px;
     flex-direction:column;align-items:center;text-align:center;
   }
@@ -932,9 +932,9 @@ body.placing{cursor:crosshair}
   .hero-lede{max-width:36ch}
   .hero-more{align-self:center}
 
-  .node{position:static !important;width:auto}
+  .node{position:relative !important;left:auto !important;top:auto !important;width:auto}
   #nodes{
-    position:static;inset:auto;overflow:visible;
+    position:relative;inset:auto;overflow:visible;z-index:3;
     display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:20px 6px;
     margin-top:30px;padding:0 14px;align-content:start;
   }
@@ -945,17 +945,17 @@ body.placing{cursor:crosshair}
 
   /* the widget rail is hidden above 1080 - bring it back, stacked, in flow */
   #rail{
-    display:flex;position:static;top:auto;right:auto;
+    display:flex;position:relative;z-index:3;top:auto;right:auto;
     width:min(430px,100%);max-height:none;overflow:visible;
     margin:30px auto 0;padding:0 16px;
   }
   #honors{display:none}
 
-  #dockwrap{position:static;padding:26px 0 0;transform:none}
+  #dockwrap{position:relative;z-index:3;padding:26px 0 0;transform:none}
   body.up #dockwrap{transform:none}
   #dock{gap:5px;padding:8px 10px;max-width:calc(100vw - 28px);overflow-x:auto}
   .di-icon{width:42px;height:42px}
-  #copyright{position:static;left:auto;bottom:auto;text-align:center;padding:22px 0 28px}
+  #copyright{position:relative;z-index:3;left:auto;bottom:auto;text-align:center;padding:22px 0 28px}
 
   #macbtn{right:12px;bottom:150px;width:44px;height:44px}
   #macbtn svg{width:44px;height:44px}
