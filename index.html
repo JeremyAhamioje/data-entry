@@ -858,6 +858,32 @@ body.placing{cursor:crosshair}
 .hon-badge:hover{transform:scale(1.1)}
 .hon-badge b{display:block;font-size:12px;font-weight:700}
 
+/* spreadsheet-style data table inside a case study */
+.ss{margin:20px 0 0;border:1px solid var(--hair);border-radius:10px;overflow:hidden;background:#fff}
+.ss-h{
+  display:flex;align-items:center;gap:9px;padding:9px 13px;background:var(--paper-2);border-bottom:1px solid var(--hair);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-4);
+}
+.ss-h .tag{margin-left:auto;padding:2px 7px;border-radius:5px;font-size:9px;letter-spacing:.08em}
+.ss-h .tag.before{background:rgba(192,57,43,.12);color:#A33227}
+.ss-h .tag.after{background:rgba(29,111,66,.13);color:#1D6F42}
+.ss-scroll{overflow-x:auto}
+.ss table{border-collapse:collapse;width:100%;min-width:520px;font-family:var(--mono);font-size:10.5px}
+.ss th,.ss td{padding:7px 11px;text-align:left;border-bottom:1px solid rgba(20,24,31,.07);white-space:nowrap}
+.ss th{background:rgba(20,24,31,.035);color:var(--ink-3);font-weight:500;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase}
+.ss tbody tr:last-child td{border-bottom:0}
+.ss td.n{text-align:right;font-variant-numeric:tabular-nums}
+.ss .flag{background:rgba(192,57,43,.09);color:#A33227}
+.ss .ok{background:rgba(29,111,66,.08);color:#1A6B3E}
+.ss .blank{color:var(--ink-4);font-style:italic}
+.ss tr.total td{background:var(--paper-2);font-weight:700;color:var(--ink)}
+.ss-foot{
+  padding:8px 13px;border-top:1px solid var(--hair);background:var(--paper-2);
+  font-size:11px;color:var(--ink-4);line-height:1.5;
+}
+.ss-foot code{font-family:var(--mono);font-size:10px;color:var(--ink-3)}
+[data-theme="black"] .ss{background:rgba(255,255,255,.04)}
+
 /* placeholder screenshot frame */
 .shot{
   border-radius:12px;border:1px dashed rgba(20,24,31,.22);background:
@@ -1546,7 +1572,7 @@ const APPS = [
 const GRID = [[232,300],[396,300],[560,300],[724,300],[232,490],[396,490],[560,490],[724,490]];
 
 const FILES = [
-  {n:'products_raw.csv', s:'500 rows · before', t:'f-csv', x:62, y:300, rows:500,
+  {n:'products_raw.csv', s:'500 rows · before', t:'f-csv', x:62, y:300, rows:500, file:'samples/products_raw.csv',
    cols:['sku','product_name','category','price','stock','supplier'],
    sample:[
      'SK-1180   copier paper a4 80GSM  ,Paper/Office ,  24.9  , 118 , Kestrel Supply Co',
@@ -1554,7 +1580,7 @@ const FILES = [
      'SK-4410   BLUE BALLPOINT MED      Writing          12      64    Northgate'],
    note:'The raw export for the product cleanup sample: inconsistent casing, three category spellings, currency mixed into the price column, and duplicate SKUs written two ways.'},
 
-  {n:'products_clean.csv', s:'500 rows · after', t:'f-csv', x:62, y:440, rows:500,
+  {n:'products_clean.csv', s:'500 rows · after', t:'f-csv', x:62, y:440, rows:500, file:'samples/products_clean.csv',
    cols:['sku','product_name','category','price','stock','supplier'],
    sample:[
      'SK-1180   Copier Paper A4 80gsm   Paper & Office   24.90   118   Kestrel Supply Co.',
@@ -1562,21 +1588,21 @@ const FILES = [
      'SK-4411   Blue Ballpoint, Fine    Writing          12.00    41   Northgate Paper Ltd'],
    note:'The same 500 records after cleanup: one casing rule, one category per product, price as a plain number, supplier names matched to a single master list.'},
 
-  {n:'lead_research.xlsx', s:'100 businesses', t:'f-xlsx', x:62, y:580, rows:100,
-   cols:['company','website','city','country','contact_name','email','verified_on'],
+  {n:'change_log.csv', s:'1,038 edits', t:'f-csv', x:62, y:580, rows:1038, file:'samples/change_log.csv',
+   cols:['sku','field','change','original_value','new_value'],
    sample:[
-     'Kestrel Supply Co.    kestrelsupply.example    Lagos       NG   —              hello@…      2026-08-14',
-     'Northgate Paper Ltd   northgatepaper.example   Manchester  GB   A. Whitfield   a.whit@…     2026-08-14',
-     'Vale Clinical         valeclinical.example     Abuja       NG   —              info@…       2026-08-15'],
-   note:'The output format for the lead research sample. Every row was opened and checked by hand — the verified_on column is the date I confirmed it, not the date it was collected.'},
+     'SK-1000   product_name   standardised casing/spacing   blue lever arch file foolscap   Blue Lever Arch File Foolscap',
+     'SK-1176   category       matched to fixed list         filing & storage                Filing',
+     'SK-1200   price          currency symbol removed, 2dp  $2.62                           2.62'],
+   note:'Every single edit, with the value it replaced. This is what makes a cleanup auditable rather than something the client has to take on trust.'},
 
-  {n:'catalog_master.xlsx', s:'3 sheets', t:'f-xlsx', x:886, y:300, rows:500,
-   cols:['sheet','purpose','rows'],
+  {n:'questions.csv', s:'12 unresolved', t:'f-csv', x:886, y:300, rows:12, file:'samples/questions.csv',
+   cols:['sku','field','why_unresolved'],
    sample:[
-     'catalog     the clean, deliverable product list          500',
-     'changes     every edit made, with the original value     318',
-     'questions   rows I could not resolve without the owner    12'],
-   note:'How I hand back a cleanup. The client gets the clean sheet, a full record of what changed, and an explicit list of what I refused to guess at.'},
+     'SK-1520   price   two prices on source, no effective date — owner to confirm',
+     'SK-2312   price   two prices on source, no effective date — owner to confirm',
+     'SK-3096   price   two prices on source, no effective date — owner to confirm'],
+   note:'The twelve rows I would have had to invent something to fill. This sheet is the point: it is the count of places where guessing was possible and did not happen.'},
 
   {n:'source_tables.pdf', s:'18 pages', t:'f-pdf', x:886, y:440, rows:18,
    cols:['page','table','rows','notes'],
@@ -1586,13 +1612,13 @@ const FILES = [
      '11   Footnoted totals            26   footnote markers must not enter the numbers'],
    note:'A published PDF report used for the conversion sample. Chosen because it has the three things that break naive extraction: a table across a page break, a repeating header, and footnote markers glued to figures.'},
 
-  {n:'sample_invoices.pdf', s:'40 scans', t:'f-pdf', x:886, y:580, rows:40,
-   cols:['scan','legibility','fields','keyed','checked'],
+  {n:'pdf_extract.csv', s:'20 rows · reconciled', t:'f-csv', x:886, y:580, rows:20, file:'samples/pdf_extract.csv',
+   cols:['source_page','region','quarter','units','reconciled'],
    sample:[
-     'S-01   good      6   yes   yes',
-     'S-02   faint     6   yes   yes',
-     'S-03   damaged   6   flagged   —'],
-   note:'A small set of mock invoice scans I key against when practising. Legibility is graded first, so the difficult ones get the slower pass instead of a guess.'}
+     ' 3   North     Q1    7,818   yes',
+     ' 7   Central   Q4    8,760   yes',
+     ' —   TOTAL     —   114,131   matches printed total'],
+   note:'The extraction output. Every row carries the page it came from, and the total reconciles against the figure printed in the source — which is the check that proves the extraction actually worked.'}
 ];
 
 const CASES = [
@@ -1610,9 +1636,10 @@ const CASES = [
        dim:'This is a small web app for browsing and searching structured company records — the other half of the work, built out.',
        p:['Once a list passes a few hundred rows, the questions people actually ask stop being answerable by scrolling. Which of these are in this country? Which have no contact yet? Which did I verify this month? Those are one-second questions with the right interface and a genuine chore without one.','I built it because I kept wanting it, and because being able to build it is the part of my background that makes me better at the data work rather than just adjacent to it.'],
        meta:true},
-      {n:'02 · What it does', h:'Browse, search, filter.',
-       p:['Company records are held in a consistent shape and presented as something you can move through: search across fields, filter down to a subset, and open a single record to see everything held about it.','The point is that the structure I insist on during data entry — one fact per field, consistent formats, no free-text blobs where a field belongs — is exactly what makes an interface like this possible. Clean data is not tidiness for its own sake. It is what lets you ask questions later.'],
-       shot:['Company DB','A screenshot of the live interface goes here.']},
+      {n:'02 · What it does', h:'Qualify, classify, then track the follow-up.',
+       p:['Records carry company, website, metro, review count and rating, phone, contact name and title, and email. You can search by name or domain and filter by status, metro, vertical, and whether a company has been contacted yet.','Every record gets a website classification — good, bad, or none — because that is the qualifying question for this particular list. The header keeps a live count of each bucket against the current filter, so the state of the list is visible without exporting anything.','The second half is outreach state: mark a company contacted, record the outcome as positive or negative, leave a note, and the record shows how long ago it was touched. A follow-up counter surfaces the ones that are due.'],
+       qs:['Search by name or domain','Filter by status, metro, vertical','Classify website quality','Track outreach and outcomes','Flag follow-ups that are due'],
+       cta:['Open the live build →','https://company-db-clone.vercel.app/']},
       {n:'03 · Why it belongs in a data-entry portfolio', h:'I know what happens to the data after I hand it over.',
        p:['Plenty of data entry work is delivered without ever seeing what it is for. I find the work goes better when I do know, because it changes small decisions — whether a column should be split, whether a code should be padded, whether a date needs to sort as well as read.','Building the thing that consumes the data is the most direct way I know to keep that in view.'],
        cta:['Open the live build →','https://company-db-clone.vercel.app/']}
@@ -1644,43 +1671,68 @@ const CASES = [
          ['06','Log every change','Original value beside new value, so the owner can audit the whole job rather than trust it.']
        ],
        p:['The step people skip is the first one. Editing as you go produces a file that is cleaner but still not consistent, because the rule drifted while you worked.']},
-      {n:'04 · Before and after', h:'The same 500 rows.',
-       shot:['Before → after','Screenshots of the raw and cleaned sheets go here.'],
-       p:['Both files are on the desktop as products_raw.csv and products_clean.csv if you want to look at the shape of the change.']},
+      {n:'04 · Before and after', h:'The same five rows, twice.',
+       sheets:[
+         {name:'products_raw.csv', tag:['before','before'],
+          cols:['sku','product_name','category','price','supplier'],
+          rows:[
+            ['SK-1000',['blue lever arch file foolscap','flag'],['FILING','flag'],['$80.94','flag'],['Northgate Paper','flag']],
+            ['SK-1176',['GREEN LEVER ARCH FILE A4','flag'],['filing & storage','flag'],['$68.99','flag'],['Northgate','flag']],
+            ['SK-1200',['ACRYLIC DESK ORGANISER','flag'],['DESK','flag'],['$2.62','flag'],['KESTREL SUPPLY CO','flag']],
+            ['SK-1280',['Copier  Paper  A4  80gsm','flag'],[' paper&office ','flag'],['$53.10','flag'],['harlow stationers','flag']],
+            ['SK-1312',['COPIER PAPER LETTER 100GSM','flag'],'PAPER & OFFICE',['$71.68','flag'],['northgate paper ltd','flag']]
+          ],
+          foot:'Five faults visible in five rows: casing that changes row to row, three spellings of one category, doubled spaces, a currency symbol that makes <code>price</code> text instead of a number, and supplier names that will never group.'},
+         {name:'products_clean.csv', tag:['after','after'],
+          cols:['sku','product_name','category','price','supplier'],
+          rows:[
+            ['SK-1000',['Blue Lever Arch File Foolscap','ok'],['Filing','ok'],['80.94','ok'],['Northgate Paper Ltd','ok']],
+            ['SK-1176',['Green Lever Arch File A4','ok'],['Filing','ok'],['68.99','ok'],['Northgate Paper Ltd','ok']],
+            ['SK-1200',['Acrylic Desk Organiser','ok'],['Desk','ok'],['2.62','ok'],['Kestrel Supply Co.','ok']],
+            ['SK-1280',['Copier Paper A4 80gsm','ok'],['Paper & Office','ok'],['53.10','ok'],['Harlow Stationers','ok']],
+            ['SK-1312',['Copier Paper Letter 100gsm','ok'],['Paper & Office','ok'],['71.68','ok'],['Northgate Paper Ltd','ok']]
+          ],
+          foot:'One casing rule, one category per product, price as a plain number that sums, and every supplier matched to a single master name. Now it sorts, filters and totals.'}
+       ],
+       p:['Both files ship with this site in /samples — 500 rows each, plus the change log and the questions sheet. Open them side by side if you want to check the work rather than take my word for it.']},
       {n:'05 · What gets delivered', h:'Three sheets, not one.',
        p:['The clean catalogue is the deliverable, but it is not the whole handover. A change log records every edit against its original value, and a questions sheet lists the rows I could not resolve without the owner.','Twelve rows ended up on the questions sheet. That is the number I care most about — it is the count of places where I could have quietly guessed and did not.'],
        callout:['The rule','If filling a field requires inventing information, it stays blank and gets flagged. Blank and flagged beats confident and wrong.']}
     ]
   },
   {
-    n:'Case 03', name:'Lead Research', s:'100 businesses',
-    kicker:'Case 03 · 2026 · Independent sample',
-    title:'100 businesses, researched and verified.',
-    sub:'Web research from a defined brief into a structured, checked spreadsheet — the shape of work most lead-list jobs actually are.',
-    tags:['Web Research','Data Verification','Google Sheets','Sample'],
-    sample:'This is my own sample dataset, built to demonstrate the workflow. It is not a client engagement.',
-    meta:[['Type','Independent sample'],['Scope','100 businesses'],['Fields','Company, website, location, contact, email'],['Tools','Google Sheets · browser']],
+    n:'Case 03', name:'Lead Research', s:'segmented & verified',
+    kicker:'Case 03 · 2026 · Property management sector',
+    title:'A lead database segmented by size and verified by hand.',
+    sub:'Property management firms researched, sized, deduplicated and contact-verified across several sources — then split into working lists a caller can actually use.',
+    tags:['Web Research','Data Verification','Deduplication','Segmentation','Google Sheets'],
+    sample:'Contact details in this project belong to real businesses, so no records are reproduced here — only the structure and the method.',
+    meta:[['Role','Research, verification, structuring'],['Segmentation','By estimated door count'],['Contact fields','Three phone sources + verified email'],['Tools','Google Sheets · browser · verification tools']],
     body:[
       {n:'01 · Overview', h:'The value is in the checking, not the collecting.',
-       lede:'Collecting a hundred company names is quick. Producing a hundred rows that are all still true is the actual job.',
-       dim:'Anyone can hand over a list. The question a client is really asking is how much of it they will have to verify themselves.',
-       p:['I worked from a defined brief — sector, region, company size — and collected company name, website, city, country, contact name where one was publicly listed, and a general contact email.','Every row was opened and confirmed rather than gathered from an aggregator and passed along.'],
+       lede:'Collecting company names is quick. Producing rows that are all still true, all still distinct, and all actually reachable is the job.',
+       dim:'Anyone can hand over a list. What a client is really asking is how much of it they will have to verify themselves.',
+       p:['This is a working lead database of property management firms. Each firm carries an estimated door count, a classification and sub-segment, the management software it runs, industry association membership, and a contact route.','The list is deduplicated to one row per firm, which sounds trivial and is not — the same company appears under a trading name, a legal name, and a regional office, and merging those without losing the distinct ones is most of the effort.'],
        meta:true},
-      {n:'02 · The rules I worked to', h:'What goes in a cell, and what does not.',
-       qs:['Publicly listed information only','No personal emails guessed from a pattern','Blank beats a plausible invention','Every row carries the date I checked it']},
-      {n:'03 · The method', h:'Define, collect, verify, structure.',
+      {n:'02 · Sized before it is worked', h:'A list is not a list until it is segmented.',
+       p:['A caller working a list of every firm in the sector wastes the day. Sizing by estimated door count splits it into groups that deserve genuinely different approaches, and each group becomes its own working sheet.'],
+       qs:['Small-door · under 250 units','Midsize · 250 to 1,000 units','Split into per-metro views','Separate call list and email list']},
+      {n:'03 · Contact verification', h:'Three phone sources and an email confidence level.',
+       p:['A single phone number is a guess. I collect from more than one source — the maps listing, the company site, and the direct office line — and keep them in separate columns rather than picking a winner, because the one that works varies by firm.'],
+       qs:['Verified against a lookup tool','Confirmed on the company site','Generic address confirmed, personal pattern not','Not found — recorded as not found'],
+       callout:['Why the confidence level is its own column','"Confirmed" and "matches the usual pattern for this company" are different facts. Collapsing them into one column throws away the thing a caller needs to know before they trust the address.']},
+      {n:'04 · The method', h:'Define, collect, verify, dedupe, segment.',
        steps:[
-         ['01','Fix the brief','Sector, region and size agreed before starting, so the list has an edge and inclusion is not a judgement call per row.'],
-         ['02','Set the columns','One fact per column, formats decided up front — country as a two-letter code, dates ISO 8601.'],
-         ['03','Collect','Work through sources systematically rather than opportunistically, so coverage is even.'],
-         ['04','Verify each row','Open the site. Confirm the company is trading, the location is current, and the contact route works.'],
-         ['05','Date-stamp','A verified_on column per row. Research decays, and the client should be able to see how fresh each row is.'],
-         ['06','Flag the gaps','Rows where a field could not be confirmed are marked, not filled with something reasonable.']
+         ['01','Fix the brief','Sector, region and size band agreed before starting, so inclusion is not a judgement call per row.'],
+         ['02','Set the columns','One fact per column, formats decided up front, and confidence kept separate from value.'],
+         ['03','Collect systematically','Work sources in order rather than opportunistically, so coverage is even across metros.'],
+         ['04','Verify each row','Confirm the firm is trading, the location is current, and the contact route actually resolves.'],
+         ['05','Dedupe to one row per firm','Normalise the name first, then match — trading names, legal names and branches collapse; genuinely separate firms survive.'],
+         ['06','Segment and date-stamp','Split by size band into working sheets, and stamp each row with the date it was checked.']
        ]},
-      {n:'04 · The output', h:'A spreadsheet you can work from immediately.',
-       shot:['Lead database','A screenshot of the finished sheet goes here.'],
-       p:['The file is on the desktop as lead_research.xlsx. Contact names appear only where a business publicly lists one; where it does not, that cell is empty on purpose.'],
-       callout:['Where I stop','I do not guess email addresses from a first-initial pattern, and I do not scrape or buy contact lists. A guessed address is not data — it is a plausible-looking liability.']}
+      {n:'05 · What it ships as', h:'A workbook, not a dump.',
+       p:['The deliverable is a workbook with a README explaining every column, the segmented working sheets, a call list and an email list shaped for their specific use, a qualification checklist, and a call log for recording outcomes.','No records are reproduced in this write-up. The companies and the people in that file are real, and a portfolio is not the place to republish someone’s direct line.'],
+       callout:['Where I stop','I do not guess an email address from a first-initial pattern and record it as verified. A guessed address is not data — it is a plausible-looking liability, and it is the fastest way to burn a sending domain.']}
     ]
   },
   {
@@ -1710,8 +1762,20 @@ const CASES = [
        ],
        p:['That last step is the whole quality control. A column that sums to the published total is verified; a column that merely looks right is not.']},
       {n:'04 · The output', h:'Rows that behave like rows.',
-       shot:['PDF → spreadsheet','Screenshots of the source page and the extracted sheet go here.'],
-       p:['Numbers are numeric and sum correctly. Dates are ISO 8601 and sort. Each row carries the page it came from, so any figure can be traced back to where it was printed.'],
+       sheets:[
+         {name:'pdf_extract.csv', tag:['reconciled','after'],
+          cols:['source_page','region','quarter','units','reconciled'],
+          rows:[
+            ['3','North','Q1',['7,818','n'],['yes','ok']],
+            ['3','North','Q2',['7,438','n'],['yes','ok']],
+            ['3','North','Q3',['4,478','n'],['yes','ok']],
+            ['7','Central','Q3',['6,204','n'],['yes','ok']],
+            ['7','Central','Q4',['8,760','n'],['yes','ok']],
+            {total:true, cells:['','TOTAL','',['114,131','n'],['matches printed total','ok']]}
+          ],
+          foot:'Twenty rows across five regions and four quarters. The <code>source_page</code> column means any figure can be traced back to the page it was printed on, and the total reconciles against the figure printed in the report — which is the check that actually proves the extraction worked.'}
+       ],
+       p:['Numbers are numeric and sum correctly. Dates are ISO 8601 and sort. The full file ships in /samples.'],
        callout:['The check that matters','If the source prints a total, the extracted data has to reproduce it. Anything that does not reconcile gets keyed by hand and checked again.']}
     ]
   }
@@ -2074,6 +2138,17 @@ function secHTML(s, c){
     '<div class="step"><b>'+esc(n)+'</b><strong>'+esc(t)+'</strong><span>'+esc(d)+'</span></div>').join('')+'</div>';
   if (s.stats) h += '<div class="grid3" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">'+s.stats.map(([v,l])=>
     '<div class="ins"><div class="vis" style="border:0;padding:0;margin:0"><b>'+esc(v)+'</b>'+esc(l)+'</div></div>').join('')+'</div>';
+  if (s.sheets) h += s.sheets.map(t=>{
+    const cell = c2 => Array.isArray(c2)
+      ? '<td class="'+esc(c2[1])+'">'+(c2[0]===''?'<span class="blank">(blank)</span>':esc(c2[0]))+'</td>'
+      : '<td>'+esc(c2)+'</td>';
+    return '<div class="ss"><div class="ss-h">'+esc(t.name)+
+      (t.tag?'<span class="tag '+esc(t.tag[1])+'">'+esc(t.tag[0])+'</span>':'')+'</div>'+
+      '<div class="ss-scroll"><table><thead><tr>'+t.cols.map(c3=>'<th>'+esc(c3)+'</th>').join('')+'</tr></thead><tbody>'+
+      t.rows.map(r=>'<tr'+(r.total?' class="total"':'')+'>'+(r.cells||r).map(cell).join('')+'</tr>').join('')+
+      '</tbody></table></div>'+
+      (t.foot?'<div class="ss-foot">'+t.foot+'</div>':'')+'</div>';
+  }).join('');
   if (s.shot) h += '<div class="shot"><svg width="34" height="34"><use href="#i-img"/></svg>'+
     '<div class="k">'+esc(s.shot[0])+'</div><div class="m">'+esc(s.shot[1])+'</div></div>';
   if (s.callout) h += '<div class="callout"><b>'+esc(s.callout[0])+'</b><p>'+esc(s.callout[1])+'</p></div>';
@@ -2138,10 +2213,13 @@ function openFile(name){
     '</div>'+
     '<div class="frame"><div class="frame-h">Columns</div><div class="frame-b"><div class="qs" style="margin:0">'+
       f.cols.map(c=>'<span class="q" style="font-family:var(--mono);font-size:11px">'+esc(c)+'</span>').join('')+'</div></div></div>'+
-    '<div class="frame"><div class="frame-h">Sample rows · illustrative</div><div class="frame-b">'+
+    '<div class="frame"><div class="frame-h">'+(f.file?'First rows · from the real file':'Sample rows · illustrative')+'</div><div class="frame-b">'+
       '<div style="font:400 11px/1.9 var(--mono);white-space:pre;overflow-x:auto;color:var(--ink-3)">'+f.sample.map(esc).join('\n')+'</div>'+
     '</div></div>'+
-    '<p style="font-size:11.5px;color:var(--ink-4);margin:0">Placeholder data. Real client files never leave the engagement folder.</p>';
+    (f.file
+      ? '<a class="pillcta" href="'+esc(f.file)+'" download style="text-decoration:none;margin:0">Download '+esc(f.n)+' &darr;</a>'+
+        '<p style="font-size:11.5px;color:var(--ink-4);margin:10px 0 0">This is a real file shipped with the site, not a mock-up — my own sample data, generated for demonstration. Client files never leave the engagement folder.</p>'
+      : '<p style="font-size:11.5px;color:var(--ink-4);margin:0">Illustrative structure. Client files never leave the engagement folder.</p>');
   $('#m-file').classList.add('on');
 }
 

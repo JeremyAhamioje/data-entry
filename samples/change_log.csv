@@ -1,0 +1,1039 @@
+sku,field,change,original_value,new_value
+SK-3408,sku,duplicate row removed,sk3408,SK-3408
+SK-2504,sku,duplicate row removed,sk2504,SK-2504
+SK-1608,sku,duplicate row removed,sk1608,SK-1608
+SK-3376,sku,duplicate row removed,sk3376,SK-3376
+SK-4248,sku,duplicate row removed,sk4248,SK-4248
+SK-2520,sku,duplicate row removed,sk2520,SK-2520
+SK-4344,sku,duplicate row removed,sk4344,SK-4344
+SK-2432,sku,duplicate row removed,sk2432,SK-2432
+SK-2264,sku,duplicate row removed,sk2264,SK-2264
+SK-4680,sku,duplicate row removed,sk4680,SK-4680
+SK-1216,sku,duplicate row removed,sk1216,SK-1216
+SK-1408,sku,duplicate row removed,sk1408,SK-1408
+SK-1448,sku,duplicate row removed,sk1448,SK-1448
+SK-1304,sku,duplicate row removed,sk1304,SK-1304
+SK-3552,sku,duplicate row removed,sk3552,SK-3552
+SK-4440,sku,duplicate row removed,sk4440,SK-4440
+SK-4224,sku,duplicate row removed,sk4224,SK-4224
+SK-2064,sku,duplicate row removed,sk2064,SK-2064
+SK-2016,sku,duplicate row removed,sk2016,SK-2016
+SK-2304,sku,duplicate row removed,sk2304,SK-2304
+SK-1320,sku,duplicate row removed,sk1320,SK-1320
+SK-3632,sku,duplicate row removed,sk3632,SK-3632
+SK-2000,sku,duplicate row removed,sk2000,SK-2000
+SK-1568,sku,duplicate row removed,sk1568,SK-1568
+SK-3992,sku,duplicate row removed,sk3992,SK-3992
+SK-2960,sku,duplicate row removed,sk2960,SK-2960
+SK-1360,sku,duplicate row removed,sk1360,SK-1360
+SK-4688,sku,duplicate row removed,sk4688,SK-4688
+SK-3944,sku,duplicate row removed,sk3944,SK-3944
+SK-1248,sku,duplicate row removed,sk1248,SK-1248
+SK-3296,sku,duplicate row removed,sk3296,SK-3296
+SK-1472,sku,duplicate row removed,sk1472,SK-1472
+SK-1624,sku,duplicate row removed,sk1624,SK-1624
+SK-3936,sku,duplicate row removed,sk3936,SK-3936
+SK-3544,supplier,filled from catalogue master,,Harlow Stationers
+SK-3712,supplier,filled from catalogue master,,Northgate Paper Ltd
+SK-4560,supplier,filled from catalogue master,,Harlow Stationers
+SK-1888,supplier,filled from catalogue master,,Northgate Paper Ltd
+SK-3176,supplier,filled from catalogue master,,Harlow Stationers
+SK-1120,supplier,filled from catalogue master,,Harlow Stationers
+SK-3088,supplier,filled from catalogue master,,Harlow Stationers
+SK-4600,supplier,filled from catalogue master,,Kestrel Supply Co.
+SK-4400,supplier,filled from catalogue master,,Kestrel Supply Co.
+SK-4552,supplier,filled from catalogue master,,Northgate Paper Ltd
+SK-4624,supplier,filled from catalogue master,,Kestrel Supply Co.
+SK-4464,supplier,filled from catalogue master,,Harlow Stationers
+SK-1464,supplier,filled from catalogue master,,Kestrel Supply Co.
+SK-3896,supplier,filled from catalogue master,,Kestrel Supply Co.
+SK-2128,supplier,filled from catalogue master,,Vale Clinical Supplies
+SK-2544,supplier,filled from catalogue master,,Vale Clinical Supplies
+SK-3192,supplier,filled from catalogue master,,Kestrel Supply Co.
+SK-2816,supplier,filled from catalogue master,,Harlow Stationers
+SK-1584,supplier,filled from catalogue master,,Vale Clinical Supplies
+SK-4880,supplier,filled from catalogue master,,Harlow Stationers
+SK-1400,supplier,filled from catalogue master,,Northgate Paper Ltd
+SK-3400,supplier,filled from catalogue master,,Kestrel Supply Co.
+SK-3288,supplier,filled from catalogue master,,Northgate Paper Ltd
+SK-2672,supplier,filled from catalogue master,,Northgate Paper Ltd
+SK-2336,supplier,filled from catalogue master,,Kestrel Supply Co.
+SK-2584,supplier,filled from catalogue master,,Kestrel Supply Co.
+SK-4488,supplier,filled from catalogue master,,Northgate Paper Ltd
+SK-1248,supplier,filled from catalogue master,,Harlow Stationers
+SK-4080,supplier,filled from catalogue master,,Kestrel Supply Co.
+SK-4448,supplier,filled from catalogue master,,Vale Clinical Supplies
+SK-3344,supplier,filled from catalogue master,,Northgate Paper Ltd
+SK-2168,supplier,filled from catalogue master,,Vale Clinical Supplies
+SK-3576,supplier,filled from catalogue master,,Harlow Stationers
+SK-2560,supplier,filled from catalogue master,,Northgate Paper Ltd
+SK-4328,supplier,filled from catalogue master,,Vale Clinical Supplies
+SK-2736,supplier,filled from catalogue master,,Vale Clinical Supplies
+SK-4912,supplier,filled from catalogue master,,Northgate Paper Ltd
+SK-2512,supplier,filled from catalogue master,,Vale Clinical Supplies
+SK-2824,supplier,filled from catalogue master,,Kestrel Supply Co.
+SK-2448,supplier,filled from catalogue master,,Northgate Paper Ltd
+SK-2440,supplier,filled from catalogue master,,Vale Clinical Supplies
+SK-1000,product_name,standardised casing/spacing,blue lever arch file foolscap,Blue Lever Arch File Foolscap
+SK-1000,category,matched to fixed category list,FILING,Filing
+SK-1000,price,"currency symbol removed, 2dp",$80.94,80.94
+SK-1008,product_name,standardised casing/spacing,"Blue  Ballpoint,  Broad","Blue Ballpoint, Broad"
+SK-1008,category,matched to fixed category list,WRITING,Writing
+SK-1016,category,matched to fixed category list,Filing/Storage,Filing
+SK-1016,price,"currency symbol removed, 2dp",$68.41,68.41
+SK-1024,category,matched to fixed category list,paper & office,Paper & Office
+SK-1032,product_name,standardised casing/spacing,copier paper a5 120gsm,Copier Paper A5 120gsm
+SK-1032,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-1040,product_name,standardised casing/spacing,Green Lever Arch File A4,Green Lever Arch File A4
+SK-1040,category,matched to fixed category list,Filing/Storage,Filing
+SK-1048,product_name,standardised casing/spacing,steel desk organiser,Steel Desk Organiser
+SK-1048,category,matched to fixed category list,desk,Desk
+SK-1056,product_name,standardised casing/spacing,Mesh  Desk  Organiser,Mesh Desk Organiser
+SK-1056,category,matched to fixed category list,Desk Accessories,Desk
+SK-1064,category,matched to fixed category list,WRITING,Writing
+SK-1064,price,"currency symbol removed, 2dp",$81.35,81.35
+SK-1072,product_name,standardised casing/spacing,copier paper a4 70gsm,Copier Paper A4 70gsm
+SK-1072,category,matched to fixed category list,paper&office,Paper & Office
+SK-1080,product_name,standardised casing/spacing,BLUE LEVER ARCH FILE FOOLSCAP,Blue Lever Arch File Foolscap
+SK-1080,category,matched to fixed category list,filing & storage,Filing
+SK-1088,product_name,standardised casing/spacing,blue lever arch file foolscap,Blue Lever Arch File Foolscap
+SK-1088,category,matched to fixed category list,filing,Filing
+SK-1096,category,matched to fixed category list,paper&office,Paper & Office
+SK-1104,category,matched to fixed category list,WRITING,Writing
+SK-1112,product_name,standardised casing/spacing,Steel  Desk  Organiser,Steel Desk Organiser
+SK-1112,category,matched to fixed category list,Desk Accessories,Desk
+SK-1120,category,matched to fixed category list,writing tools,Writing
+SK-1128,product_name,standardised casing/spacing,ACRYLIC DESK ORGANISER,Acrylic Desk Organiser
+SK-1128,category,matched to fixed category list,DESK,Desk
+SK-1136,category,matched to fixed category list,Filing/Storage,Filing
+SK-1144,category,matched to fixed category list,desk,Desk
+SK-1152,category,matched to fixed category list,paper&office,Paper & Office
+SK-1160,category,matched to fixed category list,Filing/Storage,Filing
+SK-1160,price,"currency symbol removed, 2dp",$30.59,30.59
+SK-1168,category,matched to fixed category list,desk,Desk
+SK-1176,product_name,standardised casing/spacing,GREEN LEVER ARCH FILE A4,Green Lever Arch File A4
+SK-1176,category,matched to fixed category list,filing & storage,Filing
+SK-1176,price,"currency symbol removed, 2dp",$68.99,68.99
+SK-1184,product_name,standardised casing/spacing,Blue  Lever  Arch  File  Foolscap,Blue Lever Arch File Foolscap
+SK-1184,category,matched to fixed category list,filing & storage,Filing
+SK-1192,category,matched to fixed category list,writing tools,Writing
+SK-1200,product_name,standardised casing/spacing,ACRYLIC DESK ORGANISER,Acrylic Desk Organiser
+SK-1200,category,matched to fixed category list,DESK,Desk
+SK-1200,price,"currency symbol removed, 2dp",$2.62,2.62
+SK-1208,category,matched to fixed category list,desk,Desk
+SK-1208,price,"currency symbol removed, 2dp",$20.81,20.81
+SK-1216,category,matched to fixed category list,FILING,Filing
+SK-1224,product_name,standardised casing/spacing,GREEN LEVER ARCH FILE FOOLSCAP,Green Lever Arch File Foolscap
+SK-1224,category,matched to fixed category list,Filing/Storage,Filing
+SK-1232,product_name,standardised casing/spacing,MESH DESK ORGANISER,Mesh Desk Organiser
+SK-1232,category,matched to fixed category list,desk,Desk
+SK-1240,category,matched to fixed category list,desk,Desk
+SK-1248,product_name,standardised casing/spacing,Copier Paper A4 80gsm,Copier Paper A4 80gsm
+SK-1248,category,matched to fixed category list,paper & office,Paper & Office
+SK-1256,category,matched to fixed category list,Writing,Writing
+SK-1256,price,"currency symbol removed, 2dp",$74.58,74.58
+SK-1264,category,matched to fixed category list,filing & storage,Filing
+SK-1272,product_name,standardised casing/spacing,GREEN LEVER ARCH FILE FOOLSCAP,Green Lever Arch File Foolscap
+SK-1272,category,matched to fixed category list,FILING,Filing
+SK-1280,product_name,standardised casing/spacing,Copier  Paper  A4  80gsm,Copier Paper A4 80gsm
+SK-1280,category,matched to fixed category list,paper&office,Paper & Office
+SK-1280,price,"currency symbol removed, 2dp",$53.10,53.10
+SK-1288,product_name,standardised casing/spacing,steel desk organiser,Steel Desk Organiser
+SK-1288,category,matched to fixed category list,desk acc.,Desk
+SK-1296,category,matched to fixed category list,WRITING,Writing
+SK-1296,price,"currency symbol removed, 2dp",74.0,74.00
+SK-1304,product_name,standardised casing/spacing,"Green  Ballpoint,  Medium","Green Ballpoint, Medium"
+SK-1304,category,matched to fixed category list,Writing,Writing
+SK-1312,product_name,standardised casing/spacing,COPIER PAPER LETTER 100GSM,Copier Paper Letter 100gsm
+SK-1312,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-1312,price,"currency symbol removed, 2dp",$71.68,71.68
+SK-1320,product_name,standardised casing/spacing,"black ballpoint, broad","Black Ballpoint, Broad"
+SK-1320,category,matched to fixed category list,WRITING,Writing
+SK-1328,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-1336,product_name,standardised casing/spacing,green lever arch file a4,Green Lever Arch File A4
+SK-1336,category,matched to fixed category list,Filing/Storage,Filing
+SK-1336,price,"currency symbol removed, 2dp",$69.69,69.69
+SK-1344,category,matched to fixed category list,paper&office,Paper & Office
+SK-1352,category,matched to fixed category list,paper & office,Paper & Office
+SK-1352,price,"currency symbol removed, 2dp",$63.01,63.01
+SK-1360,product_name,standardised casing/spacing,"BLACK BALLPOINT, BROAD","Black Ballpoint, Broad"
+SK-1360,category,matched to fixed category list,writing tools,Writing
+SK-1368,category,matched to fixed category list,paper&office,Paper & Office
+SK-1376,product_name,standardised casing/spacing,Copier Paper A5 120gsm,Copier Paper A5 120gsm
+SK-1376,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-1384,product_name,standardised casing/spacing,Steel Desk Organiser,Steel Desk Organiser
+SK-1384,category,matched to fixed category list,DESK,Desk
+SK-1384,price,"currency symbol removed, 2dp",$16.40,16.40
+SK-1392,product_name,standardised casing/spacing,Steel Desk Organiser,Steel Desk Organiser
+SK-1392,category,matched to fixed category list,desk acc.,Desk
+SK-1392,price,"currency symbol removed, 2dp",$9.57,9.57
+SK-1400,product_name,standardised casing/spacing,Copier Paper Legal 70gsm,Copier Paper Legal 70gsm
+SK-1400,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-1408,product_name,standardised casing/spacing,BLUE LEVER ARCH FILE FOOLSCAP,Blue Lever Arch File Foolscap
+SK-1408,category,matched to fixed category list,FILING,Filing
+SK-1416,product_name,standardised casing/spacing,blue lever arch file a4,Blue Lever Arch File A4
+SK-1416,category,matched to fixed category list,Filing/Storage,Filing
+SK-1416,price,"currency symbol removed, 2dp",$61.88,61.88
+SK-1424,category,matched to fixed category list,writing,Writing
+SK-1424,price,"currency symbol removed, 2dp",$66.74,66.74
+SK-1432,product_name,standardised casing/spacing,grey lever arch file a4,Grey Lever Arch File A4
+SK-1432,category,matched to fixed category list,filing,Filing
+SK-1432,price,"currency symbol removed, 2dp",$79.37,79.37
+SK-1440,product_name,standardised casing/spacing,Black  Lever  Arch  File  Foolscap,Black Lever Arch File Foolscap
+SK-1440,category,matched to fixed category list,Filing/Storage,Filing
+SK-1448,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-1456,product_name,standardised casing/spacing,"Green  Ballpoint,  Medium","Green Ballpoint, Medium"
+SK-1456,category,matched to fixed category list,WRITING,Writing
+SK-1456,price,"currency symbol removed, 2dp",$48.66,48.66
+SK-1464,category,matched to fixed category list,Writing,Writing
+SK-1472,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-1472,price,"currency symbol removed, 2dp",$61.17,61.17
+SK-1480,category,matched to fixed category list,desk,Desk
+SK-1488,category,matched to fixed category list,desk acc.,Desk
+SK-1496,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-1504,category,matched to fixed category list,WRITING,Writing
+SK-1512,product_name,standardised casing/spacing,Mesh Desk Organiser,Mesh Desk Organiser
+SK-1512,category,matched to fixed category list,DESK,Desk
+SK-1512,price,"currency symbol removed, 2dp",$42.41,42.41
+SK-1520,product_name,standardised casing/spacing,"blue ballpoint, medium","Blue Ballpoint, Medium"
+SK-1520,category,matched to fixed category list,Writing,Writing
+SK-1528,product_name,standardised casing/spacing,MESH DESK ORGANISER,Mesh Desk Organiser
+SK-1528,category,matched to fixed category list,desk,Desk
+SK-1536,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-1536,price,"currency symbol removed, 2dp",$57.48,57.48
+SK-1544,category,matched to fixed category list,paper & office,Paper & Office
+SK-1552,category,matched to fixed category list,Filing/Storage,Filing
+SK-1560,product_name,standardised casing/spacing,"Red  Ballpoint,  Broad","Red Ballpoint, Broad"
+SK-1560,category,matched to fixed category list,writing tools,Writing
+SK-1568,product_name,standardised casing/spacing,"blue ballpoint, medium","Blue Ballpoint, Medium"
+SK-1568,category,matched to fixed category list,writing tools,Writing
+SK-1568,price,"currency symbol removed, 2dp",5.1,5.10
+SK-1576,product_name,standardised casing/spacing,Black  Lever  Arch  File  Foolscap,Black Lever Arch File Foolscap
+SK-1576,category,matched to fixed category list,FILING,Filing
+SK-1584,category,matched to fixed category list,desk acc.,Desk
+SK-1584,price,"currency symbol removed, 2dp",$19.37,19.37
+SK-1592,product_name,standardised casing/spacing,grey lever arch file a4,Grey Lever Arch File A4
+SK-1592,category,matched to fixed category list,Filing/Storage,Filing
+SK-1600,product_name,standardised casing/spacing,Black Lever Arch File Foolscap,Black Lever Arch File Foolscap
+SK-1600,category,matched to fixed category list,FILING,Filing
+SK-1608,product_name,standardised casing/spacing,Copier Paper A3 70gsm,Copier Paper A3 70gsm
+SK-1608,category,matched to fixed category list,paper & office,Paper & Office
+SK-1608,price,"currency symbol removed, 2dp",$42.00,42.00
+SK-1616,product_name,standardised casing/spacing,green lever arch file foolscap,Green Lever Arch File Foolscap
+SK-1616,category,matched to fixed category list,filing,Filing
+SK-1624,category,matched to fixed category list,FILING,Filing
+SK-1624,price,"currency symbol removed, 2dp",$67.63,67.63
+SK-1632,product_name,standardised casing/spacing,"Black Ballpoint, Medium","Black Ballpoint, Medium"
+SK-1632,category,matched to fixed category list,writing,Writing
+SK-1640,product_name,standardised casing/spacing,blue lever arch file foolscap,Blue Lever Arch File Foolscap
+SK-1640,category,matched to fixed category list,filing,Filing
+SK-1648,product_name,standardised casing/spacing,copier paper letter 100gsm,Copier Paper Letter 100gsm
+SK-1648,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-1656,category,matched to fixed category list,DESK,Desk
+SK-1664,product_name,standardised casing/spacing,wooden desk organiser,Wooden Desk Organiser
+SK-1664,category,matched to fixed category list,desk,Desk
+SK-1672,product_name,standardised casing/spacing,"blue ballpoint, broad","Blue Ballpoint, Broad"
+SK-1672,category,matched to fixed category list,writing tools,Writing
+SK-1680,product_name,standardised casing/spacing,GREEN LEVER ARCH FILE FOOLSCAP,Green Lever Arch File Foolscap
+SK-1680,category,matched to fixed category list,filing & storage,Filing
+SK-1688,category,matched to fixed category list,DESK,Desk
+SK-1696,product_name,standardised casing/spacing,STEEL DESK ORGANISER,Steel Desk Organiser
+SK-1696,category,matched to fixed category list,Desk Accessories,Desk
+SK-1696,price,"currency symbol removed, 2dp",$45.94,45.94
+SK-1704,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-1712,product_name,standardised casing/spacing,"GREEN BALLPOINT, FINE","Green Ballpoint, Fine"
+SK-1712,category,matched to fixed category list,WRITING,Writing
+SK-1720,category,matched to fixed category list,desk,Desk
+SK-1728,product_name,standardised casing/spacing,Black  Lever  Arch  File  Foolscap,Black Lever Arch File Foolscap
+SK-1728,category,matched to fixed category list,filing,Filing
+SK-1728,price,"currency symbol removed, 2dp",$29.75,29.75
+SK-1736,category,matched to fixed category list,Writing,Writing
+SK-1736,price,"currency symbol removed, 2dp",$88.47,88.47
+SK-1744,product_name,standardised casing/spacing,COPIER PAPER LETTER 120GSM,Copier Paper Letter 120gsm
+SK-1744,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-1752,product_name,standardised casing/spacing,Copier  Paper  A4  80gsm,Copier Paper A4 80gsm
+SK-1752,category,matched to fixed category list,paper & office,Paper & Office
+SK-1752,price,"currency symbol removed, 2dp",$30.73,30.73
+SK-1760,product_name,standardised casing/spacing,Steel  Desk  Organiser,Steel Desk Organiser
+SK-1760,category,matched to fixed category list,desk,Desk
+SK-1768,product_name,standardised casing/spacing,"black ballpoint, fine","Black Ballpoint, Fine"
+SK-1768,category,matched to fixed category list,writing tools,Writing
+SK-1768,price,"currency symbol removed, 2dp",$79.87,79.87
+SK-1776,product_name,standardised casing/spacing,GREY LEVER ARCH FILE A4,Grey Lever Arch File A4
+SK-1776,category,matched to fixed category list,Filing/Storage,Filing
+SK-1776,price,"currency symbol removed, 2dp",$39.27,39.27
+SK-1784,product_name,standardised casing/spacing,grey lever arch file foolscap,Grey Lever Arch File Foolscap
+SK-1784,category,matched to fixed category list,filing,Filing
+SK-1792,category,matched to fixed category list,desk acc.,Desk
+SK-1792,price,"currency symbol removed, 2dp",$22.40,22.40
+SK-1800,product_name,standardised casing/spacing,copier paper a5 80gsm,Copier Paper A5 80gsm
+SK-1800,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-1808,product_name,standardised casing/spacing,"Green Ballpoint, Fine","Green Ballpoint, Fine"
+SK-1808,category,matched to fixed category list,writing tools,Writing
+SK-1816,category,matched to fixed category list,filing & storage,Filing
+SK-1824,product_name,standardised casing/spacing,Green Lever Arch File A4,Green Lever Arch File A4
+SK-1824,category,matched to fixed category list,FILING,Filing
+SK-1832,product_name,standardised casing/spacing,Copier Paper Letter 100gsm,Copier Paper Letter 100gsm
+SK-1832,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-1840,product_name,standardised casing/spacing,"Black Ballpoint, Fine","Black Ballpoint, Fine"
+SK-1840,category,matched to fixed category list,Writing,Writing
+SK-1848,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-1856,product_name,standardised casing/spacing,copier paper a3 80gsm,Copier Paper A3 80gsm
+SK-1856,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-1856,price,"currency symbol removed, 2dp",$88.26,88.26
+SK-1864,product_name,standardised casing/spacing,"Green  Ballpoint,  Broad","Green Ballpoint, Broad"
+SK-1864,category,matched to fixed category list,Writing,Writing
+SK-1872,product_name,standardised casing/spacing,Copier Paper A4 80gsm,Copier Paper A4 80gsm
+SK-1872,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-1872,price,"currency symbol removed, 2dp",$13.73,13.73
+SK-1880,product_name,standardised casing/spacing,"Red  Ballpoint,  Broad","Red Ballpoint, Broad"
+SK-1880,category,matched to fixed category list,writing,Writing
+SK-1888,product_name,standardised casing/spacing,"black ballpoint, fine","Black Ballpoint, Fine"
+SK-1888,category,matched to fixed category list,Writing,Writing
+SK-1896,category,matched to fixed category list,filing & storage,Filing
+SK-1904,product_name,standardised casing/spacing,Black Lever Arch File Foolscap,Black Lever Arch File Foolscap
+SK-1904,category,matched to fixed category list,Filing/Storage,Filing
+SK-1912,category,matched to fixed category list,filing & storage,Filing
+SK-1920,product_name,standardised casing/spacing,Copier  Paper  A3  120gsm,Copier Paper A3 120gsm
+SK-1920,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-1928,product_name,standardised casing/spacing,"Red  Ballpoint,  Fine","Red Ballpoint, Fine"
+SK-1928,category,matched to fixed category list,writing tools,Writing
+SK-1928,price,"currency symbol removed, 2dp",$19.30,19.30
+SK-1936,category,matched to fixed category list,filing & storage,Filing
+SK-1936,price,"currency symbol removed, 2dp",$67.12,67.12
+SK-1944,category,matched to fixed category list,filing & storage,Filing
+SK-1952,category,matched to fixed category list,DESK,Desk
+SK-1952,price,"currency symbol removed, 2dp",$60.34,60.34
+SK-1960,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-1968,product_name,standardised casing/spacing,Grey Lever Arch File Foolscap,Grey Lever Arch File Foolscap
+SK-1968,category,matched to fixed category list,Filing/Storage,Filing
+SK-1976,product_name,standardised casing/spacing,wooden desk organiser,Wooden Desk Organiser
+SK-1976,category,matched to fixed category list,desk acc.,Desk
+SK-1984,product_name,standardised casing/spacing,WOODEN DESK ORGANISER,Wooden Desk Organiser
+SK-1984,category,matched to fixed category list,Desk Accessories,Desk
+SK-1992,product_name,standardised casing/spacing,"Black  Ballpoint,  Medium","Black Ballpoint, Medium"
+SK-1992,category,matched to fixed category list,WRITING,Writing
+SK-1992,price,"currency symbol removed, 2dp",$68.77,68.77
+SK-2000,product_name,standardised casing/spacing,Wooden Desk Organiser,Wooden Desk Organiser
+SK-2000,category,matched to fixed category list,Desk Accessories,Desk
+SK-2008,category,matched to fixed category list,Writing,Writing
+SK-2016,product_name,standardised casing/spacing,GREEN LEVER ARCH FILE FOOLSCAP,Green Lever Arch File Foolscap
+SK-2016,category,matched to fixed category list,filing & storage,Filing
+SK-2016,price,"currency symbol removed, 2dp",$87.84,87.84
+SK-2024,product_name,standardised casing/spacing,wooden desk organiser,Wooden Desk Organiser
+SK-2024,category,matched to fixed category list,desk,Desk
+SK-2024,price,"currency symbol removed, 2dp",35.6,35.60
+SK-2032,product_name,standardised casing/spacing,Steel Desk Organiser,Steel Desk Organiser
+SK-2032,category,matched to fixed category list,DESK,Desk
+SK-2040,product_name,standardised casing/spacing,Copier  Paper  Letter  70gsm,Copier Paper Letter 70gsm
+SK-2040,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-2048,product_name,standardised casing/spacing,"BLUE BALLPOINT, MEDIUM","Blue Ballpoint, Medium"
+SK-2048,category,matched to fixed category list,writing,Writing
+SK-2048,price,"currency symbol removed, 2dp",$82.64,82.64
+SK-2056,product_name,standardised casing/spacing,ACRYLIC DESK ORGANISER,Acrylic Desk Organiser
+SK-2056,category,matched to fixed category list,desk acc.,Desk
+SK-2064,category,matched to fixed category list,Desk Accessories,Desk
+SK-2072,category,matched to fixed category list,writing tools,Writing
+SK-2080,product_name,standardised casing/spacing,Grey  Lever  Arch  File  A4,Grey Lever Arch File A4
+SK-2080,category,matched to fixed category list,filing & storage,Filing
+SK-2088,category,matched to fixed category list,DESK,Desk
+SK-2096,product_name,standardised casing/spacing,mesh desk organiser,Mesh Desk Organiser
+SK-2096,category,matched to fixed category list,desk acc.,Desk
+SK-2104,product_name,standardised casing/spacing,Wooden  Desk  Organiser,Wooden Desk Organiser
+SK-2104,category,matched to fixed category list,desk,Desk
+SK-2112,product_name,standardised casing/spacing,COPIER PAPER A3 80GSM,Copier Paper A3 80gsm
+SK-2112,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-2112,price,"currency symbol removed, 2dp",$63.89,63.89
+SK-2120,product_name,standardised casing/spacing,"green ballpoint, medium","Green Ballpoint, Medium"
+SK-2120,category,matched to fixed category list,writing tools,Writing
+SK-2120,price,"currency symbol removed, 2dp",$66.87,66.87
+SK-2128,product_name,standardised casing/spacing,Copier Paper A4 100gsm,Copier Paper A4 100gsm
+SK-2128,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-2128,price,"currency symbol removed, 2dp",$25.34,25.34
+SK-2136,product_name,standardised casing/spacing,ACRYLIC DESK ORGANISER,Acrylic Desk Organiser
+SK-2136,category,matched to fixed category list,desk acc.,Desk
+SK-2144,category,matched to fixed category list,Writing,Writing
+SK-2144,price,"currency symbol removed, 2dp",$22.96,22.96
+SK-2152,product_name,standardised casing/spacing,Black Lever Arch File A4,Black Lever Arch File A4
+SK-2152,category,matched to fixed category list,filing,Filing
+SK-2160,product_name,standardised casing/spacing,Copier Paper A3 80gsm,Copier Paper A3 80gsm
+SK-2160,category,matched to fixed category list,paper&office,Paper & Office
+SK-2168,category,matched to fixed category list,WRITING,Writing
+SK-2176,product_name,standardised casing/spacing,Green  Lever  Arch  File  A4,Green Lever Arch File A4
+SK-2176,category,matched to fixed category list,filing & storage,Filing
+SK-2184,category,matched to fixed category list,filing,Filing
+SK-2192,category,matched to fixed category list,Writing,Writing
+SK-2200,product_name,standardised casing/spacing,blue lever arch file a4,Blue Lever Arch File A4
+SK-2200,category,matched to fixed category list,FILING,Filing
+SK-2200,price,"currency symbol removed, 2dp",$28.66,28.66
+SK-2208,product_name,standardised casing/spacing,Acrylic  Desk  Organiser,Acrylic Desk Organiser
+SK-2208,category,matched to fixed category list,desk acc.,Desk
+SK-2216,category,matched to fixed category list,filing,Filing
+SK-2216,price,"currency symbol removed, 2dp",$22.49,22.49
+SK-2224,product_name,standardised casing/spacing,BLACK LEVER ARCH FILE FOOLSCAP,Black Lever Arch File Foolscap
+SK-2224,category,matched to fixed category list,Filing/Storage,Filing
+SK-2224,price,"currency symbol removed, 2dp",$31.71,31.71
+SK-2232,product_name,standardised casing/spacing,"green ballpoint, fine","Green Ballpoint, Fine"
+SK-2232,category,matched to fixed category list,Writing,Writing
+SK-2240,product_name,standardised casing/spacing,Copier  Paper  A4  120gsm,Copier Paper A4 120gsm
+SK-2240,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-2248,category,matched to fixed category list,Filing/Storage,Filing
+SK-2256,category,matched to fixed category list,Desk Accessories,Desk
+SK-2264,category,matched to fixed category list,Writing,Writing
+SK-2264,price,"currency symbol removed, 2dp",$81.28,81.28
+SK-2272,category,matched to fixed category list,FILING,Filing
+SK-2280,product_name,standardised casing/spacing,BLUE LEVER ARCH FILE A4,Blue Lever Arch File A4
+SK-2280,category,matched to fixed category list,filing & storage,Filing
+SK-2280,price,"currency symbol removed, 2dp",$9.77,9.77
+SK-2288,product_name,standardised casing/spacing,Acrylic Desk Organiser,Acrylic Desk Organiser
+SK-2288,category,matched to fixed category list,desk,Desk
+SK-2296,category,matched to fixed category list,writing tools,Writing
+SK-2304,product_name,standardised casing/spacing,Grey Lever Arch File A4,Grey Lever Arch File A4
+SK-2304,category,matched to fixed category list,filing & storage,Filing
+SK-2304,price,"currency symbol removed, 2dp",$46.53,46.53
+SK-2312,product_name,standardised casing/spacing,Copier  Paper  A3  80gsm,Copier Paper A3 80gsm
+SK-2312,category,matched to fixed category list,paper&office,Paper & Office
+SK-2320,product_name,standardised casing/spacing,copier paper a4 80gsm,Copier Paper A4 80gsm
+SK-2320,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-2320,price,"currency symbol removed, 2dp",$60.59,60.59
+SK-2328,category,matched to fixed category list,FILING,Filing
+SK-2336,product_name,standardised casing/spacing,ACRYLIC DESK ORGANISER,Acrylic Desk Organiser
+SK-2336,category,matched to fixed category list,Desk Accessories,Desk
+SK-2344,product_name,standardised casing/spacing,Copier Paper A4 80gsm,Copier Paper A4 80gsm
+SK-2344,category,matched to fixed category list,paper&office,Paper & Office
+SK-2352,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-2360,product_name,standardised casing/spacing,"Green Ballpoint, Fine","Green Ballpoint, Fine"
+SK-2360,category,matched to fixed category list,Writing,Writing
+SK-2368,product_name,standardised casing/spacing,COPIER PAPER A4 70GSM,Copier Paper A4 70gsm
+SK-2368,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-2376,product_name,standardised casing/spacing,black lever arch file foolscap,Black Lever Arch File Foolscap
+SK-2376,category,matched to fixed category list,filing,Filing
+SK-2384,product_name,standardised casing/spacing,"Green Ballpoint, Fine","Green Ballpoint, Fine"
+SK-2384,category,matched to fixed category list,writing tools,Writing
+SK-2392,product_name,standardised casing/spacing,"red ballpoint, medium","Red Ballpoint, Medium"
+SK-2392,category,matched to fixed category list,writing tools,Writing
+SK-2392,price,"currency symbol removed, 2dp",$79.47,79.47
+SK-2400,category,matched to fixed category list,paper & office,Paper & Office
+SK-2408,product_name,standardised casing/spacing,Black Lever Arch File Foolscap,Black Lever Arch File Foolscap
+SK-2408,category,matched to fixed category list,filing,Filing
+SK-2416,product_name,standardised casing/spacing,Grey Lever Arch File A4,Grey Lever Arch File A4
+SK-2416,category,matched to fixed category list,filing & storage,Filing
+SK-2416,price,"currency symbol removed, 2dp",$44.73,44.73
+SK-2424,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-2432,product_name,standardised casing/spacing,copier paper a4 120gsm,Copier Paper A4 120gsm
+SK-2432,category,matched to fixed category list,paper&office,Paper & Office
+SK-2440,product_name,standardised casing/spacing,BLACK LEVER ARCH FILE A4,Black Lever Arch File A4
+SK-2440,category,matched to fixed category list,Filing/Storage,Filing
+SK-2440,price,"currency symbol removed, 2dp",$10.77,10.77
+SK-2448,product_name,standardised casing/spacing,"RED BALLPOINT, FINE","Red Ballpoint, Fine"
+SK-2448,category,matched to fixed category list,Writing,Writing
+SK-2456,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-2464,category,matched to fixed category list,desk acc.,Desk
+SK-2464,price,"currency symbol removed, 2dp",$44.13,44.13
+SK-2472,category,matched to fixed category list,paper & office,Paper & Office
+SK-2480,category,matched to fixed category list,Desk Accessories,Desk
+SK-2480,price,"currency symbol removed, 2dp",$45.76,45.76
+SK-2488,category,matched to fixed category list,filing,Filing
+SK-2496,product_name,standardised casing/spacing,COPIER PAPER A5 120GSM,Copier Paper A5 120gsm
+SK-2496,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-2504,category,matched to fixed category list,writing tools,Writing
+SK-2504,price,"currency symbol removed, 2dp",$18.17,18.17
+SK-2512,product_name,standardised casing/spacing,MESH DESK ORGANISER,Mesh Desk Organiser
+SK-2512,category,matched to fixed category list,DESK,Desk
+SK-2512,price,"currency symbol removed, 2dp",$58.29,58.29
+SK-2520,product_name,standardised casing/spacing,"black ballpoint, broad","Black Ballpoint, Broad"
+SK-2520,category,matched to fixed category list,writing tools,Writing
+SK-2528,product_name,standardised casing/spacing,STEEL DESK ORGANISER,Steel Desk Organiser
+SK-2528,category,matched to fixed category list,Desk Accessories,Desk
+SK-2536,product_name,standardised casing/spacing,"RED BALLPOINT, MEDIUM","Red Ballpoint, Medium"
+SK-2536,category,matched to fixed category list,writing tools,Writing
+SK-2544,category,matched to fixed category list,writing tools,Writing
+SK-2544,price,"currency symbol removed, 2dp",$82.83,82.83
+SK-2552,product_name,standardised casing/spacing,wooden desk organiser,Wooden Desk Organiser
+SK-2552,category,matched to fixed category list,desk acc.,Desk
+SK-2552,price,"currency symbol removed, 2dp",$50.40,50.40
+SK-2560,product_name,standardised casing/spacing,Green Lever Arch File Foolscap,Green Lever Arch File Foolscap
+SK-2560,category,matched to fixed category list,Filing/Storage,Filing
+SK-2568,product_name,standardised casing/spacing,acrylic desk organiser,Acrylic Desk Organiser
+SK-2568,category,matched to fixed category list,desk acc.,Desk
+SK-2568,price,"currency symbol removed, 2dp",$23.50,23.50
+SK-2576,product_name,standardised casing/spacing,"Blue Ballpoint, Fine","Blue Ballpoint, Fine"
+SK-2576,category,matched to fixed category list,writing,Writing
+SK-2576,price,"currency symbol removed, 2dp",$78.66,78.66
+SK-2584,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-2592,product_name,standardised casing/spacing,Blue Lever Arch File Foolscap,Blue Lever Arch File Foolscap
+SK-2592,category,matched to fixed category list,Filing/Storage,Filing
+SK-2592,price,"currency symbol removed, 2dp",$43.22,43.22
+SK-2600,category,matched to fixed category list,WRITING,Writing
+SK-2608,product_name,standardised casing/spacing,copier paper a3 70gsm,Copier Paper A3 70gsm
+SK-2608,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-2616,product_name,standardised casing/spacing,"Black  Ballpoint,  Broad","Black Ballpoint, Broad"
+SK-2616,category,matched to fixed category list,writing,Writing
+SK-2624,category,matched to fixed category list,filing,Filing
+SK-2632,product_name,standardised casing/spacing,green lever arch file foolscap,Green Lever Arch File Foolscap
+SK-2632,category,matched to fixed category list,filing,Filing
+SK-2640,product_name,standardised casing/spacing,"Green Ballpoint, Broad","Green Ballpoint, Broad"
+SK-2640,category,matched to fixed category list,writing tools,Writing
+SK-2648,category,matched to fixed category list,desk,Desk
+SK-2648,price,"currency symbol removed, 2dp",$19.41,19.41
+SK-2656,product_name,standardised casing/spacing,Grey Lever Arch File Foolscap,Grey Lever Arch File Foolscap
+SK-2656,category,matched to fixed category list,filing & storage,Filing
+SK-2664,product_name,standardised casing/spacing,Copier Paper A4 100gsm,Copier Paper A4 100gsm
+SK-2664,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-2672,product_name,standardised casing/spacing,COPIER PAPER LETTER 80GSM,Copier Paper Letter 80gsm
+SK-2672,category,matched to fixed category list,paper&office,Paper & Office
+SK-2680,category,matched to fixed category list,writing,Writing
+SK-2688,product_name,standardised casing/spacing,Black Lever Arch File Foolscap,Black Lever Arch File Foolscap
+SK-2688,category,matched to fixed category list,Filing/Storage,Filing
+SK-2696,product_name,standardised casing/spacing,Black Lever Arch File Foolscap,Black Lever Arch File Foolscap
+SK-2696,category,matched to fixed category list,filing,Filing
+SK-2704,product_name,standardised casing/spacing,Copier Paper A5 70gsm,Copier Paper A5 70gsm
+SK-2704,category,matched to fixed category list,paper & office,Paper & Office
+SK-2712,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-2712,price,"currency symbol removed, 2dp",$18.39,18.39
+SK-2720,product_name,standardised casing/spacing,copier paper a3 80gsm,Copier Paper A3 80gsm
+SK-2720,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-2728,product_name,standardised casing/spacing,Copier  Paper  Legal  70gsm,Copier Paper Legal 70gsm
+SK-2728,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-2736,product_name,standardised casing/spacing,WOODEN DESK ORGANISER,Wooden Desk Organiser
+SK-2736,category,matched to fixed category list,Desk Accessories,Desk
+SK-2744,product_name,standardised casing/spacing,COPIER PAPER A5 80GSM,Copier Paper A5 80gsm
+SK-2744,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-2752,category,matched to fixed category list,writing tools,Writing
+SK-2752,price,"currency symbol removed, 2dp",$22.45,22.45
+SK-2760,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-2768,category,matched to fixed category list,filing,Filing
+SK-2776,product_name,standardised casing/spacing,Wooden Desk Organiser,Wooden Desk Organiser
+SK-2776,category,matched to fixed category list,DESK,Desk
+SK-2776,price,"currency symbol removed, 2dp",$74.37,74.37
+SK-2784,product_name,standardised casing/spacing,BLUE LEVER ARCH FILE FOOLSCAP,Blue Lever Arch File Foolscap
+SK-2784,category,matched to fixed category list,Filing/Storage,Filing
+SK-2792,product_name,standardised casing/spacing,"Green Ballpoint, Medium","Green Ballpoint, Medium"
+SK-2792,category,matched to fixed category list,writing tools,Writing
+SK-2800,category,matched to fixed category list,Filing/Storage,Filing
+SK-2808,category,matched to fixed category list,Desk Accessories,Desk
+SK-2816,product_name,standardised casing/spacing,Copier Paper Letter 120gsm,Copier Paper Letter 120gsm
+SK-2816,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-2824,category,matched to fixed category list,DESK,Desk
+SK-2832,product_name,standardised casing/spacing,Mesh  Desk  Organiser,Mesh Desk Organiser
+SK-2832,category,matched to fixed category list,DESK,Desk
+SK-2832,price,"currency symbol removed, 2dp",$85.55,85.55
+SK-2840,product_name,standardised casing/spacing,Copier  Paper  A5  80gsm,Copier Paper A5 80gsm
+SK-2840,category,matched to fixed category list,paper&office,Paper & Office
+SK-2848,product_name,standardised casing/spacing,"Red Ballpoint, Fine","Red Ballpoint, Fine"
+SK-2848,category,matched to fixed category list,WRITING,Writing
+SK-2856,product_name,standardised casing/spacing,Green Lever Arch File A4,Green Lever Arch File A4
+SK-2856,category,matched to fixed category list,filing & storage,Filing
+SK-2864,product_name,standardised casing/spacing,steel desk organiser,Steel Desk Organiser
+SK-2864,category,matched to fixed category list,DESK,Desk
+SK-2872,category,matched to fixed category list,paper & office,Paper & Office
+SK-2880,product_name,standardised casing/spacing,copier paper a5 120gsm,Copier Paper A5 120gsm
+SK-2880,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-2880,price,"currency symbol removed, 2dp",$35.61,35.61
+SK-2888,product_name,standardised casing/spacing,mesh desk organiser,Mesh Desk Organiser
+SK-2888,category,matched to fixed category list,DESK,Desk
+SK-2896,product_name,standardised casing/spacing,green lever arch file foolscap,Green Lever Arch File Foolscap
+SK-2896,category,matched to fixed category list,filing,Filing
+SK-2896,price,"currency symbol removed, 2dp",$86.42,86.42
+SK-2904,product_name,standardised casing/spacing,"BLUE BALLPOINT, BROAD","Blue Ballpoint, Broad"
+SK-2904,category,matched to fixed category list,WRITING,Writing
+SK-2904,price,"currency symbol removed, 2dp",$44.49,44.49
+SK-2912,product_name,standardised casing/spacing,Copier  Paper  A5  120gsm,Copier Paper A5 120gsm
+SK-2912,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-2912,price,"currency symbol removed, 2dp",$18.59,18.59
+SK-2920,product_name,standardised casing/spacing,"Red Ballpoint, Fine","Red Ballpoint, Fine"
+SK-2920,category,matched to fixed category list,Writing,Writing
+SK-2928,category,matched to fixed category list,FILING,Filing
+SK-2936,product_name,standardised casing/spacing,copier paper a4 100gsm,Copier Paper A4 100gsm
+SK-2936,category,matched to fixed category list,paper & office,Paper & Office
+SK-2936,price,"currency symbol removed, 2dp",$40.85,40.85
+SK-2944,product_name,standardised casing/spacing,ACRYLIC DESK ORGANISER,Acrylic Desk Organiser
+SK-2944,category,matched to fixed category list,desk acc.,Desk
+SK-2944,price,"currency symbol removed, 2dp",$13.54,13.54
+SK-2952,product_name,standardised casing/spacing,Blue  Lever  Arch  File  A4,Blue Lever Arch File A4
+SK-2952,category,matched to fixed category list,FILING,Filing
+SK-2960,category,matched to fixed category list,writing,Writing
+SK-2968,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-2976,category,matched to fixed category list,WRITING,Writing
+SK-2984,product_name,standardised casing/spacing,"green ballpoint, medium","Green Ballpoint, Medium"
+SK-2984,category,matched to fixed category list,WRITING,Writing
+SK-2992,category,matched to fixed category list,WRITING,Writing
+SK-2992,price,"currency symbol removed, 2dp",$47.17,47.17
+SK-3000,product_name,standardised casing/spacing,COPIER PAPER LEGAL 70GSM,Copier Paper Legal 70gsm
+SK-3000,category,matched to fixed category list,paper&office,Paper & Office
+SK-3008,category,matched to fixed category list,desk acc.,Desk
+SK-3016,product_name,standardised casing/spacing,copier paper letter 120gsm,Copier Paper Letter 120gsm
+SK-3016,category,matched to fixed category list,paper & office,Paper & Office
+SK-3024,product_name,standardised casing/spacing,blue lever arch file a4,Blue Lever Arch File A4
+SK-3024,category,matched to fixed category list,FILING,Filing
+SK-3032,product_name,standardised casing/spacing,Wooden Desk Organiser,Wooden Desk Organiser
+SK-3032,category,matched to fixed category list,desk,Desk
+SK-3040,product_name,standardised casing/spacing,"Red Ballpoint, Broad","Red Ballpoint, Broad"
+SK-3040,category,matched to fixed category list,WRITING,Writing
+SK-3040,price,"currency symbol removed, 2dp",$21.28,21.28
+SK-3048,product_name,standardised casing/spacing,"green ballpoint, fine","Green Ballpoint, Fine"
+SK-3048,category,matched to fixed category list,Writing,Writing
+SK-3056,product_name,standardised casing/spacing,Copier  Paper  Letter  70gsm,Copier Paper Letter 70gsm
+SK-3056,category,matched to fixed category list,paper&office,Paper & Office
+SK-3056,price,"currency symbol removed, 2dp",$7.82,7.82
+SK-3064,product_name,standardised casing/spacing,BLACK LEVER ARCH FILE A4,Black Lever Arch File A4
+SK-3064,category,matched to fixed category list,FILING,Filing
+SK-3072,product_name,standardised casing/spacing,WOODEN DESK ORGANISER,Wooden Desk Organiser
+SK-3072,category,matched to fixed category list,desk acc.,Desk
+SK-3080,product_name,standardised casing/spacing,mesh desk organiser,Mesh Desk Organiser
+SK-3080,category,matched to fixed category list,DESK,Desk
+SK-3088,category,matched to fixed category list,DESK,Desk
+SK-3096,product_name,standardised casing/spacing,Blue  Lever  Arch  File  Foolscap,Blue Lever Arch File Foolscap
+SK-3096,category,matched to fixed category list,FILING,Filing
+SK-3104,category,matched to fixed category list,Filing/Storage,Filing
+SK-3112,product_name,standardised casing/spacing,"Red  Ballpoint,  Fine","Red Ballpoint, Fine"
+SK-3112,category,matched to fixed category list,writing,Writing
+SK-3120,product_name,standardised casing/spacing,"BLACK BALLPOINT, MEDIUM","Black Ballpoint, Medium"
+SK-3120,category,matched to fixed category list,Writing,Writing
+SK-3128,category,matched to fixed category list,filing & storage,Filing
+SK-3128,price,"currency symbol removed, 2dp",$33.73,33.73
+SK-3136,product_name,standardised casing/spacing,copier paper a5 120gsm,Copier Paper A5 120gsm
+SK-3136,category,matched to fixed category list,paper & office,Paper & Office
+SK-3136,price,"currency symbol removed, 2dp",$86.25,86.25
+SK-3144,product_name,standardised casing/spacing,Mesh Desk Organiser,Mesh Desk Organiser
+SK-3144,category,matched to fixed category list,DESK,Desk
+SK-3144,price,"currency symbol removed, 2dp",$50.76,50.76
+SK-3152,product_name,standardised casing/spacing,Copier Paper Legal 80gsm,Copier Paper Legal 80gsm
+SK-3152,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-3152,price,"currency symbol removed, 2dp",82.1,82.10
+SK-3160,product_name,standardised casing/spacing,Steel  Desk  Organiser,Steel Desk Organiser
+SK-3160,category,matched to fixed category list,desk,Desk
+SK-3168,category,matched to fixed category list,writing tools,Writing
+SK-3168,price,"currency symbol removed, 2dp",$76.93,76.93
+SK-3176,product_name,standardised casing/spacing,Copier  Paper  Letter  70gsm,Copier Paper Letter 70gsm
+SK-3176,category,matched to fixed category list,paper & office,Paper & Office
+SK-3184,product_name,standardised casing/spacing,Mesh Desk Organiser,Mesh Desk Organiser
+SK-3184,category,matched to fixed category list,DESK,Desk
+SK-3192,product_name,standardised casing/spacing,"Blue Ballpoint, Medium","Blue Ballpoint, Medium"
+SK-3192,category,matched to fixed category list,WRITING,Writing
+SK-3200,product_name,standardised casing/spacing,Blue Lever Arch File A4,Blue Lever Arch File A4
+SK-3200,category,matched to fixed category list,Filing/Storage,Filing
+SK-3208,product_name,standardised casing/spacing,"Black  Ballpoint,  Fine","Black Ballpoint, Fine"
+SK-3208,category,matched to fixed category list,Writing,Writing
+SK-3216,product_name,standardised casing/spacing,COPIER PAPER LETTER 70GSM,Copier Paper Letter 70gsm
+SK-3216,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-3224,product_name,standardised casing/spacing,green lever arch file foolscap,Green Lever Arch File Foolscap
+SK-3224,category,matched to fixed category list,FILING,Filing
+SK-3232,product_name,standardised casing/spacing,ACRYLIC DESK ORGANISER,Acrylic Desk Organiser
+SK-3232,category,matched to fixed category list,DESK,Desk
+SK-3240,category,matched to fixed category list,Desk Accessories,Desk
+SK-3248,product_name,standardised casing/spacing,blue lever arch file foolscap,Blue Lever Arch File Foolscap
+SK-3248,category,matched to fixed category list,filing,Filing
+SK-3256,product_name,standardised casing/spacing,"Blue  Ballpoint,  Medium","Blue Ballpoint, Medium"
+SK-3256,category,matched to fixed category list,WRITING,Writing
+SK-3264,product_name,standardised casing/spacing,GREEN LEVER ARCH FILE A4,Green Lever Arch File A4
+SK-3264,category,matched to fixed category list,Filing/Storage,Filing
+SK-3272,product_name,standardised casing/spacing,Copier  Paper  Letter  70gsm,Copier Paper Letter 70gsm
+SK-3272,category,matched to fixed category list,paper&office,Paper & Office
+SK-3280,product_name,standardised casing/spacing,BLUE LEVER ARCH FILE A4,Blue Lever Arch File A4
+SK-3280,category,matched to fixed category list,Filing/Storage,Filing
+SK-3288,product_name,standardised casing/spacing,Copier Paper Legal 80gsm,Copier Paper Legal 80gsm
+SK-3288,category,matched to fixed category list,paper&office,Paper & Office
+SK-3296,product_name,standardised casing/spacing,"red ballpoint, medium","Red Ballpoint, Medium"
+SK-3296,category,matched to fixed category list,WRITING,Writing
+SK-3304,product_name,standardised casing/spacing,"BLACK BALLPOINT, FINE","Black Ballpoint, Fine"
+SK-3304,category,matched to fixed category list,writing tools,Writing
+SK-3312,category,matched to fixed category list,desk acc.,Desk
+SK-3312,price,"currency symbol removed, 2dp",35.5,35.50
+SK-3320,product_name,standardised casing/spacing,mesh desk organiser,Mesh Desk Organiser
+SK-3320,category,matched to fixed category list,Desk Accessories,Desk
+SK-3328,product_name,standardised casing/spacing,COPIER PAPER A3 100GSM,Copier Paper A3 100gsm
+SK-3328,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-3336,product_name,standardised casing/spacing,copier paper a4 120gsm,Copier Paper A4 120gsm
+SK-3336,category,matched to fixed category list,paper & office,Paper & Office
+SK-3344,product_name,standardised casing/spacing,COPIER PAPER LEGAL 120GSM,Copier Paper Legal 120gsm
+SK-3344,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-3352,product_name,standardised casing/spacing,"Blue Ballpoint, Broad","Blue Ballpoint, Broad"
+SK-3352,category,matched to fixed category list,writing tools,Writing
+SK-3360,product_name,standardised casing/spacing,"Green Ballpoint, Broad","Green Ballpoint, Broad"
+SK-3360,category,matched to fixed category list,writing,Writing
+SK-3360,price,"currency symbol removed, 2dp",$85.61,85.61
+SK-3368,category,matched to fixed category list,paper&office,Paper & Office
+SK-3376,category,matched to fixed category list,WRITING,Writing
+SK-3376,price,"currency symbol removed, 2dp",$2.97,2.97
+SK-3384,category,matched to fixed category list,writing,Writing
+SK-3392,category,matched to fixed category list,Filing/Storage,Filing
+SK-3400,product_name,standardised casing/spacing,Copier Paper Legal 70gsm,Copier Paper Legal 70gsm
+SK-3400,category,matched to fixed category list,paper&office,Paper & Office
+SK-3400,price,"currency symbol removed, 2dp",89.5,89.50
+SK-3408,product_name,standardised casing/spacing,steel desk organiser,Steel Desk Organiser
+SK-3408,category,matched to fixed category list,desk,Desk
+SK-3416,category,matched to fixed category list,Filing/Storage,Filing
+SK-3424,category,matched to fixed category list,paper&office,Paper & Office
+SK-3424,price,"currency symbol removed, 2dp",$69.53,69.53
+SK-3432,product_name,standardised casing/spacing,"blue ballpoint, medium","Blue Ballpoint, Medium"
+SK-3432,category,matched to fixed category list,writing tools,Writing
+SK-3440,product_name,standardised casing/spacing,"blue ballpoint, fine","Blue Ballpoint, Fine"
+SK-3440,category,matched to fixed category list,Writing,Writing
+SK-3440,price,"currency symbol removed, 2dp",$58.08,58.08
+SK-3448,product_name,standardised casing/spacing,GREY LEVER ARCH FILE A4,Grey Lever Arch File A4
+SK-3448,category,matched to fixed category list,filing & storage,Filing
+SK-3456,product_name,standardised casing/spacing,Mesh Desk Organiser,Mesh Desk Organiser
+SK-3456,category,matched to fixed category list,desk,Desk
+SK-3456,price,"currency symbol removed, 2dp",$58.86,58.86
+SK-3464,product_name,standardised casing/spacing,Acrylic  Desk  Organiser,Acrylic Desk Organiser
+SK-3464,category,matched to fixed category list,Desk Accessories,Desk
+SK-3464,price,"currency symbol removed, 2dp",$69.77,69.77
+SK-3472,product_name,standardised casing/spacing,GREY LEVER ARCH FILE FOOLSCAP,Grey Lever Arch File Foolscap
+SK-3472,category,matched to fixed category list,Filing/Storage,Filing
+SK-3472,price,"currency symbol removed, 2dp",$74.76,74.76
+SK-3480,category,matched to fixed category list,Filing/Storage,Filing
+SK-3488,category,matched to fixed category list,paper & office,Paper & Office
+SK-3496,product_name,standardised casing/spacing,GREEN LEVER ARCH FILE FOOLSCAP,Green Lever Arch File Foolscap
+SK-3496,category,matched to fixed category list,FILING,Filing
+SK-3504,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-3504,price,"currency symbol removed, 2dp",$28.00,28.00
+SK-3512,product_name,standardised casing/spacing,"BLUE BALLPOINT, FINE","Blue Ballpoint, Fine"
+SK-3512,category,matched to fixed category list,Writing,Writing
+SK-3520,category,matched to fixed category list,Filing/Storage,Filing
+SK-3528,product_name,standardised casing/spacing,COPIER PAPER A4 120GSM,Copier Paper A4 120gsm
+SK-3528,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-3528,price,"currency symbol removed, 2dp",$77.00,77.00
+SK-3536,product_name,standardised casing/spacing,"GREEN BALLPOINT, BROAD","Green Ballpoint, Broad"
+SK-3536,category,matched to fixed category list,Writing,Writing
+SK-3536,price,"currency symbol removed, 2dp",$44.32,44.32
+SK-3544,product_name,standardised casing/spacing,Copier Paper A4 120gsm,Copier Paper A4 120gsm
+SK-3544,category,matched to fixed category list,paper&office,Paper & Office
+SK-3552,product_name,standardised casing/spacing,GREY LEVER ARCH FILE A4,Grey Lever Arch File A4
+SK-3552,category,matched to fixed category list,filing & storage,Filing
+SK-3560,category,matched to fixed category list,filing & storage,Filing
+SK-3568,product_name,standardised casing/spacing,Wooden Desk Organiser,Wooden Desk Organiser
+SK-3568,category,matched to fixed category list,Desk Accessories,Desk
+SK-3576,product_name,standardised casing/spacing,Wooden  Desk  Organiser,Wooden Desk Organiser
+SK-3576,category,matched to fixed category list,DESK,Desk
+SK-3576,price,"currency symbol removed, 2dp",$42.64,42.64
+SK-3584,category,matched to fixed category list,filing,Filing
+SK-3592,product_name,standardised casing/spacing,black lever arch file foolscap,Black Lever Arch File Foolscap
+SK-3592,category,matched to fixed category list,filing & storage,Filing
+SK-3592,price,"currency symbol removed, 2dp",$35.30,35.30
+SK-3600,category,matched to fixed category list,DESK,Desk
+SK-3608,product_name,standardised casing/spacing,copier paper a5 80gsm,Copier Paper A5 80gsm
+SK-3608,category,matched to fixed category list,paper & office,Paper & Office
+SK-3608,price,"currency symbol removed, 2dp",$55.00,55.00
+SK-3616,product_name,standardised casing/spacing,"BLUE BALLPOINT, BROAD","Blue Ballpoint, Broad"
+SK-3616,category,matched to fixed category list,Writing,Writing
+SK-3624,product_name,standardised casing/spacing,COPIER PAPER A4 100GSM,Copier Paper A4 100gsm
+SK-3624,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-3632,product_name,standardised casing/spacing,Copier Paper A4 70gsm,Copier Paper A4 70gsm
+SK-3632,category,matched to fixed category list,paper & office,Paper & Office
+SK-3640,category,matched to fixed category list,WRITING,Writing
+SK-3648,category,matched to fixed category list,DESK,Desk
+SK-3648,price,"currency symbol removed, 2dp",$45.03,45.03
+SK-3656,category,matched to fixed category list,Desk Accessories,Desk
+SK-3656,price,"currency symbol removed, 2dp",$41.72,41.72
+SK-3664,product_name,standardised casing/spacing,Steel  Desk  Organiser,Steel Desk Organiser
+SK-3664,category,matched to fixed category list,desk,Desk
+SK-3664,price,"currency symbol removed, 2dp",$72.86,72.86
+SK-3672,product_name,standardised casing/spacing,"Black Ballpoint, Broad","Black Ballpoint, Broad"
+SK-3672,category,matched to fixed category list,writing,Writing
+SK-3680,product_name,standardised casing/spacing,Copier  Paper  A4  100gsm,Copier Paper A4 100gsm
+SK-3680,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-3688,product_name,standardised casing/spacing,BLACK LEVER ARCH FILE A4,Black Lever Arch File A4
+SK-3688,category,matched to fixed category list,filing & storage,Filing
+SK-3696,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-3704,category,matched to fixed category list,filing,Filing
+SK-3712,product_name,standardised casing/spacing,Black  Lever  Arch  File  Foolscap,Black Lever Arch File Foolscap
+SK-3712,category,matched to fixed category list,filing,Filing
+SK-3712,price,"currency symbol removed, 2dp",$42.36,42.36
+SK-3720,product_name,standardised casing/spacing,Copier  Paper  Letter  70gsm,Copier Paper Letter 70gsm
+SK-3720,category,matched to fixed category list,paper&office,Paper & Office
+SK-3728,category,matched to fixed category list,desk,Desk
+SK-3736,product_name,standardised casing/spacing,steel desk organiser,Steel Desk Organiser
+SK-3736,category,matched to fixed category list,DESK,Desk
+SK-3736,price,"currency symbol removed, 2dp",$11.73,11.73
+SK-3744,category,matched to fixed category list,WRITING,Writing
+SK-3752,product_name,standardised casing/spacing,mesh desk organiser,Mesh Desk Organiser
+SK-3752,category,matched to fixed category list,desk acc.,Desk
+SK-3760,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-3760,price,"currency symbol removed, 2dp",$17.90,17.90
+SK-3768,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-3768,price,"currency symbol removed, 2dp",$89.36,89.36
+SK-3776,category,matched to fixed category list,writing tools,Writing
+SK-3784,product_name,standardised casing/spacing,copier paper a4 70gsm,Copier Paper A4 70gsm
+SK-3784,category,matched to fixed category list,paper&office,Paper & Office
+SK-3792,product_name,standardised casing/spacing,BLUE LEVER ARCH FILE FOOLSCAP,Blue Lever Arch File Foolscap
+SK-3792,category,matched to fixed category list,Filing/Storage,Filing
+SK-3800,category,matched to fixed category list,filing & storage,Filing
+SK-3808,product_name,standardised casing/spacing,"red ballpoint, fine","Red Ballpoint, Fine"
+SK-3808,category,matched to fixed category list,WRITING,Writing
+SK-3808,price,"currency symbol removed, 2dp",$23.27,23.27
+SK-3816,category,matched to fixed category list,desk acc.,Desk
+SK-3824,product_name,standardised casing/spacing,COPIER PAPER A4 100GSM,Copier Paper A4 100gsm
+SK-3824,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-3832,product_name,standardised casing/spacing,"Red  Ballpoint,  Fine","Red Ballpoint, Fine"
+SK-3832,category,matched to fixed category list,WRITING,Writing
+SK-3840,product_name,standardised casing/spacing,black lever arch file a4,Black Lever Arch File A4
+SK-3840,category,matched to fixed category list,Filing/Storage,Filing
+SK-3848,product_name,standardised casing/spacing,Wooden Desk Organiser,Wooden Desk Organiser
+SK-3848,category,matched to fixed category list,DESK,Desk
+SK-3856,product_name,standardised casing/spacing,"BLACK BALLPOINT, BROAD","Black Ballpoint, Broad"
+SK-3856,category,matched to fixed category list,writing tools,Writing
+SK-3864,category,matched to fixed category list,writing tools,Writing
+SK-3872,category,matched to fixed category list,filing & storage,Filing
+SK-3880,product_name,standardised casing/spacing,"Blue  Ballpoint,  Broad","Blue Ballpoint, Broad"
+SK-3880,category,matched to fixed category list,writing,Writing
+SK-3888,category,matched to fixed category list,WRITING,Writing
+SK-3896,product_name,standardised casing/spacing,BLACK LEVER ARCH FILE A4,Black Lever Arch File A4
+SK-3896,category,matched to fixed category list,filing,Filing
+SK-3904,product_name,standardised casing/spacing,"red ballpoint, broad","Red Ballpoint, Broad"
+SK-3904,category,matched to fixed category list,WRITING,Writing
+SK-3912,category,matched to fixed category list,paper&office,Paper & Office
+SK-3920,product_name,standardised casing/spacing,BLUE LEVER ARCH FILE FOOLSCAP,Blue Lever Arch File Foolscap
+SK-3920,category,matched to fixed category list,filing & storage,Filing
+SK-3928,product_name,standardised casing/spacing,Blue  Lever  Arch  File  Foolscap,Blue Lever Arch File Foolscap
+SK-3928,category,matched to fixed category list,filing & storage,Filing
+SK-3936,product_name,standardised casing/spacing,Copier  Paper  A5  100gsm,Copier Paper A5 100gsm
+SK-3936,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-3936,price,"currency symbol removed, 2dp",$51.97,51.97
+SK-3944,product_name,standardised casing/spacing,grey lever arch file foolscap,Grey Lever Arch File Foolscap
+SK-3944,category,matched to fixed category list,Filing/Storage,Filing
+SK-3952,product_name,standardised casing/spacing,copier paper legal 120gsm,Copier Paper Legal 120gsm
+SK-3952,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-3960,product_name,standardised casing/spacing,Copier  Paper  A4  80gsm,Copier Paper A4 80gsm
+SK-3960,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-3968,product_name,standardised casing/spacing,wooden desk organiser,Wooden Desk Organiser
+SK-3968,category,matched to fixed category list,desk acc.,Desk
+SK-3976,category,matched to fixed category list,Desk Accessories,Desk
+SK-3976,price,"currency symbol removed, 2dp",$24.09,24.09
+SK-3984,product_name,standardised casing/spacing,WOODEN DESK ORGANISER,Wooden Desk Organiser
+SK-3984,category,matched to fixed category list,DESK,Desk
+SK-3992,product_name,standardised casing/spacing,"black ballpoint, broad","Black Ballpoint, Broad"
+SK-3992,category,matched to fixed category list,WRITING,Writing
+SK-3992,price,"currency symbol removed, 2dp",$84.28,84.28
+SK-4000,category,matched to fixed category list,filing & storage,Filing
+SK-4008,category,matched to fixed category list,paper&office,Paper & Office
+SK-4008,price,"currency symbol removed, 2dp",$48.45,48.45
+SK-4016,category,matched to fixed category list,desk acc.,Desk
+SK-4024,product_name,standardised casing/spacing,COPIER PAPER A5 120GSM,Copier Paper A5 120gsm
+SK-4024,category,matched to fixed category list,paper & office,Paper & Office
+SK-4032,category,matched to fixed category list,Writing,Writing
+SK-4040,category,matched to fixed category list,FILING,Filing
+SK-4048,product_name,standardised casing/spacing,grey lever arch file a4,Grey Lever Arch File A4
+SK-4048,category,matched to fixed category list,filing & storage,Filing
+SK-4048,price,"currency symbol removed, 2dp",$66.61,66.61
+SK-4056,product_name,standardised casing/spacing,Grey  Lever  Arch  File  A4,Grey Lever Arch File A4
+SK-4056,category,matched to fixed category list,FILING,Filing
+SK-4064,category,matched to fixed category list,Filing/Storage,Filing
+SK-4064,price,"currency symbol removed, 2dp",$60.24,60.24
+SK-4072,product_name,standardised casing/spacing,"GREEN BALLPOINT, MEDIUM","Green Ballpoint, Medium"
+SK-4072,category,matched to fixed category list,WRITING,Writing
+SK-4080,product_name,standardised casing/spacing,mesh desk organiser,Mesh Desk Organiser
+SK-4080,category,matched to fixed category list,desk acc.,Desk
+SK-4088,product_name,standardised casing/spacing,Copier Paper Letter 70gsm,Copier Paper Letter 70gsm
+SK-4088,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-4088,price,"currency symbol removed, 2dp",$10.87,10.87
+SK-4096,product_name,standardised casing/spacing,"RED BALLPOINT, MEDIUM","Red Ballpoint, Medium"
+SK-4096,category,matched to fixed category list,Writing,Writing
+SK-4104,product_name,standardised casing/spacing,copier paper legal 70gsm,Copier Paper Legal 70gsm
+SK-4104,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-4104,price,"currency symbol removed, 2dp",$8.65,8.65
+SK-4112,product_name,standardised casing/spacing,ACRYLIC DESK ORGANISER,Acrylic Desk Organiser
+SK-4112,category,matched to fixed category list,desk,Desk
+SK-4120,product_name,standardised casing/spacing,Copier  Paper  A4  70gsm,Copier Paper A4 70gsm
+SK-4120,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-4128,category,matched to fixed category list,FILING,Filing
+SK-4136,product_name,standardised casing/spacing,ACRYLIC DESK ORGANISER,Acrylic Desk Organiser
+SK-4136,category,matched to fixed category list,DESK,Desk
+SK-4136,price,"currency symbol removed, 2dp",$77.70,77.70
+SK-4144,category,matched to fixed category list,filing,Filing
+SK-4152,product_name,standardised casing/spacing,"green ballpoint, medium","Green Ballpoint, Medium"
+SK-4152,category,matched to fixed category list,writing tools,Writing
+SK-4160,product_name,standardised casing/spacing,Copier Paper Legal 70gsm,Copier Paper Legal 70gsm
+SK-4160,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-4168,category,matched to fixed category list,desk,Desk
+SK-4176,product_name,standardised casing/spacing,copier paper letter 100gsm,Copier Paper Letter 100gsm
+SK-4176,category,matched to fixed category list,paper&office,Paper & Office
+SK-4184,category,matched to fixed category list,writing,Writing
+SK-4192,product_name,standardised casing/spacing,"BLUE BALLPOINT, MEDIUM","Blue Ballpoint, Medium"
+SK-4192,category,matched to fixed category list,WRITING,Writing
+SK-4200,product_name,standardised casing/spacing,COPIER PAPER A4 70GSM,Copier Paper A4 70gsm
+SK-4200,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-4208,product_name,standardised casing/spacing,Copier Paper Legal 120gsm,Copier Paper Legal 120gsm
+SK-4208,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-4216,product_name,standardised casing/spacing,"Black Ballpoint, Medium","Black Ballpoint, Medium"
+SK-4216,category,matched to fixed category list,Writing,Writing
+SK-4216,price,"currency symbol removed, 2dp",$51.92,51.92
+SK-4224,category,matched to fixed category list,DESK,Desk
+SK-4232,product_name,standardised casing/spacing,STEEL DESK ORGANISER,Steel Desk Organiser
+SK-4232,category,matched to fixed category list,DESK,Desk
+SK-4232,price,"currency symbol removed, 2dp",$58.57,58.57
+SK-4240,product_name,standardised casing/spacing,Steel  Desk  Organiser,Steel Desk Organiser
+SK-4240,category,matched to fixed category list,desk,Desk
+SK-4248,product_name,standardised casing/spacing,"Red  Ballpoint,  Fine","Red Ballpoint, Fine"
+SK-4248,category,matched to fixed category list,WRITING,Writing
+SK-4256,category,matched to fixed category list,desk,Desk
+SK-4264,product_name,standardised casing/spacing,copier paper a4 70gsm,Copier Paper A4 70gsm
+SK-4264,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-4264,price,"currency symbol removed, 2dp",$32.53,32.53
+SK-4272,product_name,standardised casing/spacing,"BLUE BALLPOINT, FINE","Blue Ballpoint, Fine"
+SK-4272,category,matched to fixed category list,Writing,Writing
+SK-4272,price,"currency symbol removed, 2dp",$32.70,32.70
+SK-4280,product_name,standardised casing/spacing,grey lever arch file foolscap,Grey Lever Arch File Foolscap
+SK-4280,category,matched to fixed category list,filing,Filing
+SK-4288,product_name,standardised casing/spacing,"green ballpoint, fine","Green Ballpoint, Fine"
+SK-4288,category,matched to fixed category list,Writing,Writing
+SK-4296,category,matched to fixed category list,filing,Filing
+SK-4304,product_name,standardised casing/spacing,"Black  Ballpoint,  Fine","Black Ballpoint, Fine"
+SK-4304,category,matched to fixed category list,Writing,Writing
+SK-4304,price,"currency symbol removed, 2dp",$60.96,60.96
+SK-4312,category,matched to fixed category list,Desk Accessories,Desk
+SK-4320,product_name,standardised casing/spacing,GREEN LEVER ARCH FILE A4,Green Lever Arch File A4
+SK-4320,category,matched to fixed category list,Filing/Storage,Filing
+SK-4328,category,matched to fixed category list,FILING,Filing
+SK-4336,product_name,standardised casing/spacing,Blue Lever Arch File A4,Blue Lever Arch File A4
+SK-4336,category,matched to fixed category list,FILING,Filing
+SK-4336,price,"currency symbol removed, 2dp",$63.46,63.46
+SK-4344,category,matched to fixed category list,filing & storage,Filing
+SK-4344,price,"currency symbol removed, 2dp",$45.63,45.63
+SK-4352,product_name,standardised casing/spacing,"BLACK BALLPOINT, MEDIUM","Black Ballpoint, Medium"
+SK-4352,category,matched to fixed category list,WRITING,Writing
+SK-4360,category,matched to fixed category list,paper & office,Paper & Office
+SK-4368,product_name,standardised casing/spacing,"red ballpoint, fine","Red Ballpoint, Fine"
+SK-4368,category,matched to fixed category list,WRITING,Writing
+SK-4376,product_name,standardised casing/spacing,Blue  Lever  Arch  File  A4,Blue Lever Arch File A4
+SK-4376,category,matched to fixed category list,filing,Filing
+SK-4384,category,matched to fixed category list,Filing/Storage,Filing
+SK-4384,price,"currency symbol removed, 2dp",$58.72,58.72
+SK-4392,category,matched to fixed category list,paper & office,Paper & Office
+SK-4400,product_name,standardised casing/spacing,mesh desk organiser,Mesh Desk Organiser
+SK-4400,category,matched to fixed category list,DESK,Desk
+SK-4408,product_name,standardised casing/spacing,COPIER PAPER LEGAL 120GSM,Copier Paper Legal 120gsm
+SK-4408,category,matched to fixed category list,paper&office,Paper & Office
+SK-4408,price,"currency symbol removed, 2dp",$23.01,23.01
+SK-4416,category,matched to fixed category list,desk acc.,Desk
+SK-4424,category,matched to fixed category list,filing,Filing
+SK-4432,product_name,standardised casing/spacing,Steel  Desk  Organiser,Steel Desk Organiser
+SK-4432,category,matched to fixed category list,desk acc.,Desk
+SK-4440,product_name,standardised casing/spacing,"Red Ballpoint, Broad","Red Ballpoint, Broad"
+SK-4440,category,matched to fixed category list,writing,Writing
+SK-4448,category,matched to fixed category list,Desk Accessories,Desk
+SK-4456,product_name,standardised casing/spacing,WOODEN DESK ORGANISER,Wooden Desk Organiser
+SK-4456,category,matched to fixed category list,Desk Accessories,Desk
+SK-4456,price,"currency symbol removed, 2dp",$33.63,33.63
+SK-4464,product_name,standardised casing/spacing,GREY LEVER ARCH FILE A4,Grey Lever Arch File A4
+SK-4464,category,matched to fixed category list,filing & storage,Filing
+SK-4464,price,"currency symbol removed, 2dp",$76.55,76.55
+SK-4472,category,matched to fixed category list,writing tools,Writing
+SK-4480,product_name,standardised casing/spacing,Copier Paper Letter 100gsm,Copier Paper Letter 100gsm
+SK-4480,category,matched to fixed category list,paper&office,Paper & Office
+SK-4488,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-4496,product_name,standardised casing/spacing,"green ballpoint, broad","Green Ballpoint, Broad"
+SK-4496,category,matched to fixed category list,WRITING,Writing
+SK-4496,price,"currency symbol removed, 2dp",$4.75,4.75
+SK-4504,category,matched to fixed category list,WRITING,Writing
+SK-4512,product_name,standardised casing/spacing,STEEL DESK ORGANISER,Steel Desk Organiser
+SK-4512,category,matched to fixed category list,DESK,Desk
+SK-4512,price,"currency symbol removed, 2dp",$61.06,61.06
+SK-4520,category,matched to fixed category list,filing & storage,Filing
+SK-4528,product_name,standardised casing/spacing,wooden desk organiser,Wooden Desk Organiser
+SK-4528,category,matched to fixed category list,desk acc.,Desk
+SK-4536,product_name,standardised casing/spacing,"RED BALLPOINT, FINE","Red Ballpoint, Fine"
+SK-4536,category,matched to fixed category list,writing,Writing
+SK-4544,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-4552,category,matched to fixed category list,Writing,Writing
+SK-4552,price,"currency symbol removed, 2dp",$72.96,72.96
+SK-4560,product_name,standardised casing/spacing,acrylic desk organiser,Acrylic Desk Organiser
+SK-4560,category,matched to fixed category list,Desk Accessories,Desk
+SK-4568,category,matched to fixed category list,paper & office,Paper & Office
+SK-4576,category,matched to fixed category list,desk acc.,Desk
+SK-4584,category,matched to fixed category list,FILING,Filing
+SK-4592,category,matched to fixed category list,paper & office,Paper & Office
+SK-4600,product_name,standardised casing/spacing,ACRYLIC DESK ORGANISER,Acrylic Desk Organiser
+SK-4600,category,matched to fixed category list,desk acc.,Desk
+SK-4600,price,"currency symbol removed, 2dp",$77.91,77.91
+SK-4608,product_name,standardised casing/spacing,acrylic desk organiser,Acrylic Desk Organiser
+SK-4608,category,matched to fixed category list,Desk Accessories,Desk
+SK-4608,price,"currency symbol removed, 2dp",$22.84,22.84
+SK-4616,product_name,standardised casing/spacing,"red ballpoint, broad","Red Ballpoint, Broad"
+SK-4616,category,matched to fixed category list,WRITING,Writing
+SK-4624,product_name,standardised casing/spacing,BLUE LEVER ARCH FILE A4,Blue Lever Arch File A4
+SK-4624,category,matched to fixed category list,FILING,Filing
+SK-4632,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-4640,product_name,standardised casing/spacing,copier paper a3 120gsm,Copier Paper A3 120gsm
+SK-4640,category,matched to fixed category list,paper & office,Paper & Office
+SK-4648,category,matched to fixed category list,Writing,Writing
+SK-4656,product_name,standardised casing/spacing,Mesh  Desk  Organiser,Mesh Desk Organiser
+SK-4656,category,matched to fixed category list,desk acc.,Desk
+SK-4656,price,"currency symbol removed, 2dp",$54.16,54.16
+SK-4664,product_name,standardised casing/spacing,MESH DESK ORGANISER,Mesh Desk Organiser
+SK-4664,category,matched to fixed category list,desk,Desk
+SK-4672,product_name,standardised casing/spacing,Acrylic  Desk  Organiser,Acrylic Desk Organiser
+SK-4672,category,matched to fixed category list,desk,Desk
+SK-4680,product_name,standardised casing/spacing,GREY LEVER ARCH FILE A4,Grey Lever Arch File A4
+SK-4680,category,matched to fixed category list,filing & storage,Filing
+SK-4688,product_name,standardised casing/spacing,"Green Ballpoint, Broad","Green Ballpoint, Broad"
+SK-4688,category,matched to fixed category list,Writing,Writing
+SK-4688,price,"currency symbol removed, 2dp",$9.54,9.54
+SK-4696,category,matched to fixed category list,Filing/Storage,Filing
+SK-4704,category,matched to fixed category list,filing,Filing
+SK-4712,category,matched to fixed category list,paper & office,Paper & Office
+SK-4712,price,"currency symbol removed, 2dp",$42.05,42.05
+SK-4720,product_name,standardised casing/spacing,Copier  Paper  A3  100gsm,Copier Paper A3 100gsm
+SK-4720,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-4728,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-4728,price,"currency symbol removed, 2dp",$36.92,36.92
+SK-4736,product_name,standardised casing/spacing,steel desk organiser,Steel Desk Organiser
+SK-4736,category,matched to fixed category list,DESK,Desk
+SK-4744,product_name,standardised casing/spacing,Wooden Desk Organiser,Wooden Desk Organiser
+SK-4744,category,matched to fixed category list,desk,Desk
+SK-4752,product_name,standardised casing/spacing,BLACK LEVER ARCH FILE FOOLSCAP,Black Lever Arch File Foolscap
+SK-4752,category,matched to fixed category list,Filing/Storage,Filing
+SK-4752,price,"currency symbol removed, 2dp",$53.00,53.00
+SK-4760,category,matched to fixed category list,DESK,Desk
+SK-4760,price,"currency symbol removed, 2dp",$76.08,76.08
+SK-4768,category,matched to fixed category list,WRITING,Writing
+SK-4776,product_name,standardised casing/spacing,"Black Ballpoint, Broad","Black Ballpoint, Broad"
+SK-4776,category,matched to fixed category list,WRITING,Writing
+SK-4784,category,matched to fixed category list,WRITING,Writing
+SK-4792,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-4800,product_name,standardised casing/spacing,Copier Paper Legal 120gsm,Copier Paper Legal 120gsm
+SK-4800,category,matched to fixed category list,Paper and Office,Paper & Office
+SK-4808,product_name,standardised casing/spacing,"green ballpoint, medium","Green Ballpoint, Medium"
+SK-4808,category,matched to fixed category list,writing,Writing
+SK-4816,category,matched to fixed category list,filing,Filing
+SK-4824,product_name,standardised casing/spacing,acrylic desk organiser,Acrylic Desk Organiser
+SK-4824,category,matched to fixed category list,DESK,Desk
+SK-4832,category,matched to fixed category list,FILING,Filing
+SK-4832,price,"currency symbol removed, 2dp",$85.08,85.08
+SK-4840,product_name,standardised casing/spacing,blue lever arch file a4,Blue Lever Arch File A4
+SK-4840,category,matched to fixed category list,filing & storage,Filing
+SK-4848,product_name,standardised casing/spacing,wooden desk organiser,Wooden Desk Organiser
+SK-4848,category,matched to fixed category list,desk acc.,Desk
+SK-4856,product_name,standardised casing/spacing,grey lever arch file foolscap,Grey Lever Arch File Foolscap
+SK-4856,category,matched to fixed category list,FILING,Filing
+SK-4856,price,"currency symbol removed, 2dp",$35.80,35.80
+SK-4864,category,matched to fixed category list,WRITING,Writing
+SK-4872,product_name,standardised casing/spacing,Wooden  Desk  Organiser,Wooden Desk Organiser
+SK-4872,category,matched to fixed category list,DESK,Desk
+SK-4880,product_name,standardised casing/spacing,"blue ballpoint, fine","Blue Ballpoint, Fine"
+SK-4880,category,matched to fixed category list,Writing,Writing
+SK-4888,category,matched to fixed category list,filing & storage,Filing
+SK-4896,category,matched to fixed category list,paper & office,Paper & Office
+SK-4896,price,"currency symbol removed, 2dp",$39.16,39.16
+SK-4904,category,matched to fixed category list,paper&office,Paper & Office
+SK-4912,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-4920,category,matched to fixed category list,filing,Filing
+SK-4928,product_name,standardised casing/spacing,Copier  Paper  A3  80gsm,Copier Paper A3 80gsm
+SK-4928,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-4928,price,"currency symbol removed, 2dp",$62.17,62.17
+SK-4936,product_name,standardised casing/spacing,Copier  Paper  A4  120gsm,Copier Paper A4 120gsm
+SK-4936,category,matched to fixed category list,PAPER & OFFICE,Paper & Office
+SK-4944,category,matched to fixed category list,Paper/Office,Paper & Office
+SK-4944,price,"currency symbol removed, 2dp",$4.28,4.28
+SK-4952,category,matched to fixed category list,filing,Filing
+SK-4952,price,"currency symbol removed, 2dp",$67.03,67.03
+SK-4960,product_name,standardised casing/spacing,black lever arch file a4,Black Lever Arch File A4
+SK-4960,category,matched to fixed category list,FILING,Filing
+SK-4968,product_name,standardised casing/spacing,Black  Lever  Arch  File  A4,Black Lever Arch File A4
+SK-4968,category,matched to fixed category list,filing & storage,Filing
+SK-4976,product_name,standardised casing/spacing,"Blue Ballpoint, Medium","Blue Ballpoint, Medium"
+SK-4976,category,matched to fixed category list,Writing,Writing
+SK-4984,product_name,standardised casing/spacing,"Black  Ballpoint,  Fine","Black Ballpoint, Fine"
+SK-4984,category,matched to fixed category list,writing,Writing
+SK-4992,product_name,standardised casing/spacing,Green Lever Arch File A4,Green Lever Arch File A4
+SK-4992,category,matched to fixed category list,FILING,Filing

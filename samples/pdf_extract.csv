@@ -1,0 +1,22 @@
+source_page,region,quarter,units,reconciled
+3,North,Q1,7818,yes
+3,North,Q2,7438,yes
+3,North,Q3,4478,yes
+3,North,Q4,4129,yes
+3,South,Q1,4972,yes
+3,South,Q2,5270,yes
+3,South,Q3,3383,yes
+3,South,Q4,2618,yes
+3,East,Q1,5314,yes
+3,East,Q2,7476,yes
+3,East,Q3,2671,yes
+3,East,Q4,9216,yes
+7,West,Q1,4468,yes
+7,West,Q2,8108,yes
+7,West,Q3,4750,yes
+7,West,Q4,7327,yes
+7,Central,Q1,7558,yes
+7,Central,Q2,4683,yes
+7,Central,Q3,3694,yes
+7,Central,Q4,8760,yes
+,TOTAL,,114131,matches printed total

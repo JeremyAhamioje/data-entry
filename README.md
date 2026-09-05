@@ -15,6 +15,19 @@ The default branch is `root`.
 | --- | --- |
 | `index.html` | The site. A complete standalone HTML document — open it directly or host it anywhere. |
 | `artifact.html` | The same page as body-only markup, for hosts that supply their own `<!doctype>` / `<head>`. |
+| `samples/` | Real CSV files backing the case studies — downloadable from the site's file previews. |
+
+### `samples/`
+
+| File | Rows | What it is |
+| --- | --- | --- |
+| `products_raw.csv` | 534 | The messy export: inconsistent casing, three spellings per category, prices as text, duplicate SKUs written two ways, blank suppliers. |
+| `products_clean.csv` | 500 | The same catalogue after the documented rules are applied. |
+| `change_log.csv` | 1,038 | Every edit, with the value it replaced. Makes the cleanup auditable. |
+| `questions.csv` | 12 | Rows that could not be resolved without the owner — deliberately not guessed. |
+| `pdf_extract.csv` | 20 | Extraction output; the total reconciles against the figure printed in the source. |
+
+These are generated sample datasets, not client data. They exist so the before/after claims in the case studies can be checked rather than taken on trust.
 | `portrait.jpg` | Source headshot, cropped square. Already inlined as a data URI in the HTML. |
 
 Everything is inline: CSS, JS, the portrait, and every icon (drawn as SVG). External requests are limited to three Google Fonts and the Spotify embed.
